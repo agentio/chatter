@@ -6,8 +6,8 @@ package xrpc // com.atproto.repo.strongRef
 
 type RepoStrongRef struct {
 	LexiconTypeID string `json:"$type,omitempty"`
-	Cid           string `json:"cid,omitempty"`
-	Uri           string `json:"uri,omitempty"`
+	Cid           string `json:"cid"`
+	Uri           string `json:"uri"`
 }
 
 /*

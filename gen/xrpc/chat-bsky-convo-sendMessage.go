@@ -13,7 +13,7 @@ import (
 const ChatBskyConvoSendMessage_Description = ""
 
 type ChatBskyConvoSendMessage_Input struct {
-	ConvoId string                          `json:"convoId,omitempty"`
+	ConvoId string                          `json:"convoId"`
 	Message *ChatBskyConvoDefs_MessageInput `json:"message,omitempty"`
 }
 

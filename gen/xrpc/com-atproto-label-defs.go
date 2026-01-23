@@ -4,51 +4,51 @@
 // Get slink at https://github.com/agentio/slink.
 package xrpc // com.atproto.label.defs
 
-// Strings which describe the label in the UI, localized into a specific language.
-type LabelDefs_LabelValueDefinitionStrings struct {
-	LexiconTypeID string `json:"$type,omitempty"`
-	Description   string `json:"description,omitempty"`
-	Lang          string `json:"lang,omitempty"`
-	Name          string `json:"name,omitempty"`
-}
-
-type LabelDefs_LabelValue string
-
 // Metadata tag on an atproto resource (eg, repo or record).
 type LabelDefs_Label struct {
 	LexiconTypeID string  `json:"$type,omitempty"`
 	Cid           *string `json:"cid,omitempty"`
-	Cts           string  `json:"cts,omitempty"`
+	Cts           string  `json:"cts"`
 	Exp           *string `json:"exp,omitempty"`
 	Neg           *bool   `json:"neg,omitempty"`
 	Sig           *[]byte `json:"sig,omitempty"`
-	Src           string  `json:"src,omitempty"`
-	Uri           string  `json:"uri,omitempty"`
-	Val           string  `json:"val,omitempty"`
+	Src           string  `json:"src"`
+	Uri           string  `json:"uri"`
+	Val           string  `json:"val"`
 	Ver           *int64  `json:"ver,omitempty"`
+}
+
+type LabelDefs_LabelValue string
+
+// Declares a label value and its expected interpretations and behaviors.
+type LabelDefs_LabelValueDefinition struct {
+	LexiconTypeID  string                                   `json:"$type,omitempty"`
+	AdultOnly      *bool                                    `json:"adultOnly,omitempty"`
+	Blurs          string                                   `json:"blurs"`
+	DefaultSetting *string                                  `json:"defaultSetting,omitempty"`
+	Identifier     string                                   `json:"identifier"`
+	Locales        []*LabelDefs_LabelValueDefinitionStrings `json:"locales,omitempty"`
+	Severity       string                                   `json:"severity"`
+}
+
+// Strings which describe the label in the UI, localized into a specific language.
+type LabelDefs_LabelValueDefinitionStrings struct {
+	LexiconTypeID string `json:"$type,omitempty"`
+	Description   string `json:"description"`
+	Lang          string `json:"lang"`
+	Name          string `json:"name"`
+}
+
+// Metadata tag on an atproto record, published by the author within the record. Note that schemas should use #selfLabels, not #selfLabel.
+type LabelDefs_SelfLabel struct {
+	LexiconTypeID string `json:"$type,omitempty"`
+	Val           string `json:"val"`
 }
 
 // Metadata tags on an atproto record, published by the author within the record.
 type LabelDefs_SelfLabels struct {
 	LexiconTypeID string                 `json:"$type,omitempty"`
 	Values        []*LabelDefs_SelfLabel `json:"values,omitempty"`
-}
-
-// Metadata tag on an atproto record, published by the author within the record. Note that schemas should use #selfLabels, not #selfLabel.
-type LabelDefs_SelfLabel struct {
-	LexiconTypeID string `json:"$type,omitempty"`
-	Val           string `json:"val,omitempty"`
-}
-
-// Declares a label value and its expected interpretations and behaviors.
-type LabelDefs_LabelValueDefinition struct {
-	LexiconTypeID  string                                   `json:"$type,omitempty"`
-	AdultOnly      *bool                                    `json:"adultOnly,omitempty"`
-	Blurs          string                                   `json:"blurs,omitempty"`
-	DefaultSetting *string                                  `json:"defaultSetting,omitempty"`
-	Identifier     string                                   `json:"identifier,omitempty"`
-	Locales        []*LabelDefs_LabelValueDefinitionStrings `json:"locales,omitempty"`
-	Severity       string                                   `json:"severity,omitempty"`
 }
 
 /*

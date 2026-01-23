@@ -10,15 +10,31 @@ import (
 	"github.com/agentio/slink/pkg/slink"
 )
 
+// Allow replies from actors who follow you.
+type AppBskyFeedThreadgate_FollowerRule struct {
+	LexiconTypeID string `json:"$type,omitempty"`
+}
+
+// Allow replies from actors you follow.
+type AppBskyFeedThreadgate_FollowingRule struct {
+	LexiconTypeID string `json:"$type,omitempty"`
+}
+
+// Allow replies from actors on a list.
+type AppBskyFeedThreadgate_ListRule struct {
+	LexiconTypeID string `json:"$type,omitempty"`
+	List          string `json:"list"`
+}
+
 const AppBskyFeedThreadgate_Description = "Record defining interaction gating rules for a thread (aka, reply controls). The record key (rkey) of the threadgate record must match the record key of the thread's root post, and that record must be in the same repository."
 
 // Record defining interaction gating rules for a thread (aka, reply controls). The record key (rkey) of the threadgate record must match the record key of the thread's root post, and that record must be in the same repository.
 type AppBskyFeedThreadgate struct {
 	LexiconTypeID string                                                   `json:"$type,omitempty"`
 	Allow         []*AppBskyFeedThreadgateAppBskyFeedThreadgate_Allow_Elem `json:"allow,omitempty"`
-	CreatedAt     string                                                   `json:"createdAt,omitempty"`
+	CreatedAt     string                                                   `json:"createdAt"`
 	HiddenReplies []string                                                 `json:"hiddenReplies,omitempty"`
-	Post          string                                                   `json:"post,omitempty"`
+	Post          string                                                   `json:"post"`
 }
 
 type AppBskyFeedThreadgateAppBskyFeedThreadgate_Allow_Elem struct {
@@ -64,22 +80,6 @@ func (m AppBskyFeedThreadgateAppBskyFeedThreadgate_Allow_Elem) MarshalJSON() ([]
 // Allow replies from actors mentioned in your post.
 type AppBskyFeedThreadgate_MentionRule struct {
 	LexiconTypeID string `json:"$type,omitempty"`
-}
-
-// Allow replies from actors who follow you.
-type AppBskyFeedThreadgate_FollowerRule struct {
-	LexiconTypeID string `json:"$type,omitempty"`
-}
-
-// Allow replies from actors you follow.
-type AppBskyFeedThreadgate_FollowingRule struct {
-	LexiconTypeID string `json:"$type,omitempty"`
-}
-
-// Allow replies from actors on a list.
-type AppBskyFeedThreadgate_ListRule struct {
-	LexiconTypeID string `json:"$type,omitempty"`
-	List          string `json:"list,omitempty"`
 }
 
 /*

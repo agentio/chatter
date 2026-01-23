@@ -4,28 +4,28 @@
 // Get slink at https://github.com/agentio/slink.
 package xrpc // com.atproto.moderation.defs
 
-// Spam: frequent unwanted promotion, replies, mentions. Prefer new lexicon definition `tools.ozone.report.defs#reasonMisleadingSpam`.
-const ModerationDefs_ReasonSpam string = "reasonSpam"
-
-// Direct violation of server rules, laws, terms of service. Prefer new lexicon definition `tools.ozone.report.defs#reasonRuleOther`.
-const ModerationDefs_ReasonViolation string = "reasonViolation"
-
-// Unwanted or mislabeled sexual content. Prefer new lexicon definition `tools.ozone.report.defs#reasonSexualUnlabeled`.
-const ModerationDefs_ReasonSexual string = "reasonSexual"
-
-// Rude, harassing, explicit, or otherwise unwelcoming behavior. Prefer new lexicon definition `tools.ozone.report.defs#reasonHarassmentOther`.
-const ModerationDefs_ReasonRude string = "reasonRude"
-
 // Appeal a previously taken moderation action
 const ModerationDefs_ReasonAppeal string = "reasonAppeal"
-
-type ModerationDefs_ReasonType string
 
 // Misleading identity, affiliation, or content. Prefer new lexicon definition `tools.ozone.report.defs#reasonMisleadingOther`.
 const ModerationDefs_ReasonMisleading string = "reasonMisleading"
 
 // Reports not falling under another report category. Prefer new lexicon definition `tools.ozone.report.defs#reasonOther`.
 const ModerationDefs_ReasonOther string = "reasonOther"
+
+// Rude, harassing, explicit, or otherwise unwelcoming behavior. Prefer new lexicon definition `tools.ozone.report.defs#reasonHarassmentOther`.
+const ModerationDefs_ReasonRude string = "reasonRude"
+
+// Unwanted or mislabeled sexual content. Prefer new lexicon definition `tools.ozone.report.defs#reasonSexualUnlabeled`.
+const ModerationDefs_ReasonSexual string = "reasonSexual"
+
+// Spam: frequent unwanted promotion, replies, mentions. Prefer new lexicon definition `tools.ozone.report.defs#reasonMisleadingSpam`.
+const ModerationDefs_ReasonSpam string = "reasonSpam"
+
+type ModerationDefs_ReasonType string
+
+// Direct violation of server rules, laws, terms of service. Prefer new lexicon definition `tools.ozone.report.defs#reasonRuleOther`.
+const ModerationDefs_ReasonViolation string = "reasonViolation"
 
 type ModerationDefs_SubjectType string
 

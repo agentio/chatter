@@ -6,6 +6,12 @@ package xrpc // app.bsky.embed.video
 
 import "github.com/agentio/slink/pkg/slink"
 
+type AppBskyEmbedVideo_Caption struct {
+	LexiconTypeID string      `json:"$type,omitempty"`
+	File          *slink.Blob `json:"file"`
+	Lang          string      `json:"lang"`
+}
+
 type AppBskyEmbedVideo struct {
 	LexiconTypeID string                        `json:"$type,omitempty"`
 	Alt           *string                       `json:"alt,omitempty"`
@@ -14,18 +20,12 @@ type AppBskyEmbedVideo struct {
 	Video         *slink.Blob                   `json:"video"`
 }
 
-type AppBskyEmbedVideo_Caption struct {
-	LexiconTypeID string      `json:"$type,omitempty"`
-	File          *slink.Blob `json:"file"`
-	Lang          string      `json:"lang,omitempty"`
-}
-
 type AppBskyEmbedVideo_View struct {
 	LexiconTypeID string                        `json:"$type,omitempty"`
 	Alt           *string                       `json:"alt,omitempty"`
 	AspectRatio   *AppBskyEmbedDefs_AspectRatio `json:"aspectRatio,omitempty"`
-	Cid           string                        `json:"cid,omitempty"`
-	Playlist      string                        `json:"playlist,omitempty"`
+	Cid           string                        `json:"cid"`
+	Playlist      string                        `json:"playlist"`
 	Thumbnail     *string                       `json:"thumbnail,omitempty"`
 }
 

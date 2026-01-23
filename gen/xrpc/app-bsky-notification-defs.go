@@ -4,26 +4,21 @@
 // Get slink at https://github.com/agentio/slink.
 package xrpc // app.bsky.notification.defs
 
-// Object used to store activity subscription data in stash.
-type AppBskyNotificationDefs_SubjectActivitySubscription struct {
-	LexiconTypeID        string                                        `json:"$type,omitempty"`
-	ActivitySubscription *AppBskyNotificationDefs_ActivitySubscription `json:"activitySubscription,omitempty"`
-	Subject              string                                        `json:"subject,omitempty"`
-}
-
-type AppBskyNotificationDefs_RecordDeleted struct {
+type AppBskyNotificationDefs_ActivitySubscription struct {
 	LexiconTypeID string `json:"$type,omitempty"`
+	Post          bool   `json:"post"`
+	Reply         bool   `json:"reply"`
 }
 
 type AppBskyNotificationDefs_ChatPreference struct {
 	LexiconTypeID string `json:"$type,omitempty"`
-	Include       string `json:"include,omitempty"`
+	Include       string `json:"include"`
 	Push          bool   `json:"push"`
 }
 
 type AppBskyNotificationDefs_FilterablePreference struct {
 	LexiconTypeID string `json:"$type,omitempty"`
-	Include       string `json:"include,omitempty"`
+	Include       string `json:"include"`
 	List          bool   `json:"list"`
 	Push          bool   `json:"push"`
 }
@@ -51,10 +46,15 @@ type AppBskyNotificationDefs_Preferences struct {
 	Verified          *AppBskyNotificationDefs_Preference           `json:"verified,omitempty"`
 }
 
-type AppBskyNotificationDefs_ActivitySubscription struct {
+type AppBskyNotificationDefs_RecordDeleted struct {
 	LexiconTypeID string `json:"$type,omitempty"`
-	Post          bool   `json:"post"`
-	Reply         bool   `json:"reply"`
+}
+
+// Object used to store activity subscription data in stash.
+type AppBskyNotificationDefs_SubjectActivitySubscription struct {
+	LexiconTypeID        string                                        `json:"$type,omitempty"`
+	ActivitySubscription *AppBskyNotificationDefs_ActivitySubscription `json:"activitySubscription,omitempty"`
+	Subject              string                                        `json:"subject"`
 }
 
 /*

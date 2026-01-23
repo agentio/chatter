@@ -15,20 +15,20 @@ const ServerCreateSession_Description = "Create an authentication session."
 type ServerCreateSession_Input struct {
 	AllowTakendown  *bool   `json:"allowTakendown,omitempty"`
 	AuthFactorToken *string `json:"authFactorToken,omitempty"`
-	Identifier      string  `json:"identifier,omitempty"`
-	Password        string  `json:"password,omitempty"`
+	Identifier      string  `json:"identifier"`
+	Password        string  `json:"password"`
 }
 
 type ServerCreateSession_Output struct {
-	AccessJwt       string  `json:"accessJwt,omitempty"`
+	AccessJwt       string  `json:"accessJwt"`
 	Active          *bool   `json:"active,omitempty"`
-	Did             string  `json:"did,omitempty"`
+	Did             string  `json:"did"`
 	DidDoc          *any    `json:"didDoc,omitempty"`
 	Email           *string `json:"email,omitempty"`
 	EmailAuthFactor *bool   `json:"emailAuthFactor,omitempty"`
 	EmailConfirmed  *bool   `json:"emailConfirmed,omitempty"`
-	Handle          string  `json:"handle,omitempty"`
-	RefreshJwt      string  `json:"refreshJwt,omitempty"`
+	Handle          string  `json:"handle"`
+	RefreshJwt      string  `json:"refreshJwt"`
 	Status          *string `json:"status,omitempty"`
 }
 

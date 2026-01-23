@@ -10,283 +10,16 @@ import (
 	"github.com/agentio/slink/pkg/slink"
 )
 
-type ChatBskyConvoDefs_ReactionViewSender struct {
-	LexiconTypeID string `json:"$type,omitempty"`
-	Did           string `json:"did,omitempty"`
-}
-
-type ChatBskyConvoDefs_MessageAndReactionView struct {
-	LexiconTypeID string                          `json:"$type,omitempty"`
-	Message       *ChatBskyConvoDefs_MessageView  `json:"message,omitempty"`
-	Reaction      *ChatBskyConvoDefs_ReactionView `json:"reaction,omitempty"`
-}
-
-type ChatBskyConvoDefs_LogBeginConvo struct {
-	LexiconTypeID string `json:"$type,omitempty"`
-	ConvoId       string `json:"convoId,omitempty"`
-	Rev           string `json:"rev,omitempty"`
-}
-
-type ChatBskyConvoDefs_LogAcceptConvo struct {
-	LexiconTypeID string `json:"$type,omitempty"`
-	ConvoId       string `json:"convoId,omitempty"`
-	Rev           string `json:"rev,omitempty"`
-}
-
-type ChatBskyConvoDefs_LogCreateMessage struct {
-	LexiconTypeID string                                                       `json:"$type,omitempty"`
-	ConvoId       string                                                       `json:"convoId,omitempty"`
-	Message       *ChatBskyConvoDefsChatBskyConvoDefs_LogCreateMessage_Message `json:"message,omitempty"`
-	Rev           string                                                       `json:"rev,omitempty"`
-}
-
-type ChatBskyConvoDefsChatBskyConvoDefs_LogCreateMessage_Message struct {
-	ConvoDefs_MessageView        *ChatBskyConvoDefs_MessageView
-	ConvoDefs_DeletedMessageView *ChatBskyConvoDefs_DeletedMessageView
-}
-
-func (m *ChatBskyConvoDefsChatBskyConvoDefs_LogCreateMessage_Message) UnmarshalJSON(data []byte) error {
-	recordType := slink.LexiconTypeFromJSONBytes(data)
-	switch recordType {
-	case "#messageView":
-		m.ConvoDefs_MessageView = &ChatBskyConvoDefs_MessageView{}
-		json.Unmarshal(data, m.ConvoDefs_MessageView)
-	case "#deletedMessageView":
-		m.ConvoDefs_DeletedMessageView = &ChatBskyConvoDefs_DeletedMessageView{}
-		json.Unmarshal(data, m.ConvoDefs_DeletedMessageView)
-	}
-	return nil
-}
-
-func (m ChatBskyConvoDefsChatBskyConvoDefs_LogCreateMessage_Message) MarshalJSON() ([]byte, error) {
-	if m.ConvoDefs_MessageView != nil {
-		return json.Marshal(m.ConvoDefs_MessageView)
-	} else if m.ConvoDefs_DeletedMessageView != nil {
-		return json.Marshal(m.ConvoDefs_DeletedMessageView)
-	} else {
-		return []byte("{}"), nil
-	}
-}
-
-type ChatBskyConvoDefs_LogReadMessage struct {
-	LexiconTypeID string                                                     `json:"$type,omitempty"`
-	ConvoId       string                                                     `json:"convoId,omitempty"`
-	Message       *ChatBskyConvoDefsChatBskyConvoDefs_LogReadMessage_Message `json:"message,omitempty"`
-	Rev           string                                                     `json:"rev,omitempty"`
-}
-
-type ChatBskyConvoDefsChatBskyConvoDefs_LogReadMessage_Message struct {
-	ConvoDefs_MessageView        *ChatBskyConvoDefs_MessageView
-	ConvoDefs_DeletedMessageView *ChatBskyConvoDefs_DeletedMessageView
-}
-
-func (m *ChatBskyConvoDefsChatBskyConvoDefs_LogReadMessage_Message) UnmarshalJSON(data []byte) error {
-	recordType := slink.LexiconTypeFromJSONBytes(data)
-	switch recordType {
-	case "#messageView":
-		m.ConvoDefs_MessageView = &ChatBskyConvoDefs_MessageView{}
-		json.Unmarshal(data, m.ConvoDefs_MessageView)
-	case "#deletedMessageView":
-		m.ConvoDefs_DeletedMessageView = &ChatBskyConvoDefs_DeletedMessageView{}
-		json.Unmarshal(data, m.ConvoDefs_DeletedMessageView)
-	}
-	return nil
-}
-
-func (m ChatBskyConvoDefsChatBskyConvoDefs_LogReadMessage_Message) MarshalJSON() ([]byte, error) {
-	if m.ConvoDefs_MessageView != nil {
-		return json.Marshal(m.ConvoDefs_MessageView)
-	} else if m.ConvoDefs_DeletedMessageView != nil {
-		return json.Marshal(m.ConvoDefs_DeletedMessageView)
-	} else {
-		return []byte("{}"), nil
-	}
-}
-
-type ChatBskyConvoDefs_LogLeaveConvo struct {
-	LexiconTypeID string `json:"$type,omitempty"`
-	ConvoId       string `json:"convoId,omitempty"`
-	Rev           string `json:"rev,omitempty"`
-}
-
-type ChatBskyConvoDefs_LogUnmuteConvo struct {
-	LexiconTypeID string `json:"$type,omitempty"`
-	ConvoId       string `json:"convoId,omitempty"`
-	Rev           string `json:"rev,omitempty"`
-}
-
-type ChatBskyConvoDefs_LogAddReaction struct {
-	LexiconTypeID string                                                     `json:"$type,omitempty"`
-	ConvoId       string                                                     `json:"convoId,omitempty"`
-	Message       *ChatBskyConvoDefsChatBskyConvoDefs_LogAddReaction_Message `json:"message,omitempty"`
-	Reaction      *ChatBskyConvoDefs_ReactionView                            `json:"reaction,omitempty"`
-	Rev           string                                                     `json:"rev,omitempty"`
-}
-
-type ChatBskyConvoDefsChatBskyConvoDefs_LogAddReaction_Message struct {
-	ConvoDefs_MessageView        *ChatBskyConvoDefs_MessageView
-	ConvoDefs_DeletedMessageView *ChatBskyConvoDefs_DeletedMessageView
-}
-
-func (m *ChatBskyConvoDefsChatBskyConvoDefs_LogAddReaction_Message) UnmarshalJSON(data []byte) error {
-	recordType := slink.LexiconTypeFromJSONBytes(data)
-	switch recordType {
-	case "#messageView":
-		m.ConvoDefs_MessageView = &ChatBskyConvoDefs_MessageView{}
-		json.Unmarshal(data, m.ConvoDefs_MessageView)
-	case "#deletedMessageView":
-		m.ConvoDefs_DeletedMessageView = &ChatBskyConvoDefs_DeletedMessageView{}
-		json.Unmarshal(data, m.ConvoDefs_DeletedMessageView)
-	}
-	return nil
-}
-
-func (m ChatBskyConvoDefsChatBskyConvoDefs_LogAddReaction_Message) MarshalJSON() ([]byte, error) {
-	if m.ConvoDefs_MessageView != nil {
-		return json.Marshal(m.ConvoDefs_MessageView)
-	} else if m.ConvoDefs_DeletedMessageView != nil {
-		return json.Marshal(m.ConvoDefs_DeletedMessageView)
-	} else {
-		return []byte("{}"), nil
-	}
-}
-
-type ChatBskyConvoDefs_LogRemoveReaction struct {
-	LexiconTypeID string                                                        `json:"$type,omitempty"`
-	ConvoId       string                                                        `json:"convoId,omitempty"`
-	Message       *ChatBskyConvoDefsChatBskyConvoDefs_LogRemoveReaction_Message `json:"message,omitempty"`
-	Reaction      *ChatBskyConvoDefs_ReactionView                               `json:"reaction,omitempty"`
-	Rev           string                                                        `json:"rev,omitempty"`
-}
-
-type ChatBskyConvoDefsChatBskyConvoDefs_LogRemoveReaction_Message struct {
-	ConvoDefs_MessageView        *ChatBskyConvoDefs_MessageView
-	ConvoDefs_DeletedMessageView *ChatBskyConvoDefs_DeletedMessageView
-}
-
-func (m *ChatBskyConvoDefsChatBskyConvoDefs_LogRemoveReaction_Message) UnmarshalJSON(data []byte) error {
-	recordType := slink.LexiconTypeFromJSONBytes(data)
-	switch recordType {
-	case "#messageView":
-		m.ConvoDefs_MessageView = &ChatBskyConvoDefs_MessageView{}
-		json.Unmarshal(data, m.ConvoDefs_MessageView)
-	case "#deletedMessageView":
-		m.ConvoDefs_DeletedMessageView = &ChatBskyConvoDefs_DeletedMessageView{}
-		json.Unmarshal(data, m.ConvoDefs_DeletedMessageView)
-	}
-	return nil
-}
-
-func (m ChatBskyConvoDefsChatBskyConvoDefs_LogRemoveReaction_Message) MarshalJSON() ([]byte, error) {
-	if m.ConvoDefs_MessageView != nil {
-		return json.Marshal(m.ConvoDefs_MessageView)
-	} else if m.ConvoDefs_DeletedMessageView != nil {
-		return json.Marshal(m.ConvoDefs_DeletedMessageView)
-	} else {
-		return []byte("{}"), nil
-	}
-}
-
-type ChatBskyConvoDefs_MessageInput struct {
-	LexiconTypeID string                                                 `json:"$type,omitempty"`
-	Embed         *ChatBskyConvoDefsChatBskyConvoDefs_MessageInput_Embed `json:"embed,omitempty"`
-	Facets        []*AppBskyRichtextFacet                                `json:"facets,omitempty"`
-	Text          string                                                 `json:"text,omitempty"`
-}
-
-type ChatBskyConvoDefsChatBskyConvoDefs_MessageInput_Embed struct {
-	EmbedRecord *AppBskyEmbedRecord
-}
-
-func (m *ChatBskyConvoDefsChatBskyConvoDefs_MessageInput_Embed) UnmarshalJSON(data []byte) error {
-	recordType := slink.LexiconTypeFromJSONBytes(data)
-	switch recordType {
-	case "app.bsky.embed.record":
-		m.EmbedRecord = &AppBskyEmbedRecord{}
-		json.Unmarshal(data, m.EmbedRecord)
-	}
-	return nil
-}
-
-func (m ChatBskyConvoDefsChatBskyConvoDefs_MessageInput_Embed) MarshalJSON() ([]byte, error) {
-	if m.EmbedRecord != nil {
-		return json.Marshal(m.EmbedRecord)
-	} else {
-		return []byte("{}"), nil
-	}
-}
-
-type ChatBskyConvoDefs_MessageView struct {
-	LexiconTypeID string                                                `json:"$type,omitempty"`
-	Embed         *ChatBskyConvoDefsChatBskyConvoDefs_MessageView_Embed `json:"embed,omitempty"`
-	Facets        []*AppBskyRichtextFacet                               `json:"facets,omitempty"`
-	Id            string                                                `json:"id,omitempty"`
-	Reactions     []*ChatBskyConvoDefs_ReactionView                     `json:"reactions,omitempty"`
-	Rev           string                                                `json:"rev,omitempty"`
-	Sender        *ChatBskyConvoDefs_MessageViewSender                  `json:"sender,omitempty"`
-	SentAt        string                                                `json:"sentAt,omitempty"`
-	Text          string                                                `json:"text,omitempty"`
-}
-
-type ChatBskyConvoDefsChatBskyConvoDefs_MessageView_Embed struct {
-	EmbedRecord_View *AppBskyEmbedRecord_View
-}
-
-func (m *ChatBskyConvoDefsChatBskyConvoDefs_MessageView_Embed) UnmarshalJSON(data []byte) error {
-	recordType := slink.LexiconTypeFromJSONBytes(data)
-	switch recordType {
-	case "app.bsky.embed.record#view":
-		m.EmbedRecord_View = &AppBskyEmbedRecord_View{}
-		json.Unmarshal(data, m.EmbedRecord_View)
-	}
-	return nil
-}
-
-func (m ChatBskyConvoDefsChatBskyConvoDefs_MessageView_Embed) MarshalJSON() ([]byte, error) {
-	if m.EmbedRecord_View != nil {
-		return json.Marshal(m.EmbedRecord_View)
-	} else {
-		return []byte("{}"), nil
-	}
-}
-
-type ChatBskyConvoDefs_DeletedMessageView struct {
-	LexiconTypeID string                               `json:"$type,omitempty"`
-	Id            string                               `json:"id,omitempty"`
-	Rev           string                               `json:"rev,omitempty"`
-	Sender        *ChatBskyConvoDefs_MessageViewSender `json:"sender,omitempty"`
-	SentAt        string                               `json:"sentAt,omitempty"`
-}
-
-type ChatBskyConvoDefs_ReactionView struct {
-	LexiconTypeID string                                `json:"$type,omitempty"`
-	CreatedAt     string                                `json:"createdAt,omitempty"`
-	Sender        *ChatBskyConvoDefs_ReactionViewSender `json:"sender,omitempty"`
-	Value         string                                `json:"value,omitempty"`
-}
-
-type ChatBskyConvoDefs_MessageRef struct {
-	LexiconTypeID string `json:"$type,omitempty"`
-	ConvoId       string `json:"convoId,omitempty"`
-	Did           string `json:"did,omitempty"`
-	MessageId     string `json:"messageId,omitempty"`
-}
-
-type ChatBskyConvoDefs_MessageViewSender struct {
-	LexiconTypeID string `json:"$type,omitempty"`
-	Did           string `json:"did,omitempty"`
-}
-
 type ChatBskyConvoDefs_ConvoView struct {
 	LexiconTypeID string                                                     `json:"$type,omitempty"`
-	Id            string                                                     `json:"id,omitempty"`
+	Id            string                                                     `json:"id"`
 	LastMessage   *ChatBskyConvoDefsChatBskyConvoDefs_ConvoView_LastMessage  `json:"lastMessage,omitempty"`
 	LastReaction  *ChatBskyConvoDefsChatBskyConvoDefs_ConvoView_LastReaction `json:"lastReaction,omitempty"`
 	Members       []*ChatBskyActorDefs_ProfileViewBasic                      `json:"members,omitempty"`
 	Muted         bool                                                       `json:"muted"`
-	Rev           string                                                     `json:"rev,omitempty"`
+	Rev           string                                                     `json:"rev"`
 	Status        *string                                                    `json:"status,omitempty"`
-	UnreadCount   int64                                                      `json:"unreadCount,omitempty"`
+	UnreadCount   int64                                                      `json:"unreadCount"`
 }
 
 type ChatBskyConvoDefsChatBskyConvoDefs_ConvoView_LastMessage struct {
@@ -339,17 +72,102 @@ func (m ChatBskyConvoDefsChatBskyConvoDefs_ConvoView_LastReaction) MarshalJSON()
 	}
 }
 
-type ChatBskyConvoDefs_LogMuteConvo struct {
+type ChatBskyConvoDefs_DeletedMessageView struct {
+	LexiconTypeID string                               `json:"$type,omitempty"`
+	Id            string                               `json:"id"`
+	Rev           string                               `json:"rev"`
+	Sender        *ChatBskyConvoDefs_MessageViewSender `json:"sender,omitempty"`
+	SentAt        string                               `json:"sentAt"`
+}
+
+type ChatBskyConvoDefs_LogAcceptConvo struct {
 	LexiconTypeID string `json:"$type,omitempty"`
-	ConvoId       string `json:"convoId,omitempty"`
-	Rev           string `json:"rev,omitempty"`
+	ConvoId       string `json:"convoId"`
+	Rev           string `json:"rev"`
+}
+
+type ChatBskyConvoDefs_LogAddReaction struct {
+	LexiconTypeID string                                                     `json:"$type,omitempty"`
+	ConvoId       string                                                     `json:"convoId"`
+	Message       *ChatBskyConvoDefsChatBskyConvoDefs_LogAddReaction_Message `json:"message,omitempty"`
+	Reaction      *ChatBskyConvoDefs_ReactionView                            `json:"reaction,omitempty"`
+	Rev           string                                                     `json:"rev"`
+}
+
+type ChatBskyConvoDefsChatBskyConvoDefs_LogAddReaction_Message struct {
+	ConvoDefs_MessageView        *ChatBskyConvoDefs_MessageView
+	ConvoDefs_DeletedMessageView *ChatBskyConvoDefs_DeletedMessageView
+}
+
+func (m *ChatBskyConvoDefsChatBskyConvoDefs_LogAddReaction_Message) UnmarshalJSON(data []byte) error {
+	recordType := slink.LexiconTypeFromJSONBytes(data)
+	switch recordType {
+	case "#messageView":
+		m.ConvoDefs_MessageView = &ChatBskyConvoDefs_MessageView{}
+		json.Unmarshal(data, m.ConvoDefs_MessageView)
+	case "#deletedMessageView":
+		m.ConvoDefs_DeletedMessageView = &ChatBskyConvoDefs_DeletedMessageView{}
+		json.Unmarshal(data, m.ConvoDefs_DeletedMessageView)
+	}
+	return nil
+}
+
+func (m ChatBskyConvoDefsChatBskyConvoDefs_LogAddReaction_Message) MarshalJSON() ([]byte, error) {
+	if m.ConvoDefs_MessageView != nil {
+		return json.Marshal(m.ConvoDefs_MessageView)
+	} else if m.ConvoDefs_DeletedMessageView != nil {
+		return json.Marshal(m.ConvoDefs_DeletedMessageView)
+	} else {
+		return []byte("{}"), nil
+	}
+}
+
+type ChatBskyConvoDefs_LogBeginConvo struct {
+	LexiconTypeID string `json:"$type,omitempty"`
+	ConvoId       string `json:"convoId"`
+	Rev           string `json:"rev"`
+}
+
+type ChatBskyConvoDefs_LogCreateMessage struct {
+	LexiconTypeID string                                                       `json:"$type,omitempty"`
+	ConvoId       string                                                       `json:"convoId"`
+	Message       *ChatBskyConvoDefsChatBskyConvoDefs_LogCreateMessage_Message `json:"message,omitempty"`
+	Rev           string                                                       `json:"rev"`
+}
+
+type ChatBskyConvoDefsChatBskyConvoDefs_LogCreateMessage_Message struct {
+	ConvoDefs_MessageView        *ChatBskyConvoDefs_MessageView
+	ConvoDefs_DeletedMessageView *ChatBskyConvoDefs_DeletedMessageView
+}
+
+func (m *ChatBskyConvoDefsChatBskyConvoDefs_LogCreateMessage_Message) UnmarshalJSON(data []byte) error {
+	recordType := slink.LexiconTypeFromJSONBytes(data)
+	switch recordType {
+	case "#messageView":
+		m.ConvoDefs_MessageView = &ChatBskyConvoDefs_MessageView{}
+		json.Unmarshal(data, m.ConvoDefs_MessageView)
+	case "#deletedMessageView":
+		m.ConvoDefs_DeletedMessageView = &ChatBskyConvoDefs_DeletedMessageView{}
+		json.Unmarshal(data, m.ConvoDefs_DeletedMessageView)
+	}
+	return nil
+}
+
+func (m ChatBskyConvoDefsChatBskyConvoDefs_LogCreateMessage_Message) MarshalJSON() ([]byte, error) {
+	if m.ConvoDefs_MessageView != nil {
+		return json.Marshal(m.ConvoDefs_MessageView)
+	} else if m.ConvoDefs_DeletedMessageView != nil {
+		return json.Marshal(m.ConvoDefs_DeletedMessageView)
+	} else {
+		return []byte("{}"), nil
+	}
 }
 
 type ChatBskyConvoDefs_LogDeleteMessage struct {
 	LexiconTypeID string                                                       `json:"$type,omitempty"`
-	ConvoId       string                                                       `json:"convoId,omitempty"`
+	ConvoId       string                                                       `json:"convoId"`
 	Message       *ChatBskyConvoDefsChatBskyConvoDefs_LogDeleteMessage_Message `json:"message,omitempty"`
-	Rev           string                                                       `json:"rev,omitempty"`
+	Rev           string                                                       `json:"rev"`
 }
 
 type ChatBskyConvoDefsChatBskyConvoDefs_LogDeleteMessage_Message struct {
@@ -378,6 +196,188 @@ func (m ChatBskyConvoDefsChatBskyConvoDefs_LogDeleteMessage_Message) MarshalJSON
 	} else {
 		return []byte("{}"), nil
 	}
+}
+
+type ChatBskyConvoDefs_LogLeaveConvo struct {
+	LexiconTypeID string `json:"$type,omitempty"`
+	ConvoId       string `json:"convoId"`
+	Rev           string `json:"rev"`
+}
+
+type ChatBskyConvoDefs_LogMuteConvo struct {
+	LexiconTypeID string `json:"$type,omitempty"`
+	ConvoId       string `json:"convoId"`
+	Rev           string `json:"rev"`
+}
+
+type ChatBskyConvoDefs_LogReadMessage struct {
+	LexiconTypeID string                                                     `json:"$type,omitempty"`
+	ConvoId       string                                                     `json:"convoId"`
+	Message       *ChatBskyConvoDefsChatBskyConvoDefs_LogReadMessage_Message `json:"message,omitempty"`
+	Rev           string                                                     `json:"rev"`
+}
+
+type ChatBskyConvoDefsChatBskyConvoDefs_LogReadMessage_Message struct {
+	ConvoDefs_MessageView        *ChatBskyConvoDefs_MessageView
+	ConvoDefs_DeletedMessageView *ChatBskyConvoDefs_DeletedMessageView
+}
+
+func (m *ChatBskyConvoDefsChatBskyConvoDefs_LogReadMessage_Message) UnmarshalJSON(data []byte) error {
+	recordType := slink.LexiconTypeFromJSONBytes(data)
+	switch recordType {
+	case "#messageView":
+		m.ConvoDefs_MessageView = &ChatBskyConvoDefs_MessageView{}
+		json.Unmarshal(data, m.ConvoDefs_MessageView)
+	case "#deletedMessageView":
+		m.ConvoDefs_DeletedMessageView = &ChatBskyConvoDefs_DeletedMessageView{}
+		json.Unmarshal(data, m.ConvoDefs_DeletedMessageView)
+	}
+	return nil
+}
+
+func (m ChatBskyConvoDefsChatBskyConvoDefs_LogReadMessage_Message) MarshalJSON() ([]byte, error) {
+	if m.ConvoDefs_MessageView != nil {
+		return json.Marshal(m.ConvoDefs_MessageView)
+	} else if m.ConvoDefs_DeletedMessageView != nil {
+		return json.Marshal(m.ConvoDefs_DeletedMessageView)
+	} else {
+		return []byte("{}"), nil
+	}
+}
+
+type ChatBskyConvoDefs_LogRemoveReaction struct {
+	LexiconTypeID string                                                        `json:"$type,omitempty"`
+	ConvoId       string                                                        `json:"convoId"`
+	Message       *ChatBskyConvoDefsChatBskyConvoDefs_LogRemoveReaction_Message `json:"message,omitempty"`
+	Reaction      *ChatBskyConvoDefs_ReactionView                               `json:"reaction,omitempty"`
+	Rev           string                                                        `json:"rev"`
+}
+
+type ChatBskyConvoDefsChatBskyConvoDefs_LogRemoveReaction_Message struct {
+	ConvoDefs_MessageView        *ChatBskyConvoDefs_MessageView
+	ConvoDefs_DeletedMessageView *ChatBskyConvoDefs_DeletedMessageView
+}
+
+func (m *ChatBskyConvoDefsChatBskyConvoDefs_LogRemoveReaction_Message) UnmarshalJSON(data []byte) error {
+	recordType := slink.LexiconTypeFromJSONBytes(data)
+	switch recordType {
+	case "#messageView":
+		m.ConvoDefs_MessageView = &ChatBskyConvoDefs_MessageView{}
+		json.Unmarshal(data, m.ConvoDefs_MessageView)
+	case "#deletedMessageView":
+		m.ConvoDefs_DeletedMessageView = &ChatBskyConvoDefs_DeletedMessageView{}
+		json.Unmarshal(data, m.ConvoDefs_DeletedMessageView)
+	}
+	return nil
+}
+
+func (m ChatBskyConvoDefsChatBskyConvoDefs_LogRemoveReaction_Message) MarshalJSON() ([]byte, error) {
+	if m.ConvoDefs_MessageView != nil {
+		return json.Marshal(m.ConvoDefs_MessageView)
+	} else if m.ConvoDefs_DeletedMessageView != nil {
+		return json.Marshal(m.ConvoDefs_DeletedMessageView)
+	} else {
+		return []byte("{}"), nil
+	}
+}
+
+type ChatBskyConvoDefs_LogUnmuteConvo struct {
+	LexiconTypeID string `json:"$type,omitempty"`
+	ConvoId       string `json:"convoId"`
+	Rev           string `json:"rev"`
+}
+
+type ChatBskyConvoDefs_MessageAndReactionView struct {
+	LexiconTypeID string                          `json:"$type,omitempty"`
+	Message       *ChatBskyConvoDefs_MessageView  `json:"message,omitempty"`
+	Reaction      *ChatBskyConvoDefs_ReactionView `json:"reaction,omitempty"`
+}
+
+type ChatBskyConvoDefs_MessageInput struct {
+	LexiconTypeID string                                                 `json:"$type,omitempty"`
+	Embed         *ChatBskyConvoDefsChatBskyConvoDefs_MessageInput_Embed `json:"embed,omitempty"`
+	Facets        []*AppBskyRichtextFacet                                `json:"facets,omitempty"`
+	Text          string                                                 `json:"text"`
+}
+
+type ChatBskyConvoDefsChatBskyConvoDefs_MessageInput_Embed struct {
+	EmbedRecord *AppBskyEmbedRecord
+}
+
+func (m *ChatBskyConvoDefsChatBskyConvoDefs_MessageInput_Embed) UnmarshalJSON(data []byte) error {
+	recordType := slink.LexiconTypeFromJSONBytes(data)
+	switch recordType {
+	case "app.bsky.embed.record":
+		m.EmbedRecord = &AppBskyEmbedRecord{}
+		json.Unmarshal(data, m.EmbedRecord)
+	}
+	return nil
+}
+
+func (m ChatBskyConvoDefsChatBskyConvoDefs_MessageInput_Embed) MarshalJSON() ([]byte, error) {
+	if m.EmbedRecord != nil {
+		return json.Marshal(m.EmbedRecord)
+	} else {
+		return []byte("{}"), nil
+	}
+}
+
+type ChatBskyConvoDefs_MessageRef struct {
+	LexiconTypeID string `json:"$type,omitempty"`
+	ConvoId       string `json:"convoId"`
+	Did           string `json:"did"`
+	MessageId     string `json:"messageId"`
+}
+
+type ChatBskyConvoDefs_MessageView struct {
+	LexiconTypeID string                                                `json:"$type,omitempty"`
+	Embed         *ChatBskyConvoDefsChatBskyConvoDefs_MessageView_Embed `json:"embed,omitempty"`
+	Facets        []*AppBskyRichtextFacet                               `json:"facets,omitempty"`
+	Id            string                                                `json:"id"`
+	Reactions     []*ChatBskyConvoDefs_ReactionView                     `json:"reactions,omitempty"`
+	Rev           string                                                `json:"rev"`
+	Sender        *ChatBskyConvoDefs_MessageViewSender                  `json:"sender,omitempty"`
+	SentAt        string                                                `json:"sentAt"`
+	Text          string                                                `json:"text"`
+}
+
+type ChatBskyConvoDefsChatBskyConvoDefs_MessageView_Embed struct {
+	EmbedRecord_View *AppBskyEmbedRecord_View
+}
+
+func (m *ChatBskyConvoDefsChatBskyConvoDefs_MessageView_Embed) UnmarshalJSON(data []byte) error {
+	recordType := slink.LexiconTypeFromJSONBytes(data)
+	switch recordType {
+	case "app.bsky.embed.record#view":
+		m.EmbedRecord_View = &AppBskyEmbedRecord_View{}
+		json.Unmarshal(data, m.EmbedRecord_View)
+	}
+	return nil
+}
+
+func (m ChatBskyConvoDefsChatBskyConvoDefs_MessageView_Embed) MarshalJSON() ([]byte, error) {
+	if m.EmbedRecord_View != nil {
+		return json.Marshal(m.EmbedRecord_View)
+	} else {
+		return []byte("{}"), nil
+	}
+}
+
+type ChatBskyConvoDefs_MessageViewSender struct {
+	LexiconTypeID string `json:"$type,omitempty"`
+	Did           string `json:"did"`
+}
+
+type ChatBskyConvoDefs_ReactionView struct {
+	LexiconTypeID string                                `json:"$type,omitempty"`
+	CreatedAt     string                                `json:"createdAt"`
+	Sender        *ChatBskyConvoDefs_ReactionViewSender `json:"sender,omitempty"`
+	Value         string                                `json:"value"`
+}
+
+type ChatBskyConvoDefs_ReactionViewSender struct {
+	LexiconTypeID string `json:"$type,omitempty"`
+	Did           string `json:"did"`
 }
 
 /*

@@ -7,8 +7,8 @@ package xrpc // app.bsky.embed.defs
 // width:height represents an aspect ratio. It may be approximate, and may not correspond to absolute dimensions in any given unit.
 type AppBskyEmbedDefs_AspectRatio struct {
 	LexiconTypeID string `json:"$type,omitempty"`
-	Height        int64  `json:"height,omitempty"`
-	Width         int64  `json:"width,omitempty"`
+	Height        int64  `json:"height"`
+	Width         int64  `json:"width"`
 }
 
 /*

@@ -4,11 +4,45 @@
 // Get slink at https://github.com/agentio/slink.
 package xrpc // app.bsky.graph.defs
 
-// A list of actors to apply an aggregate moderation action (mute/block) on.
-const AppBskyGraphDefs_Modlist string = "modlist"
+// A list of actors used for curation purposes such as list feeds or interaction gating.
+const AppBskyGraphDefs_Curatelist string = "curatelist"
 
-// A list of actors used for only for reference purposes such as within a starter pack.
-const AppBskyGraphDefs_Referencelist string = "referencelist"
+type AppBskyGraphDefs_ListItemView struct {
+	LexiconTypeID string                        `json:"$type,omitempty"`
+	Subject       *AppBskyActorDefs_ProfileView `json:"subject,omitempty"`
+	Uri           string                        `json:"uri"`
+}
+
+type AppBskyGraphDefs_ListPurpose string
+
+type AppBskyGraphDefs_ListView struct {
+	LexiconTypeID     string                            `json:"$type,omitempty"`
+	Avatar            *string                           `json:"avatar,omitempty"`
+	Cid               string                            `json:"cid"`
+	Creator           *AppBskyActorDefs_ProfileView     `json:"creator,omitempty"`
+	Description       *string                           `json:"description,omitempty"`
+	DescriptionFacets []*AppBskyRichtextFacet           `json:"descriptionFacets,omitempty"`
+	IndexedAt         string                            `json:"indexedAt"`
+	Labels            []*LabelDefs_Label                `json:"labels,omitempty"`
+	ListItemCount     *int64                            `json:"listItemCount,omitempty"`
+	Name              string                            `json:"name"`
+	Purpose           *AppBskyGraphDefs_ListPurpose     `json:"purpose,omitempty"`
+	Uri               string                            `json:"uri"`
+	Viewer            *AppBskyGraphDefs_ListViewerState `json:"viewer,omitempty"`
+}
+
+type AppBskyGraphDefs_ListViewBasic struct {
+	LexiconTypeID string                            `json:"$type,omitempty"`
+	Avatar        *string                           `json:"avatar,omitempty"`
+	Cid           string                            `json:"cid"`
+	IndexedAt     *string                           `json:"indexedAt,omitempty"`
+	Labels        []*LabelDefs_Label                `json:"labels,omitempty"`
+	ListItemCount *int64                            `json:"listItemCount,omitempty"`
+	Name          string                            `json:"name"`
+	Purpose       *AppBskyGraphDefs_ListPurpose     `json:"purpose,omitempty"`
+	Uri           string                            `json:"uri"`
+	Viewer        *AppBskyGraphDefs_ListViewerState `json:"viewer,omitempty"`
+}
 
 type AppBskyGraphDefs_ListViewerState struct {
 	LexiconTypeID string  `json:"$type,omitempty"`
@@ -16,12 +50,18 @@ type AppBskyGraphDefs_ListViewerState struct {
 	Muted         *bool   `json:"muted,omitempty"`
 }
 
+// A list of actors to apply an aggregate moderation action (mute/block) on.
+const AppBskyGraphDefs_Modlist string = "modlist"
+
 // indicates that a handle or DID could not be resolved
 type AppBskyGraphDefs_NotFoundActor struct {
 	LexiconTypeID string `json:"$type,omitempty"`
-	Actor         string `json:"actor,omitempty"`
+	Actor         string `json:"actor"`
 	NotFound      bool   `json:"notFound"`
 }
+
+// A list of actors used for only for reference purposes such as within a starter pack.
+const AppBskyGraphDefs_Referencelist string = "referencelist"
 
 // lists the bi-directional graph relationships between one actor (not indicated in the object), and the target actors (the DID included in the object)
 type AppBskyGraphDefs_Relationship struct {
@@ -30,78 +70,38 @@ type AppBskyGraphDefs_Relationship struct {
 	BlockedByList  *string `json:"blockedByList,omitempty"`
 	Blocking       *string `json:"blocking,omitempty"`
 	BlockingByList *string `json:"blockingByList,omitempty"`
-	Did            string  `json:"did,omitempty"`
+	Did            string  `json:"did"`
 	FollowedBy     *string `json:"followedBy,omitempty"`
 	Following      *string `json:"following,omitempty"`
 }
 
-type AppBskyGraphDefs_ListItemView struct {
-	LexiconTypeID string                        `json:"$type,omitempty"`
-	Subject       *AppBskyActorDefs_ProfileView `json:"subject,omitempty"`
-	Uri           string                        `json:"uri,omitempty"`
-}
-
 type AppBskyGraphDefs_StarterPackView struct {
 	LexiconTypeID      string                             `json:"$type,omitempty"`
-	Cid                string                             `json:"cid,omitempty"`
+	Cid                string                             `json:"cid"`
 	Creator            *AppBskyActorDefs_ProfileViewBasic `json:"creator,omitempty"`
 	Feeds              []*AppBskyFeedDefs_GeneratorView   `json:"feeds,omitempty"`
-	IndexedAt          string                             `json:"indexedAt,omitempty"`
+	IndexedAt          string                             `json:"indexedAt"`
 	JoinedAllTimeCount *int64                             `json:"joinedAllTimeCount,omitempty"`
 	JoinedWeekCount    *int64                             `json:"joinedWeekCount,omitempty"`
 	Labels             []*LabelDefs_Label                 `json:"labels,omitempty"`
 	List               *AppBskyGraphDefs_ListViewBasic    `json:"list,omitempty"`
 	ListItemsSample    []*AppBskyGraphDefs_ListItemView   `json:"listItemsSample,omitempty"`
-	Record             any                                `json:"record,omitempty"`
-	Uri                string                             `json:"uri,omitempty"`
+	Record             any                                `json:"record"`
+	Uri                string                             `json:"uri"`
 }
 
 type AppBskyGraphDefs_StarterPackViewBasic struct {
 	LexiconTypeID      string                             `json:"$type,omitempty"`
-	Cid                string                             `json:"cid,omitempty"`
+	Cid                string                             `json:"cid"`
 	Creator            *AppBskyActorDefs_ProfileViewBasic `json:"creator,omitempty"`
-	IndexedAt          string                             `json:"indexedAt,omitempty"`
+	IndexedAt          string                             `json:"indexedAt"`
 	JoinedAllTimeCount *int64                             `json:"joinedAllTimeCount,omitempty"`
 	JoinedWeekCount    *int64                             `json:"joinedWeekCount,omitempty"`
 	Labels             []*LabelDefs_Label                 `json:"labels,omitempty"`
 	ListItemCount      *int64                             `json:"listItemCount,omitempty"`
-	Record             any                                `json:"record,omitempty"`
-	Uri                string                             `json:"uri,omitempty"`
+	Record             any                                `json:"record"`
+	Uri                string                             `json:"uri"`
 }
-
-// A list of actors used for curation purposes such as list feeds or interaction gating.
-const AppBskyGraphDefs_Curatelist string = "curatelist"
-
-type AppBskyGraphDefs_ListViewBasic struct {
-	LexiconTypeID string                            `json:"$type,omitempty"`
-	Avatar        *string                           `json:"avatar,omitempty"`
-	Cid           string                            `json:"cid,omitempty"`
-	IndexedAt     *string                           `json:"indexedAt,omitempty"`
-	Labels        []*LabelDefs_Label                `json:"labels,omitempty"`
-	ListItemCount *int64                            `json:"listItemCount,omitempty"`
-	Name          string                            `json:"name,omitempty"`
-	Purpose       *AppBskyGraphDefs_ListPurpose     `json:"purpose,omitempty"`
-	Uri           string                            `json:"uri,omitempty"`
-	Viewer        *AppBskyGraphDefs_ListViewerState `json:"viewer,omitempty"`
-}
-
-type AppBskyGraphDefs_ListView struct {
-	LexiconTypeID     string                            `json:"$type,omitempty"`
-	Avatar            *string                           `json:"avatar,omitempty"`
-	Cid               string                            `json:"cid,omitempty"`
-	Creator           *AppBskyActorDefs_ProfileView     `json:"creator,omitempty"`
-	Description       *string                           `json:"description,omitempty"`
-	DescriptionFacets []*AppBskyRichtextFacet           `json:"descriptionFacets,omitempty"`
-	IndexedAt         string                            `json:"indexedAt,omitempty"`
-	Labels            []*LabelDefs_Label                `json:"labels,omitempty"`
-	ListItemCount     *int64                            `json:"listItemCount,omitempty"`
-	Name              string                            `json:"name,omitempty"`
-	Purpose           *AppBskyGraphDefs_ListPurpose     `json:"purpose,omitempty"`
-	Uri               string                            `json:"uri,omitempty"`
-	Viewer            *AppBskyGraphDefs_ListViewerState `json:"viewer,omitempty"`
-}
-
-type AppBskyGraphDefs_ListPurpose string
 
 /*
 {

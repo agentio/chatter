@@ -8,9 +8,14 @@ import "github.com/agentio/slink/pkg/slink"
 
 type AppBskyEmbedImages_Image struct {
 	LexiconTypeID string                        `json:"$type,omitempty"`
-	Alt           string                        `json:"alt,omitempty"`
+	Alt           string                        `json:"alt"`
 	AspectRatio   *AppBskyEmbedDefs_AspectRatio `json:"aspectRatio,omitempty"`
 	Image         *slink.Blob                   `json:"image"`
+}
+
+type AppBskyEmbedImages struct {
+	LexiconTypeID string                      `json:"$type,omitempty"`
+	Images        []*AppBskyEmbedImages_Image `json:"images,omitempty"`
 }
 
 type AppBskyEmbedImages_View struct {
@@ -20,15 +25,10 @@ type AppBskyEmbedImages_View struct {
 
 type AppBskyEmbedImages_ViewImage struct {
 	LexiconTypeID string                        `json:"$type,omitempty"`
-	Alt           string                        `json:"alt,omitempty"`
+	Alt           string                        `json:"alt"`
 	AspectRatio   *AppBskyEmbedDefs_AspectRatio `json:"aspectRatio,omitempty"`
-	Fullsize      string                        `json:"fullsize,omitempty"`
-	Thumb         string                        `json:"thumb,omitempty"`
-}
-
-type AppBskyEmbedImages struct {
-	LexiconTypeID string                      `json:"$type,omitempty"`
-	Images        []*AppBskyEmbedImages_Image `json:"images,omitempty"`
+	Fullsize      string                        `json:"fullsize"`
+	Thumb         string                        `json:"thumb"`
 }
 
 /*

@@ -10,34 +10,95 @@ import (
 	"github.com/agentio/slink/pkg/slink"
 )
 
-// User clicked through to the author of the feed item
-const AppBskyFeedDefs_ClickthroughAuthor string = "clickthroughAuthor"
-
-// User clicked through to the feed item
-const AppBskyFeedDefs_ClickthroughItem string = "clickthroughItem"
-
-// Declares the feed generator returns posts containing app.bsky.embed.video embeds.
-const AppBskyFeedDefs_ContentModeVideo string = "contentModeVideo"
-
-// User reposted the feed item
-const AppBskyFeedDefs_InteractionRepost string = "interactionRepost"
-
-// User replied to the feed item
-const AppBskyFeedDefs_InteractionReply string = "interactionReply"
-
-// Declares the feed generator returns any types of posts.
-const AppBskyFeedDefs_ContentModeUnspecified string = "contentModeUnspecified"
+type AppBskyFeedDefs_BlockedAuthor struct {
+	LexiconTypeID string                        `json:"$type,omitempty"`
+	Did           string                        `json:"did"`
+	Viewer        *AppBskyActorDefs_ViewerState `json:"viewer,omitempty"`
+}
 
 type AppBskyFeedDefs_BlockedPost struct {
 	LexiconTypeID string                         `json:"$type,omitempty"`
 	Author        *AppBskyFeedDefs_BlockedAuthor `json:"author,omitempty"`
 	Blocked       bool                           `json:"blocked"`
-	Uri           string                         `json:"uri,omitempty"`
+	Uri           string                         `json:"uri"`
 }
 
-type AppBskyFeedDefs_SkeletonReasonRepost struct {
-	LexiconTypeID string `json:"$type,omitempty"`
-	Repost        string `json:"repost,omitempty"`
+// User clicked through to the author of the feed item
+const AppBskyFeedDefs_ClickthroughAuthor string = "clickthroughAuthor"
+
+// User clicked through to the embedded content of the feed item
+const AppBskyFeedDefs_ClickthroughEmbed string = "clickthroughEmbed"
+
+// User clicked through to the feed item
+const AppBskyFeedDefs_ClickthroughItem string = "clickthroughItem"
+
+// User clicked through to the reposter of the feed item
+const AppBskyFeedDefs_ClickthroughReposter string = "clickthroughReposter"
+
+// Declares the feed generator returns any types of posts.
+const AppBskyFeedDefs_ContentModeUnspecified string = "contentModeUnspecified"
+
+// Declares the feed generator returns posts containing app.bsky.embed.video embeds.
+const AppBskyFeedDefs_ContentModeVideo string = "contentModeVideo"
+
+type AppBskyFeedDefs_FeedViewPost struct {
+	LexiconTypeID string                                              `json:"$type,omitempty"`
+	FeedContext   *string                                             `json:"feedContext,omitempty"`
+	Post          *AppBskyFeedDefs_PostView                           `json:"post,omitempty"`
+	Reason        *AppBskyFeedDefsAppBskyFeedDefs_FeedViewPost_Reason `json:"reason,omitempty"`
+	Reply         *AppBskyFeedDefs_ReplyRef                           `json:"reply,omitempty"`
+	ReqId         *string                                             `json:"reqId,omitempty"`
+}
+
+type AppBskyFeedDefsAppBskyFeedDefs_FeedViewPost_Reason struct {
+	FeedDefs_ReasonRepost *AppBskyFeedDefs_ReasonRepost
+	FeedDefs_ReasonPin    *AppBskyFeedDefs_ReasonPin
+}
+
+func (m *AppBskyFeedDefsAppBskyFeedDefs_FeedViewPost_Reason) UnmarshalJSON(data []byte) error {
+	recordType := slink.LexiconTypeFromJSONBytes(data)
+	switch recordType {
+	case "#reasonRepost":
+		m.FeedDefs_ReasonRepost = &AppBskyFeedDefs_ReasonRepost{}
+		json.Unmarshal(data, m.FeedDefs_ReasonRepost)
+	case "#reasonPin":
+		m.FeedDefs_ReasonPin = &AppBskyFeedDefs_ReasonPin{}
+		json.Unmarshal(data, m.FeedDefs_ReasonPin)
+	}
+	return nil
+}
+
+func (m AppBskyFeedDefsAppBskyFeedDefs_FeedViewPost_Reason) MarshalJSON() ([]byte, error) {
+	if m.FeedDefs_ReasonRepost != nil {
+		return json.Marshal(m.FeedDefs_ReasonRepost)
+	} else if m.FeedDefs_ReasonPin != nil {
+		return json.Marshal(m.FeedDefs_ReasonPin)
+	} else {
+		return []byte("{}"), nil
+	}
+}
+
+type AppBskyFeedDefs_GeneratorView struct {
+	LexiconTypeID       string                                `json:"$type,omitempty"`
+	AcceptsInteractions *bool                                 `json:"acceptsInteractions,omitempty"`
+	Avatar              *string                               `json:"avatar,omitempty"`
+	Cid                 string                                `json:"cid"`
+	ContentMode         *string                               `json:"contentMode,omitempty"`
+	Creator             *AppBskyActorDefs_ProfileView         `json:"creator,omitempty"`
+	Description         *string                               `json:"description,omitempty"`
+	DescriptionFacets   []*AppBskyRichtextFacet               `json:"descriptionFacets,omitempty"`
+	Did                 string                                `json:"did"`
+	DisplayName         string                                `json:"displayName"`
+	IndexedAt           string                                `json:"indexedAt"`
+	Labels              []*LabelDefs_Label                    `json:"labels,omitempty"`
+	LikeCount           *int64                                `json:"likeCount,omitempty"`
+	Uri                 string                                `json:"uri"`
+	Viewer              *AppBskyFeedDefs_GeneratorViewerState `json:"viewer,omitempty"`
+}
+
+type AppBskyFeedDefs_GeneratorViewerState struct {
+	LexiconTypeID string  `json:"$type,omitempty"`
+	Like          *string `json:"like,omitempty"`
 }
 
 type AppBskyFeedDefs_Interaction struct {
@@ -48,38 +109,46 @@ type AppBskyFeedDefs_Interaction struct {
 	ReqId         *string `json:"reqId,omitempty"`
 }
 
-// User clicked through to the reposter of the feed item
-const AppBskyFeedDefs_ClickthroughReposter string = "clickthroughReposter"
+// User liked the feed item
+const AppBskyFeedDefs_InteractionLike string = "interactionLike"
+
+// User quoted the feed item
+const AppBskyFeedDefs_InteractionQuote string = "interactionQuote"
+
+// User replied to the feed item
+const AppBskyFeedDefs_InteractionReply string = "interactionReply"
+
+// User reposted the feed item
+const AppBskyFeedDefs_InteractionRepost string = "interactionRepost"
 
 // Feed item was seen by user
 const AppBskyFeedDefs_InteractionSeen string = "interactionSeen"
 
-type AppBskyFeedDefs_SkeletonReasonPin struct {
+// User shared the feed item
+const AppBskyFeedDefs_InteractionShare string = "interactionShare"
+
+type AppBskyFeedDefs_NotFoundPost struct {
 	LexiconTypeID string `json:"$type,omitempty"`
+	NotFound      bool   `json:"notFound"`
+	Uri           string `json:"uri"`
 }
-
-// User clicked through to the embedded content of the feed item
-const AppBskyFeedDefs_ClickthroughEmbed string = "clickthroughEmbed"
-
-// User liked the feed item
-const AppBskyFeedDefs_InteractionLike string = "interactionLike"
 
 type AppBskyFeedDefs_PostView struct {
 	LexiconTypeID string                                         `json:"$type,omitempty"`
 	Author        *AppBskyActorDefs_ProfileViewBasic             `json:"author,omitempty"`
 	BookmarkCount *int64                                         `json:"bookmarkCount,omitempty"`
-	Cid           string                                         `json:"cid,omitempty"`
+	Cid           string                                         `json:"cid"`
 	Debug         *any                                           `json:"debug,omitempty"`
 	Embed         *AppBskyFeedDefsAppBskyFeedDefs_PostView_Embed `json:"embed,omitempty"`
-	IndexedAt     string                                         `json:"indexedAt,omitempty"`
+	IndexedAt     string                                         `json:"indexedAt"`
 	Labels        []*LabelDefs_Label                             `json:"labels,omitempty"`
 	LikeCount     *int64                                         `json:"likeCount,omitempty"`
 	QuoteCount    *int64                                         `json:"quoteCount,omitempty"`
-	Record        any                                            `json:"record,omitempty"`
+	Record        any                                            `json:"record"`
 	ReplyCount    *int64                                         `json:"replyCount,omitempty"`
 	RepostCount   *int64                                         `json:"repostCount,omitempty"`
 	Threadgate    *AppBskyFeedDefs_ThreadgateView                `json:"threadgate,omitempty"`
-	Uri           string                                         `json:"uri,omitempty"`
+	Uri           string                                         `json:"uri"`
 	Viewer        *AppBskyFeedDefs_ViewerState                   `json:"viewer,omitempty"`
 }
 
@@ -129,70 +198,17 @@ func (m AppBskyFeedDefsAppBskyFeedDefs_PostView_Embed) MarshalJSON() ([]byte, er
 	}
 }
 
-type AppBskyFeedDefs_FeedViewPost struct {
-	LexiconTypeID string                                              `json:"$type,omitempty"`
-	FeedContext   *string                                             `json:"feedContext,omitempty"`
-	Post          *AppBskyFeedDefs_PostView                           `json:"post,omitempty"`
-	Reason        *AppBskyFeedDefsAppBskyFeedDefs_FeedViewPost_Reason `json:"reason,omitempty"`
-	Reply         *AppBskyFeedDefs_ReplyRef                           `json:"reply,omitempty"`
-	ReqId         *string                                             `json:"reqId,omitempty"`
-}
-
-type AppBskyFeedDefsAppBskyFeedDefs_FeedViewPost_Reason struct {
-	FeedDefs_ReasonRepost *AppBskyFeedDefs_ReasonRepost
-	FeedDefs_ReasonPin    *AppBskyFeedDefs_ReasonPin
-}
-
-func (m *AppBskyFeedDefsAppBskyFeedDefs_FeedViewPost_Reason) UnmarshalJSON(data []byte) error {
-	recordType := slink.LexiconTypeFromJSONBytes(data)
-	switch recordType {
-	case "#reasonRepost":
-		m.FeedDefs_ReasonRepost = &AppBskyFeedDefs_ReasonRepost{}
-		json.Unmarshal(data, m.FeedDefs_ReasonRepost)
-	case "#reasonPin":
-		m.FeedDefs_ReasonPin = &AppBskyFeedDefs_ReasonPin{}
-		json.Unmarshal(data, m.FeedDefs_ReasonPin)
-	}
-	return nil
-}
-
-func (m AppBskyFeedDefsAppBskyFeedDefs_FeedViewPost_Reason) MarshalJSON() ([]byte, error) {
-	if m.FeedDefs_ReasonRepost != nil {
-		return json.Marshal(m.FeedDefs_ReasonRepost)
-	} else if m.FeedDefs_ReasonPin != nil {
-		return json.Marshal(m.FeedDefs_ReasonPin)
-	} else {
-		return []byte("{}"), nil
-	}
-}
-
 type AppBskyFeedDefs_ReasonPin struct {
 	LexiconTypeID string `json:"$type,omitempty"`
 }
 
-type AppBskyFeedDefs_GeneratorView struct {
-	LexiconTypeID       string                                `json:"$type,omitempty"`
-	AcceptsInteractions *bool                                 `json:"acceptsInteractions,omitempty"`
-	Avatar              *string                               `json:"avatar,omitempty"`
-	Cid                 string                                `json:"cid,omitempty"`
-	ContentMode         *string                               `json:"contentMode,omitempty"`
-	Creator             *AppBskyActorDefs_ProfileView         `json:"creator,omitempty"`
-	Description         *string                               `json:"description,omitempty"`
-	DescriptionFacets   []*AppBskyRichtextFacet               `json:"descriptionFacets,omitempty"`
-	Did                 string                                `json:"did,omitempty"`
-	DisplayName         string                                `json:"displayName,omitempty"`
-	IndexedAt           string                                `json:"indexedAt,omitempty"`
-	Labels              []*LabelDefs_Label                    `json:"labels,omitempty"`
-	LikeCount           *int64                                `json:"likeCount,omitempty"`
-	Uri                 string                                `json:"uri,omitempty"`
-	Viewer              *AppBskyFeedDefs_GeneratorViewerState `json:"viewer,omitempty"`
+type AppBskyFeedDefs_ReasonRepost struct {
+	LexiconTypeID string                             `json:"$type,omitempty"`
+	By            *AppBskyActorDefs_ProfileViewBasic `json:"by,omitempty"`
+	Cid           *string                            `json:"cid,omitempty"`
+	IndexedAt     string                             `json:"indexedAt"`
+	Uri           *string                            `json:"uri,omitempty"`
 }
-
-// Request that less content like the given feed item be shown in the feed
-const AppBskyFeedDefs_RequestLess string = "requestLess"
-
-// Request that more content like the given feed item be shown in the feed
-const AppBskyFeedDefs_RequestMore string = "requestMore"
 
 type AppBskyFeedDefs_ReplyRef struct {
 	LexiconTypeID     string                                          `json:"$type,omitempty"`
@@ -269,18 +285,16 @@ func (m AppBskyFeedDefsAppBskyFeedDefs_ReplyRef_Root) MarshalJSON() ([]byte, err
 	}
 }
 
-type AppBskyFeedDefs_ReasonRepost struct {
-	LexiconTypeID string                             `json:"$type,omitempty"`
-	By            *AppBskyActorDefs_ProfileViewBasic `json:"by,omitempty"`
-	Cid           *string                            `json:"cid,omitempty"`
-	IndexedAt     string                             `json:"indexedAt,omitempty"`
-	Uri           *string                            `json:"uri,omitempty"`
-}
+// Request that less content like the given feed item be shown in the feed
+const AppBskyFeedDefs_RequestLess string = "requestLess"
+
+// Request that more content like the given feed item be shown in the feed
+const AppBskyFeedDefs_RequestMore string = "requestMore"
 
 type AppBskyFeedDefs_SkeletonFeedPost struct {
 	LexiconTypeID string                                                  `json:"$type,omitempty"`
 	FeedContext   *string                                                 `json:"feedContext,omitempty"`
-	Post          string                                                  `json:"post,omitempty"`
+	Post          string                                                  `json:"post"`
 	Reason        *AppBskyFeedDefsAppBskyFeedDefs_SkeletonFeedPost_Reason `json:"reason,omitempty"`
 }
 
@@ -312,19 +326,13 @@ func (m AppBskyFeedDefsAppBskyFeedDefs_SkeletonFeedPost_Reason) MarshalJSON() ([
 	}
 }
 
-// User shared the feed item
-const AppBskyFeedDefs_InteractionShare string = "interactionShare"
+type AppBskyFeedDefs_SkeletonReasonPin struct {
+	LexiconTypeID string `json:"$type,omitempty"`
+}
 
-// Metadata about the requesting account's relationship with the subject content. Only has meaningful content for authed requests.
-type AppBskyFeedDefs_ViewerState struct {
-	LexiconTypeID     string  `json:"$type,omitempty"`
-	Bookmarked        *bool   `json:"bookmarked,omitempty"`
-	EmbeddingDisabled *bool   `json:"embeddingDisabled,omitempty"`
-	Like              *string `json:"like,omitempty"`
-	Pinned            *bool   `json:"pinned,omitempty"`
-	ReplyDisabled     *bool   `json:"replyDisabled,omitempty"`
-	Repost            *string `json:"repost,omitempty"`
-	ThreadMuted       *bool   `json:"threadMuted,omitempty"`
+type AppBskyFeedDefs_SkeletonReasonRepost struct {
+	LexiconTypeID string `json:"$type,omitempty"`
+	Repost        string `json:"repost"`
 }
 
 // Metadata about this post within the context of the thread it is in.
@@ -332,26 +340,6 @@ type AppBskyFeedDefs_ThreadContext struct {
 	LexiconTypeID  string  `json:"$type,omitempty"`
 	RootAuthorLike *string `json:"rootAuthorLike,omitempty"`
 }
-
-type AppBskyFeedDefs_NotFoundPost struct {
-	LexiconTypeID string `json:"$type,omitempty"`
-	NotFound      bool   `json:"notFound"`
-	Uri           string `json:"uri,omitempty"`
-}
-
-type AppBskyFeedDefs_BlockedAuthor struct {
-	LexiconTypeID string                        `json:"$type,omitempty"`
-	Did           string                        `json:"did,omitempty"`
-	Viewer        *AppBskyActorDefs_ViewerState `json:"viewer,omitempty"`
-}
-
-type AppBskyFeedDefs_GeneratorViewerState struct {
-	LexiconTypeID string  `json:"$type,omitempty"`
-	Like          *string `json:"like,omitempty"`
-}
-
-// User quoted the feed item
-const AppBskyFeedDefs_InteractionQuote string = "interactionQuote"
 
 type AppBskyFeedDefs_ThreadViewPost struct {
 	LexiconTypeID string                                                        `json:"$type,omitempty"`
@@ -435,6 +423,18 @@ type AppBskyFeedDefs_ThreadgateView struct {
 	Lists         []*AppBskyGraphDefs_ListViewBasic `json:"lists,omitempty"`
 	Record        *any                              `json:"record,omitempty"`
 	Uri           *string                           `json:"uri,omitempty"`
+}
+
+// Metadata about the requesting account's relationship with the subject content. Only has meaningful content for authed requests.
+type AppBskyFeedDefs_ViewerState struct {
+	LexiconTypeID     string  `json:"$type,omitempty"`
+	Bookmarked        *bool   `json:"bookmarked,omitempty"`
+	EmbeddingDisabled *bool   `json:"embeddingDisabled,omitempty"`
+	Like              *string `json:"like,omitempty"`
+	Pinned            *bool   `json:"pinned,omitempty"`
+	ReplyDisabled     *bool   `json:"replyDisabled,omitempty"`
+	Repost            *string `json:"repost,omitempty"`
+	ThreadMuted       *bool   `json:"threadMuted,omitempty"`
 }
 
 /*

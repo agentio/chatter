@@ -84,19 +84,38 @@ func (m AppBskyEmbedRecordAppBskyEmbedRecord_View_Record) MarshalJSON() ([]byte,
 	}
 }
 
+type AppBskyEmbedRecord_ViewBlocked struct {
+	LexiconTypeID string                         `json:"$type,omitempty"`
+	Author        *AppBskyFeedDefs_BlockedAuthor `json:"author,omitempty"`
+	Blocked       bool                           `json:"blocked"`
+	Uri           string                         `json:"uri"`
+}
+
+type AppBskyEmbedRecord_ViewDetached struct {
+	LexiconTypeID string `json:"$type,omitempty"`
+	Detached      bool   `json:"detached"`
+	Uri           string `json:"uri"`
+}
+
+type AppBskyEmbedRecord_ViewNotFound struct {
+	LexiconTypeID string `json:"$type,omitempty"`
+	NotFound      bool   `json:"notFound"`
+	Uri           string `json:"uri"`
+}
+
 type AppBskyEmbedRecord_ViewRecord struct {
 	LexiconTypeID string                                                         `json:"$type,omitempty"`
 	Author        *AppBskyActorDefs_ProfileViewBasic                             `json:"author,omitempty"`
-	Cid           string                                                         `json:"cid,omitempty"`
+	Cid           string                                                         `json:"cid"`
 	Embeds        []*AppBskyEmbedRecordAppBskyEmbedRecord_ViewRecord_Embeds_Elem `json:"embeds,omitempty"`
-	IndexedAt     string                                                         `json:"indexedAt,omitempty"`
+	IndexedAt     string                                                         `json:"indexedAt"`
 	Labels        []*LabelDefs_Label                                             `json:"labels,omitempty"`
 	LikeCount     *int64                                                         `json:"likeCount,omitempty"`
 	QuoteCount    *int64                                                         `json:"quoteCount,omitempty"`
 	ReplyCount    *int64                                                         `json:"replyCount,omitempty"`
 	RepostCount   *int64                                                         `json:"repostCount,omitempty"`
-	Uri           string                                                         `json:"uri,omitempty"`
-	Value         any                                                            `json:"value,omitempty"`
+	Uri           string                                                         `json:"uri"`
+	Value         any                                                            `json:"value"`
 }
 
 type AppBskyEmbedRecordAppBskyEmbedRecord_ViewRecord_Embeds_Elem struct {
@@ -143,25 +162,6 @@ func (m AppBskyEmbedRecordAppBskyEmbedRecord_ViewRecord_Embeds_Elem) MarshalJSON
 	} else {
 		return []byte("{}"), nil
 	}
-}
-
-type AppBskyEmbedRecord_ViewNotFound struct {
-	LexiconTypeID string `json:"$type,omitempty"`
-	NotFound      bool   `json:"notFound"`
-	Uri           string `json:"uri,omitempty"`
-}
-
-type AppBskyEmbedRecord_ViewBlocked struct {
-	LexiconTypeID string                         `json:"$type,omitempty"`
-	Author        *AppBskyFeedDefs_BlockedAuthor `json:"author,omitempty"`
-	Blocked       bool                           `json:"blocked"`
-	Uri           string                         `json:"uri,omitempty"`
-}
-
-type AppBskyEmbedRecord_ViewDetached struct {
-	LexiconTypeID string `json:"$type,omitempty"`
-	Detached      bool   `json:"detached"`
-	Uri           string `json:"uri,omitempty"`
 }
 
 /*

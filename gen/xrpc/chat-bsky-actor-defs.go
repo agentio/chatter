@@ -9,9 +9,9 @@ type ChatBskyActorDefs_ProfileViewBasic struct {
 	Associated    *AppBskyActorDefs_ProfileAssociated `json:"associated,omitempty"`
 	Avatar        *string                             `json:"avatar,omitempty"`
 	ChatDisabled  *bool                               `json:"chatDisabled,omitempty"`
-	Did           string                              `json:"did,omitempty"`
+	Did           string                              `json:"did"`
 	DisplayName   *string                             `json:"displayName,omitempty"`
-	Handle        string                              `json:"handle,omitempty"`
+	Handle        string                              `json:"handle"`
 	Labels        []*LabelDefs_Label                  `json:"labels,omitempty"`
 	Verification  *AppBskyActorDefs_VerificationState `json:"verification,omitempty"`
 	Viewer        *AppBskyActorDefs_ViewerState       `json:"viewer,omitempty"`

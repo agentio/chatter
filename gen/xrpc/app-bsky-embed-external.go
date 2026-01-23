@@ -6,18 +6,18 @@ package xrpc // app.bsky.embed.external
 
 import "github.com/agentio/slink/pkg/slink"
 
+type AppBskyEmbedExternal_External struct {
+	LexiconTypeID string      `json:"$type,omitempty"`
+	Description   string      `json:"description"`
+	Thumb         *slink.Blob `json:"thumb,omitempty"`
+	Title         string      `json:"title"`
+	Uri           string      `json:"uri"`
+}
+
 // A representation of some externally linked content (eg, a URL and 'card'), embedded in a Bluesky record (eg, a post).
 type AppBskyEmbedExternal struct {
 	LexiconTypeID string                         `json:"$type,omitempty"`
 	External      *AppBskyEmbedExternal_External `json:"external,omitempty"`
-}
-
-type AppBskyEmbedExternal_External struct {
-	LexiconTypeID string      `json:"$type,omitempty"`
-	Description   string      `json:"description,omitempty"`
-	Thumb         *slink.Blob `json:"thumb,omitempty"`
-	Title         string      `json:"title,omitempty"`
-	Uri           string      `json:"uri,omitempty"`
 }
 
 type AppBskyEmbedExternal_View struct {
@@ -27,10 +27,10 @@ type AppBskyEmbedExternal_View struct {
 
 type AppBskyEmbedExternal_ViewExternal struct {
 	LexiconTypeID string  `json:"$type,omitempty"`
-	Description   string  `json:"description,omitempty"`
+	Description   string  `json:"description"`
 	Thumb         *string `json:"thumb,omitempty"`
-	Title         string  `json:"title,omitempty"`
-	Uri           string  `json:"uri,omitempty"`
+	Title         string  `json:"title"`
+	Uri           string  `json:"uri"`
 }
 
 /*

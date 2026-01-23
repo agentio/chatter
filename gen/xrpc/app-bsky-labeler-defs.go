@@ -4,41 +4,41 @@
 // Get slink at https://github.com/agentio/slink.
 package xrpc // app.bsky.labeler.defs
 
+type AppBskyLabelerDefs_LabelerPolicies struct {
+	LexiconTypeID         string                            `json:"$type,omitempty"`
+	LabelValueDefinitions []*LabelDefs_LabelValueDefinition `json:"labelValueDefinitions,omitempty"`
+	LabelValues           []*LabelDefs_LabelValue           `json:"labelValues,omitempty"`
+}
+
 type AppBskyLabelerDefs_LabelerView struct {
 	LexiconTypeID string                                 `json:"$type,omitempty"`
-	Cid           string                                 `json:"cid,omitempty"`
+	Cid           string                                 `json:"cid"`
 	Creator       *AppBskyActorDefs_ProfileView          `json:"creator,omitempty"`
-	IndexedAt     string                                 `json:"indexedAt,omitempty"`
+	IndexedAt     string                                 `json:"indexedAt"`
 	Labels        []*LabelDefs_Label                     `json:"labels,omitempty"`
 	LikeCount     *int64                                 `json:"likeCount,omitempty"`
-	Uri           string                                 `json:"uri,omitempty"`
+	Uri           string                                 `json:"uri"`
 	Viewer        *AppBskyLabelerDefs_LabelerViewerState `json:"viewer,omitempty"`
 }
 
 type AppBskyLabelerDefs_LabelerViewDetailed struct {
 	LexiconTypeID      string                                 `json:"$type,omitempty"`
-	Cid                string                                 `json:"cid,omitempty"`
+	Cid                string                                 `json:"cid"`
 	Creator            *AppBskyActorDefs_ProfileView          `json:"creator,omitempty"`
-	IndexedAt          string                                 `json:"indexedAt,omitempty"`
+	IndexedAt          string                                 `json:"indexedAt"`
 	Labels             []*LabelDefs_Label                     `json:"labels,omitempty"`
 	LikeCount          *int64                                 `json:"likeCount,omitempty"`
 	Policies           *AppBskyLabelerDefs_LabelerPolicies    `json:"policies,omitempty"`
 	ReasonTypes        []*ModerationDefs_ReasonType           `json:"reasonTypes,omitempty"`
 	SubjectCollections []string                               `json:"subjectCollections,omitempty"`
 	SubjectTypes       []*ModerationDefs_SubjectType          `json:"subjectTypes,omitempty"`
-	Uri                string                                 `json:"uri,omitempty"`
+	Uri                string                                 `json:"uri"`
 	Viewer             *AppBskyLabelerDefs_LabelerViewerState `json:"viewer,omitempty"`
 }
 
 type AppBskyLabelerDefs_LabelerViewerState struct {
 	LexiconTypeID string  `json:"$type,omitempty"`
 	Like          *string `json:"like,omitempty"`
-}
-
-type AppBskyLabelerDefs_LabelerPolicies struct {
-	LexiconTypeID         string                            `json:"$type,omitempty"`
-	LabelValueDefinitions []*LabelDefs_LabelValueDefinition `json:"labelValueDefinitions,omitempty"`
-	LabelValues           []*LabelDefs_LabelValue           `json:"labelValues,omitempty"`
 }
 
 /*
