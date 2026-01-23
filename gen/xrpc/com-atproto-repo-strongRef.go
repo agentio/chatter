@@ -11,29 +11,3 @@ type ComATProtoRepoStrongRef struct {
 	Cid           string `json:"cid"`
 	Uri           string `json:"uri"`
 }
-
-/*
-{
-  "lexicon": 1,
-  "id": "com.atproto.repo.strongRef",
-  "description": "A URI with a content-hash fingerprint.",
-  "defs": {
-    "main": {
-      "type": "object",
-      "description": "",
-      "required": [
-        "uri",
-        "cid"
-      ],
-      "properties": {
-        "cid": {
-          "type": "string"
-        },
-        "uri": {
-          "type": "string"
-        }
-      }
-    }
-  }
-}
-*/

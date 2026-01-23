@@ -11,31 +11,3 @@ type AppBskyEmbedDefs_AspectRatio struct {
 	Height        int64  `json:"height"`
 	Width         int64  `json:"width"`
 }
-
-/*
-{
-  "lexicon": 1,
-  "id": "app.bsky.embed.defs",
-  "description": "",
-  "defs": {
-    "aspectRatio": {
-      "type": "object",
-      "description": "width:height represents an aspect ratio. It may be approximate, and may not correspond to absolute dimensions in any given unit.",
-      "required": [
-        "width",
-        "height"
-      ],
-      "properties": {
-        "height": {
-          "type": "integer",
-          "minimum": 1
-        },
-        "width": {
-          "type": "integer",
-          "minimum": 1
-        }
-      }
-    }
-  }
-}
-*/

@@ -6,7 +6,7 @@ This is a small demo that uses [slink](https://github.com/agentio/slink)-generat
 It requires a password for the sending user (please use an [App Password](https://bsky.app/settings/app-passwords)),
 and the receiving user will probably need to be following the sending user.
 
-Here's an example. `CHATPW` is an app password of the sending user. It's doing some verbose logging. The default log level is `warn` and is much quieter.
+Here's an example. `CHATPW` is an app password of the sending user. Note that here we are doing some verbose logging. The default log level is `warn` and is much quieter.
 ```
 $ chatter --from timburks.me --to agent.io --password $CHATPW --text "Hey! How are you?" -l info
 2026/01/22 16:29:41 INFO Found DID with DNS
@@ -27,12 +27,12 @@ $ chatter --from timburks.me --to agent.io --password $CHATPW --text "Hey! How a
 2026/01/22 16:29:45 INFO &{LexiconTypeID: Embed:<nil> Facets:[] Id:3md2h2l7tit2p Reactions:[] Rev:22222247kqldr Sender:0xc00050a0c0 SentAt:2026-01-23T00:29:45.751Z Text:Hey! How are you?}
 ```
 
-Generated support code is checked into the [gen/xrpc](gen/xrpc) directory. Ordinarily I wouldn't recommend this, but that makes it possible to try these handlers without installing `slink`. Also, the generated code has been pruned to only the lexicons needed to make the calls made by the application. That was done manually but might be automated in the future (wouldn't that be cool?).
+Generated support code is checked into the [gen/xrpc](gen/xrpc) directory. Ordinarily I wouldn't recommend this, but that makes it possible to try these handlers without installing `slink`. Also, the generated code has been pruned to only the lexicons needed to make the calls made by the application. That was done by providing a `--manifest` argument to `slink` that specifies a file listing the xrpc methods that our application calls.
 
-The contents of the [lexicons](lexicons) directory are copied from [github.com/bluesky-social/atproto](https://github.com/bluesky-social/atproto) and are released under the [license terms in that repo](https://github.com/bluesky-social/atproto/blob/main/LICENSE.txt).
+The `lexicons` directory is not included and should be copied from [github.com/bluesky-social/atproto](https://github.com/bluesky-social/atproto). It is only needed to regenerate the xrpc support code.
 
-Everything else (including generated code) is released under the [AGPL](LICENSE). Yes, I'm open to discussion about that.
+Everything here (including generated code) is released under the [AGPL](LICENSE). Yes, I am open to discussion about that.
 
-If you try this, let me know, but please don't depend on it yet! `slink` is prerelease and I'm thinking about making some changes to the generated code.
+If you try this, let me know, but please don't depend on it yet! `slink` is prerelease and I'm thinking about making a few more changes to the generated code.
 
 -- Tim Burks [@timburks.me](https://bsky.app/profile/timburks.me) | [@agent.io](https://bsky.app/profile/agent.io) 

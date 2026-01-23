@@ -1,0 +1,7 @@
+{
+  "ids": [
+	"com.atproto.server.createSession",
+	"chat.bsky.convo.getConvoForMembers",
+	"chat.bsky.convo.sendMessage"
+  ]
+}
