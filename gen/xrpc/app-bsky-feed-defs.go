@@ -10,11 +10,15 @@ import (
 	"github.com/agentio/slink/pkg/slink"
 )
 
+const AppBskyFeedDefs_BlockedAuthor_Description = ""
+
 type AppBskyFeedDefs_BlockedAuthor struct {
 	LexiconTypeID string                        `json:"$type,omitempty"`
 	Did           string                        `json:"did"`
 	Viewer        *AppBskyActorDefs_ViewerState `json:"viewer,omitempty"`
 }
+
+const AppBskyFeedDefs_BlockedPost_Description = ""
 
 type AppBskyFeedDefs_BlockedPost struct {
 	LexiconTypeID string                         `json:"$type,omitempty"`
@@ -40,6 +44,8 @@ const AppBskyFeedDefs_ContentModeUnspecified string = "contentModeUnspecified"
 
 // Declares the feed generator returns posts containing app.bsky.embed.video embeds.
 const AppBskyFeedDefs_ContentModeVideo string = "contentModeVideo"
+
+const AppBskyFeedDefs_FeedViewPost_Description = ""
 
 type AppBskyFeedDefs_FeedViewPost struct {
 	LexiconTypeID string                                              `json:"$type,omitempty"`
@@ -78,6 +84,8 @@ func (m AppBskyFeedDefsAppBskyFeedDefs_FeedViewPost_Reason) MarshalJSON() ([]byt
 	}
 }
 
+const AppBskyFeedDefs_GeneratorView_Description = ""
+
 type AppBskyFeedDefs_GeneratorView struct {
 	LexiconTypeID       string                                `json:"$type,omitempty"`
 	AcceptsInteractions *bool                                 `json:"acceptsInteractions,omitempty"`
@@ -96,10 +104,14 @@ type AppBskyFeedDefs_GeneratorView struct {
 	Viewer              *AppBskyFeedDefs_GeneratorViewerState `json:"viewer,omitempty"`
 }
 
+const AppBskyFeedDefs_GeneratorViewerState_Description = ""
+
 type AppBskyFeedDefs_GeneratorViewerState struct {
 	LexiconTypeID string  `json:"$type,omitempty"`
 	Like          *string `json:"like,omitempty"`
 }
+
+const AppBskyFeedDefs_Interaction_Description = ""
 
 type AppBskyFeedDefs_Interaction struct {
 	LexiconTypeID string  `json:"$type,omitempty"`
@@ -127,11 +139,15 @@ const AppBskyFeedDefs_InteractionSeen string = "interactionSeen"
 // User shared the feed item
 const AppBskyFeedDefs_InteractionShare string = "interactionShare"
 
+const AppBskyFeedDefs_NotFoundPost_Description = ""
+
 type AppBskyFeedDefs_NotFoundPost struct {
 	LexiconTypeID string `json:"$type,omitempty"`
 	NotFound      bool   `json:"notFound"`
 	Uri           string `json:"uri"`
 }
+
+const AppBskyFeedDefs_PostView_Description = ""
 
 type AppBskyFeedDefs_PostView struct {
 	LexiconTypeID string                                         `json:"$type,omitempty"`
@@ -198,9 +214,13 @@ func (m AppBskyFeedDefsAppBskyFeedDefs_PostView_Embed) MarshalJSON() ([]byte, er
 	}
 }
 
+const AppBskyFeedDefs_ReasonPin_Description = ""
+
 type AppBskyFeedDefs_ReasonPin struct {
 	LexiconTypeID string `json:"$type,omitempty"`
 }
+
+const AppBskyFeedDefs_ReasonRepost_Description = ""
 
 type AppBskyFeedDefs_ReasonRepost struct {
 	LexiconTypeID string                             `json:"$type,omitempty"`
@@ -209,6 +229,8 @@ type AppBskyFeedDefs_ReasonRepost struct {
 	IndexedAt     string                             `json:"indexedAt"`
 	Uri           *string                            `json:"uri,omitempty"`
 }
+
+const AppBskyFeedDefs_ReplyRef_Description = ""
 
 type AppBskyFeedDefs_ReplyRef struct {
 	LexiconTypeID     string                                          `json:"$type,omitempty"`
@@ -291,6 +313,8 @@ const AppBskyFeedDefs_RequestLess string = "requestLess"
 // Request that more content like the given feed item be shown in the feed
 const AppBskyFeedDefs_RequestMore string = "requestMore"
 
+const AppBskyFeedDefs_SkeletonFeedPost_Description = ""
+
 type AppBskyFeedDefs_SkeletonFeedPost struct {
 	LexiconTypeID string                                                  `json:"$type,omitempty"`
 	FeedContext   *string                                                 `json:"feedContext,omitempty"`
@@ -326,20 +350,27 @@ func (m AppBskyFeedDefsAppBskyFeedDefs_SkeletonFeedPost_Reason) MarshalJSON() ([
 	}
 }
 
+const AppBskyFeedDefs_SkeletonReasonPin_Description = ""
+
 type AppBskyFeedDefs_SkeletonReasonPin struct {
 	LexiconTypeID string `json:"$type,omitempty"`
 }
+
+const AppBskyFeedDefs_SkeletonReasonRepost_Description = ""
 
 type AppBskyFeedDefs_SkeletonReasonRepost struct {
 	LexiconTypeID string `json:"$type,omitempty"`
 	Repost        string `json:"repost"`
 }
 
-// Metadata about this post within the context of the thread it is in.
+const AppBskyFeedDefs_ThreadContext_Description = "Metadata about this post within the context of the thread it is in."
+
 type AppBskyFeedDefs_ThreadContext struct {
 	LexiconTypeID  string  `json:"$type,omitempty"`
 	RootAuthorLike *string `json:"rootAuthorLike,omitempty"`
 }
+
+const AppBskyFeedDefs_ThreadViewPost_Description = ""
 
 type AppBskyFeedDefs_ThreadViewPost struct {
 	LexiconTypeID string                                                        `json:"$type,omitempty"`
@@ -417,6 +448,8 @@ func (m AppBskyFeedDefsAppBskyFeedDefs_ThreadViewPost_Replies_Elem) MarshalJSON(
 	}
 }
 
+const AppBskyFeedDefs_ThreadgateView_Description = ""
+
 type AppBskyFeedDefs_ThreadgateView struct {
 	LexiconTypeID string                            `json:"$type,omitempty"`
 	Cid           *string                           `json:"cid,omitempty"`
@@ -425,7 +458,8 @@ type AppBskyFeedDefs_ThreadgateView struct {
 	Uri           *string                           `json:"uri,omitempty"`
 }
 
-// Metadata about the requesting account's relationship with the subject content. Only has meaningful content for authed requests.
+const AppBskyFeedDefs_ViewerState_Description = "Metadata about the requesting account's relationship with the subject content. Only has meaningful content for authed requests."
+
 type AppBskyFeedDefs_ViewerState struct {
 	LexiconTypeID     string  `json:"$type,omitempty"`
 	Bookmarked        *bool   `json:"bookmarked,omitempty"`

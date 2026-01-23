@@ -4,6 +4,8 @@
 // Get slink at https://github.com/agentio/slink.
 package xrpc // com.atproto.repo.strongRef
 
+const RepoStrongRef_Description = ""
+
 type RepoStrongRef struct {
 	LexiconTypeID string `json:"$type,omitempty"`
 	Cid           string `json:"cid"`

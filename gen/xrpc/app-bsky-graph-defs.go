@@ -7,6 +7,8 @@ package xrpc // app.bsky.graph.defs
 // A list of actors used for curation purposes such as list feeds or interaction gating.
 const AppBskyGraphDefs_Curatelist string = "curatelist"
 
+const AppBskyGraphDefs_ListItemView_Description = ""
+
 type AppBskyGraphDefs_ListItemView struct {
 	LexiconTypeID string                        `json:"$type,omitempty"`
 	Subject       *AppBskyActorDefs_ProfileView `json:"subject,omitempty"`
@@ -14,6 +16,8 @@ type AppBskyGraphDefs_ListItemView struct {
 }
 
 type AppBskyGraphDefs_ListPurpose string
+
+const AppBskyGraphDefs_ListView_Description = ""
 
 type AppBskyGraphDefs_ListView struct {
 	LexiconTypeID     string                            `json:"$type,omitempty"`
@@ -31,6 +35,8 @@ type AppBskyGraphDefs_ListView struct {
 	Viewer            *AppBskyGraphDefs_ListViewerState `json:"viewer,omitempty"`
 }
 
+const AppBskyGraphDefs_ListViewBasic_Description = ""
+
 type AppBskyGraphDefs_ListViewBasic struct {
 	LexiconTypeID string                            `json:"$type,omitempty"`
 	Avatar        *string                           `json:"avatar,omitempty"`
@@ -44,6 +50,8 @@ type AppBskyGraphDefs_ListViewBasic struct {
 	Viewer        *AppBskyGraphDefs_ListViewerState `json:"viewer,omitempty"`
 }
 
+const AppBskyGraphDefs_ListViewerState_Description = ""
+
 type AppBskyGraphDefs_ListViewerState struct {
 	LexiconTypeID string  `json:"$type,omitempty"`
 	Blocked       *string `json:"blocked,omitempty"`
@@ -53,7 +61,8 @@ type AppBskyGraphDefs_ListViewerState struct {
 // A list of actors to apply an aggregate moderation action (mute/block) on.
 const AppBskyGraphDefs_Modlist string = "modlist"
 
-// indicates that a handle or DID could not be resolved
+const AppBskyGraphDefs_NotFoundActor_Description = "indicates that a handle or DID could not be resolved"
+
 type AppBskyGraphDefs_NotFoundActor struct {
 	LexiconTypeID string `json:"$type,omitempty"`
 	Actor         string `json:"actor"`
@@ -63,7 +72,8 @@ type AppBskyGraphDefs_NotFoundActor struct {
 // A list of actors used for only for reference purposes such as within a starter pack.
 const AppBskyGraphDefs_Referencelist string = "referencelist"
 
-// lists the bi-directional graph relationships between one actor (not indicated in the object), and the target actors (the DID included in the object)
+const AppBskyGraphDefs_Relationship_Description = "lists the bi-directional graph relationships between one actor (not indicated in the object), and the target actors (the DID included in the object)"
+
 type AppBskyGraphDefs_Relationship struct {
 	LexiconTypeID  string  `json:"$type,omitempty"`
 	BlockedBy      *string `json:"blockedBy,omitempty"`
@@ -74,6 +84,8 @@ type AppBskyGraphDefs_Relationship struct {
 	FollowedBy     *string `json:"followedBy,omitempty"`
 	Following      *string `json:"following,omitempty"`
 }
+
+const AppBskyGraphDefs_StarterPackView_Description = ""
 
 type AppBskyGraphDefs_StarterPackView struct {
 	LexiconTypeID      string                             `json:"$type,omitempty"`
@@ -89,6 +101,8 @@ type AppBskyGraphDefs_StarterPackView struct {
 	Record             any                                `json:"record"`
 	Uri                string                             `json:"uri"`
 }
+
+const AppBskyGraphDefs_StarterPackViewBasic_Description = ""
 
 type AppBskyGraphDefs_StarterPackViewBasic struct {
 	LexiconTypeID      string                             `json:"$type,omitempty"`

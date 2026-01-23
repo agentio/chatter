@@ -10,14 +10,14 @@ import (
 	"github.com/agentio/slink/pkg/slink"
 )
 
-// Disables embedding of this post.
+const AppBskyFeedPostgate_DisableRule_Description = "Disables embedding of this post."
+
 type AppBskyFeedPostgate_DisableRule struct {
 	LexiconTypeID string `json:"$type,omitempty"`
 }
 
 const AppBskyFeedPostgate_Description = "Record defining interaction rules for a post. The record key (rkey) of the postgate record must match the record key of the post, and that record must be in the same repository."
 
-// Record defining interaction rules for a post. The record key (rkey) of the postgate record must match the record key of the post, and that record must be in the same repository.
 type AppBskyFeedPostgate struct {
 	LexiconTypeID         string                                                        `json:"$type,omitempty"`
 	CreatedAt             string                                                        `json:"createdAt"`

@@ -4,17 +4,23 @@
 // Get slink at https://github.com/agentio/slink.
 package xrpc // app.bsky.notification.defs
 
+const AppBskyNotificationDefs_ActivitySubscription_Description = ""
+
 type AppBskyNotificationDefs_ActivitySubscription struct {
 	LexiconTypeID string `json:"$type,omitempty"`
 	Post          bool   `json:"post"`
 	Reply         bool   `json:"reply"`
 }
 
+const AppBskyNotificationDefs_ChatPreference_Description = ""
+
 type AppBskyNotificationDefs_ChatPreference struct {
 	LexiconTypeID string `json:"$type,omitempty"`
 	Include       string `json:"include"`
 	Push          bool   `json:"push"`
 }
+
+const AppBskyNotificationDefs_FilterablePreference_Description = ""
 
 type AppBskyNotificationDefs_FilterablePreference struct {
 	LexiconTypeID string `json:"$type,omitempty"`
@@ -23,11 +29,15 @@ type AppBskyNotificationDefs_FilterablePreference struct {
 	Push          bool   `json:"push"`
 }
 
+const AppBskyNotificationDefs_Preference_Description = ""
+
 type AppBskyNotificationDefs_Preference struct {
 	LexiconTypeID string `json:"$type,omitempty"`
 	List          bool   `json:"list"`
 	Push          bool   `json:"push"`
 }
+
+const AppBskyNotificationDefs_Preferences_Description = ""
 
 type AppBskyNotificationDefs_Preferences struct {
 	LexiconTypeID     string                                        `json:"$type,omitempty"`
@@ -46,11 +56,14 @@ type AppBskyNotificationDefs_Preferences struct {
 	Verified          *AppBskyNotificationDefs_Preference           `json:"verified,omitempty"`
 }
 
+const AppBskyNotificationDefs_RecordDeleted_Description = ""
+
 type AppBskyNotificationDefs_RecordDeleted struct {
 	LexiconTypeID string `json:"$type,omitempty"`
 }
 
-// Object used to store activity subscription data in stash.
+const AppBskyNotificationDefs_SubjectActivitySubscription_Description = "Object used to store activity subscription data in stash."
+
 type AppBskyNotificationDefs_SubjectActivitySubscription struct {
 	LexiconTypeID        string                                        `json:"$type,omitempty"`
 	ActivitySubscription *AppBskyNotificationDefs_ActivitySubscription `json:"activitySubscription,omitempty"`

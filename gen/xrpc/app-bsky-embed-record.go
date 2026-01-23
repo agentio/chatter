@@ -10,10 +10,14 @@ import (
 	"github.com/agentio/slink/pkg/slink"
 )
 
+const AppBskyEmbedRecord_Description = ""
+
 type AppBskyEmbedRecord struct {
 	LexiconTypeID string         `json:"$type,omitempty"`
 	Record        *RepoStrongRef `json:"record,omitempty"`
 }
+
+const AppBskyEmbedRecord_View_Description = ""
 
 type AppBskyEmbedRecord_View struct {
 	LexiconTypeID string                                            `json:"$type,omitempty"`
@@ -84,6 +88,8 @@ func (m AppBskyEmbedRecordAppBskyEmbedRecord_View_Record) MarshalJSON() ([]byte,
 	}
 }
 
+const AppBskyEmbedRecord_ViewBlocked_Description = ""
+
 type AppBskyEmbedRecord_ViewBlocked struct {
 	LexiconTypeID string                         `json:"$type,omitempty"`
 	Author        *AppBskyFeedDefs_BlockedAuthor `json:"author,omitempty"`
@@ -91,17 +97,23 @@ type AppBskyEmbedRecord_ViewBlocked struct {
 	Uri           string                         `json:"uri"`
 }
 
+const AppBskyEmbedRecord_ViewDetached_Description = ""
+
 type AppBskyEmbedRecord_ViewDetached struct {
 	LexiconTypeID string `json:"$type,omitempty"`
 	Detached      bool   `json:"detached"`
 	Uri           string `json:"uri"`
 }
 
+const AppBskyEmbedRecord_ViewNotFound_Description = ""
+
 type AppBskyEmbedRecord_ViewNotFound struct {
 	LexiconTypeID string `json:"$type,omitempty"`
 	NotFound      bool   `json:"notFound"`
 	Uri           string `json:"uri"`
 }
+
+const AppBskyEmbedRecord_ViewRecord_Description = ""
 
 type AppBskyEmbedRecord_ViewRecord struct {
 	LexiconTypeID string                                                         `json:"$type,omitempty"`

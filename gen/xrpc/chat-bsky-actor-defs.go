@@ -4,6 +4,8 @@
 // Get slink at https://github.com/agentio/slink.
 package xrpc // chat.bsky.actor.defs
 
+const ChatBskyActorDefs_ProfileViewBasic_Description = ""
+
 type ChatBskyActorDefs_ProfileViewBasic struct {
 	LexiconTypeID string                              `json:"$type,omitempty"`
 	Associated    *AppBskyActorDefs_ProfileAssociated `json:"associated,omitempty"`

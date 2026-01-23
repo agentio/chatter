@@ -10,20 +10,23 @@ import (
 	"github.com/agentio/slink/pkg/slink"
 )
 
-// Specifies the sub-string range a facet feature applies to. Start index is inclusive, end index is exclusive. Indices are zero-indexed, counting bytes of the UTF-8 encoded text. NOTE: some languages, like Javascript, use UTF-16 or Unicode codepoints for string slice indexing; in these languages, convert to byte arrays before working with facets.
+const AppBskyRichtextFacet_ByteSlice_Description = "Specifies the sub-string range a facet feature applies to. Start index is inclusive, end index is exclusive. Indices are zero-indexed, counting bytes of the UTF-8 encoded text. NOTE: some languages, like Javascript, use UTF-16 or Unicode codepoints for string slice indexing; in these languages, convert to byte arrays before working with facets."
+
 type AppBskyRichtextFacet_ByteSlice struct {
 	LexiconTypeID string `json:"$type,omitempty"`
 	ByteEnd       int64  `json:"byteEnd"`
 	ByteStart     int64  `json:"byteStart"`
 }
 
-// Facet feature for a URL. The text URL may have been simplified or truncated, but the facet reference should be a complete URL.
+const AppBskyRichtextFacet_Link_Description = "Facet feature for a URL. The text URL may have been simplified or truncated, but the facet reference should be a complete URL."
+
 type AppBskyRichtextFacet_Link struct {
 	LexiconTypeID string `json:"$type,omitempty"`
 	Uri           string `json:"uri"`
 }
 
-// Annotation of a sub-string within rich text.
+const AppBskyRichtextFacet_Description = "Annotation of a sub-string within rich text."
+
 type AppBskyRichtextFacet struct {
 	LexiconTypeID string                                                    `json:"$type,omitempty"`
 	Features      []*AppBskyRichtextFacetAppBskyRichtextFacet_Features_Elem `json:"features,omitempty"`
@@ -64,13 +67,15 @@ func (m AppBskyRichtextFacetAppBskyRichtextFacet_Features_Elem) MarshalJSON() ([
 	}
 }
 
-// Facet feature for mention of another account. The text is usually a handle, including a '@' prefix, but the facet reference is a DID.
+const AppBskyRichtextFacet_Mention_Description = "Facet feature for mention of another account. The text is usually a handle, including a '@' prefix, but the facet reference is a DID."
+
 type AppBskyRichtextFacet_Mention struct {
 	LexiconTypeID string `json:"$type,omitempty"`
 	Did           string `json:"did"`
 }
 
-// Facet feature for a hashtag. The text usually includes a '#' prefix, but the facet reference should not (except in the case of 'double hash tags').
+const AppBskyRichtextFacet_Tag_Description = "Facet feature for a hashtag. The text usually includes a '#' prefix, but the facet reference should not (except in the case of 'double hash tags')."
+
 type AppBskyRichtextFacet_Tag struct {
 	LexiconTypeID string `json:"$type,omitempty"`
 	Tag           string `json:"tag"`

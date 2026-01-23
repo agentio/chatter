@@ -10,24 +10,30 @@ import (
 	"github.com/agentio/slink/pkg/slink"
 )
 
+const AppBskyActorDefs_AdultContentPref_Description = ""
+
 type AppBskyActorDefs_AdultContentPref struct {
 	LexiconTypeID string `json:"$type,omitempty"`
 	Enabled       bool   `json:"enabled"`
 }
 
-// If set, an active progress guide. Once completed, can be set to undefined. Should have unspecced fields tracking progress.
+const AppBskyActorDefs_BskyAppProgressGuide_Description = "If set, an active progress guide. Once completed, can be set to undefined. Should have unspecced fields tracking progress."
+
 type AppBskyActorDefs_BskyAppProgressGuide struct {
 	LexiconTypeID string `json:"$type,omitempty"`
 	Guide         string `json:"guide"`
 }
 
-// A grab bag of state that's specific to the bsky.app program. Third-party apps shouldn't use this.
+const AppBskyActorDefs_BskyAppStatePref_Description = "A grab bag of state that's specific to the bsky.app program. Third-party apps shouldn't use this."
+
 type AppBskyActorDefs_BskyAppStatePref struct {
 	LexiconTypeID       string                                 `json:"$type,omitempty"`
 	ActiveProgressGuide *AppBskyActorDefs_BskyAppProgressGuide `json:"activeProgressGuide,omitempty"`
 	Nuxs                []*AppBskyActorDefs_Nux                `json:"nuxs,omitempty"`
 	QueuedNudges        []string                               `json:"queuedNudges,omitempty"`
 }
+
+const AppBskyActorDefs_ContentLabelPref_Description = ""
 
 type AppBskyActorDefs_ContentLabelPref struct {
 	LexiconTypeID string  `json:"$type,omitempty"`
@@ -36,13 +42,16 @@ type AppBskyActorDefs_ContentLabelPref struct {
 	Visibility    string  `json:"visibility"`
 }
 
-// Read-only preference containing value(s) inferred from the user's declared birthdate. Absence of this preference object in the response indicates that the user has not made a declaration.
+const AppBskyActorDefs_DeclaredAgePref_Description = "Read-only preference containing value(s) inferred from the user's declared birthdate. Absence of this preference object in the response indicates that the user has not made a declaration."
+
 type AppBskyActorDefs_DeclaredAgePref struct {
 	LexiconTypeID string `json:"$type,omitempty"`
 	IsOverAge13   *bool  `json:"isOverAge13,omitempty"`
 	IsOverAge16   *bool  `json:"isOverAge16,omitempty"`
 	IsOverAge18   *bool  `json:"isOverAge18,omitempty"`
 }
+
+const AppBskyActorDefs_FeedViewPref_Description = ""
 
 type AppBskyActorDefs_FeedViewPref struct {
 	LexiconTypeID           string `json:"$type,omitempty"`
@@ -54,34 +63,44 @@ type AppBskyActorDefs_FeedViewPref struct {
 	HideReposts             *bool  `json:"hideReposts,omitempty"`
 }
 
+const AppBskyActorDefs_HiddenPostsPref_Description = ""
+
 type AppBskyActorDefs_HiddenPostsPref struct {
 	LexiconTypeID string   `json:"$type,omitempty"`
 	Items         []string `json:"items,omitempty"`
 }
+
+const AppBskyActorDefs_InterestsPref_Description = ""
 
 type AppBskyActorDefs_InterestsPref struct {
 	LexiconTypeID string   `json:"$type,omitempty"`
 	Tags          []string `json:"tags,omitempty"`
 }
 
-// The subject's followers whom you also follow
+const AppBskyActorDefs_KnownFollowers_Description = "The subject's followers whom you also follow"
+
 type AppBskyActorDefs_KnownFollowers struct {
 	LexiconTypeID string                               `json:"$type,omitempty"`
 	Count         int64                                `json:"count"`
 	Followers     []*AppBskyActorDefs_ProfileViewBasic `json:"followers,omitempty"`
 }
 
+const AppBskyActorDefs_LabelerPrefItem_Description = ""
+
 type AppBskyActorDefs_LabelerPrefItem struct {
 	LexiconTypeID string `json:"$type,omitempty"`
 	Did           string `json:"did"`
 }
+
+const AppBskyActorDefs_LabelersPref_Description = ""
 
 type AppBskyActorDefs_LabelersPref struct {
 	LexiconTypeID string                              `json:"$type,omitempty"`
 	Labelers      []*AppBskyActorDefs_LabelerPrefItem `json:"labelers,omitempty"`
 }
 
-// A word that the account owner has muted.
+const AppBskyActorDefs_MutedWord_Description = "A word that the account owner has muted."
+
 type AppBskyActorDefs_MutedWord struct {
 	LexiconTypeID string                              `json:"$type,omitempty"`
 	ActorTarget   *string                             `json:"actorTarget,omitempty"`
@@ -93,12 +112,15 @@ type AppBskyActorDefs_MutedWord struct {
 
 type AppBskyActorDefs_MutedWordTarget string
 
+const AppBskyActorDefs_MutedWordsPref_Description = ""
+
 type AppBskyActorDefs_MutedWordsPref struct {
 	LexiconTypeID string                        `json:"$type,omitempty"`
 	Items         []*AppBskyActorDefs_MutedWord `json:"items,omitempty"`
 }
 
-// A new user experiences (NUX) storage object
+const AppBskyActorDefs_Nux_Description = "A new user experiences (NUX) storage object"
+
 type AppBskyActorDefs_Nux struct {
 	LexiconTypeID string  `json:"$type,omitempty"`
 	Completed     bool    `json:"completed"`
@@ -107,12 +129,15 @@ type AppBskyActorDefs_Nux struct {
 	Id            string  `json:"id"`
 }
 
+const AppBskyActorDefs_PersonalDetailsPref_Description = ""
+
 type AppBskyActorDefs_PersonalDetailsPref struct {
 	LexiconTypeID string  `json:"$type,omitempty"`
 	BirthDate     *string `json:"birthDate,omitempty"`
 }
 
-// Default post interaction settings for the account. These values should be applied as default values when creating new posts. These refs should mirror the threadgate and postgate records exactly.
+const AppBskyActorDefs_PostInteractionSettingsPref_Description = "Default post interaction settings for the account. These values should be applied as default values when creating new posts. These refs should mirror the threadgate and postgate records exactly."
+
 type AppBskyActorDefs_PostInteractionSettingsPref struct {
 	LexiconTypeID          string                                                                                      `json:"$type,omitempty"`
 	PostgateEmbeddingRules []*AppBskyActorDefsAppBskyActorDefs_PostInteractionSettingsPref_PostgateEmbeddingRules_Elem `json:"postgateEmbeddingRules,omitempty"`
@@ -287,6 +312,8 @@ func (m AppBskyActorDefs_Preferences_Elem) MarshalJSON() ([]byte, error) {
 	}
 }
 
+const AppBskyActorDefs_ProfileAssociated_Description = ""
+
 type AppBskyActorDefs_ProfileAssociated struct {
 	LexiconTypeID        string                                                  `json:"$type,omitempty"`
 	ActivitySubscription *AppBskyActorDefs_ProfileAssociatedActivitySubscription `json:"activitySubscription,omitempty"`
@@ -297,15 +324,21 @@ type AppBskyActorDefs_ProfileAssociated struct {
 	StarterPacks         *int64                                                  `json:"starterPacks,omitempty"`
 }
 
+const AppBskyActorDefs_ProfileAssociatedActivitySubscription_Description = ""
+
 type AppBskyActorDefs_ProfileAssociatedActivitySubscription struct {
 	LexiconTypeID      string `json:"$type,omitempty"`
 	AllowSubscriptions string `json:"allowSubscriptions"`
 }
 
+const AppBskyActorDefs_ProfileAssociatedChat_Description = ""
+
 type AppBskyActorDefs_ProfileAssociatedChat struct {
 	LexiconTypeID string `json:"$type,omitempty"`
 	AllowIncoming string `json:"allowIncoming"`
 }
+
+const AppBskyActorDefs_ProfileView_Description = ""
 
 type AppBskyActorDefs_ProfileView struct {
 	LexiconTypeID string                              `json:"$type,omitempty"`
@@ -325,6 +358,8 @@ type AppBskyActorDefs_ProfileView struct {
 	Viewer        *AppBskyActorDefs_ViewerState       `json:"viewer,omitempty"`
 }
 
+const AppBskyActorDefs_ProfileViewBasic_Description = ""
+
 type AppBskyActorDefs_ProfileViewBasic struct {
 	LexiconTypeID string                              `json:"$type,omitempty"`
 	Associated    *AppBskyActorDefs_ProfileAssociated `json:"associated,omitempty"`
@@ -340,6 +375,8 @@ type AppBskyActorDefs_ProfileViewBasic struct {
 	Verification  *AppBskyActorDefs_VerificationState `json:"verification,omitempty"`
 	Viewer        *AppBskyActorDefs_ViewerState       `json:"viewer,omitempty"`
 }
+
+const AppBskyActorDefs_ProfileViewDetailed_Description = ""
 
 type AppBskyActorDefs_ProfileViewDetailed struct {
 	LexiconTypeID        string                                 `json:"$type,omitempty"`
@@ -366,6 +403,8 @@ type AppBskyActorDefs_ProfileViewDetailed struct {
 	Website              *string                                `json:"website,omitempty"`
 }
 
+const AppBskyActorDefs_SavedFeed_Description = ""
+
 type AppBskyActorDefs_SavedFeed struct {
 	LexiconTypeID string `json:"$type,omitempty"`
 	Id            string `json:"id"`
@@ -374,6 +413,8 @@ type AppBskyActorDefs_SavedFeed struct {
 	Value         string `json:"value"`
 }
 
+const AppBskyActorDefs_SavedFeedsPref_Description = ""
+
 type AppBskyActorDefs_SavedFeedsPref struct {
 	LexiconTypeID string   `json:"$type,omitempty"`
 	Pinned        []string `json:"pinned,omitempty"`
@@ -381,10 +422,14 @@ type AppBskyActorDefs_SavedFeedsPref struct {
 	TimelineIndex *int64   `json:"timelineIndex,omitempty"`
 }
 
+const AppBskyActorDefs_SavedFeedsPrefV2_Description = ""
+
 type AppBskyActorDefs_SavedFeedsPrefV2 struct {
 	LexiconTypeID string                        `json:"$type,omitempty"`
 	Items         []*AppBskyActorDefs_SavedFeed `json:"items,omitempty"`
 }
+
+const AppBskyActorDefs_StatusView_Description = ""
 
 type AppBskyActorDefs_StatusView struct {
 	LexiconTypeID string                                             `json:"$type,omitempty"`
@@ -420,18 +465,22 @@ func (m AppBskyActorDefsAppBskyActorDefs_StatusView_Embed) MarshalJSON() ([]byte
 	}
 }
 
+const AppBskyActorDefs_ThreadViewPref_Description = ""
+
 type AppBskyActorDefs_ThreadViewPref struct {
 	LexiconTypeID string  `json:"$type,omitempty"`
 	Sort          *string `json:"sort,omitempty"`
 }
 
-// Preferences for how verified accounts appear in the app.
+const AppBskyActorDefs_VerificationPrefs_Description = "Preferences for how verified accounts appear in the app."
+
 type AppBskyActorDefs_VerificationPrefs struct {
 	LexiconTypeID string `json:"$type,omitempty"`
 	HideBadges    *bool  `json:"hideBadges,omitempty"`
 }
 
-// Represents the verification information about the user this object is attached to.
+const AppBskyActorDefs_VerificationState_Description = "Represents the verification information about the user this object is attached to."
+
 type AppBskyActorDefs_VerificationState struct {
 	LexiconTypeID         string                               `json:"$type,omitempty"`
 	TrustedVerifierStatus string                               `json:"trustedVerifierStatus"`
@@ -439,7 +488,8 @@ type AppBskyActorDefs_VerificationState struct {
 	VerifiedStatus        string                               `json:"verifiedStatus"`
 }
 
-// An individual verification for an associated subject.
+const AppBskyActorDefs_VerificationView_Description = "An individual verification for an associated subject."
+
 type AppBskyActorDefs_VerificationView struct {
 	LexiconTypeID string `json:"$type,omitempty"`
 	CreatedAt     string `json:"createdAt"`
@@ -448,7 +498,8 @@ type AppBskyActorDefs_VerificationView struct {
 	Uri           string `json:"uri"`
 }
 
-// Metadata about the requesting account's relationship with the subject account. Only has meaningful content for authed requests.
+const AppBskyActorDefs_ViewerState_Description = "Metadata about the requesting account's relationship with the subject account. Only has meaningful content for authed requests."
+
 type AppBskyActorDefs_ViewerState struct {
 	LexiconTypeID        string                                        `json:"$type,omitempty"`
 	ActivitySubscription *AppBskyNotificationDefs_ActivitySubscription `json:"activitySubscription,omitempty"`

@@ -10,6 +10,8 @@ import (
 	"github.com/agentio/slink/pkg/slink"
 )
 
+const ChatBskyConvoDefs_ConvoView_Description = ""
+
 type ChatBskyConvoDefs_ConvoView struct {
 	LexiconTypeID string                                                     `json:"$type,omitempty"`
 	Id            string                                                     `json:"id"`
@@ -72,6 +74,8 @@ func (m ChatBskyConvoDefsChatBskyConvoDefs_ConvoView_LastReaction) MarshalJSON()
 	}
 }
 
+const ChatBskyConvoDefs_DeletedMessageView_Description = ""
+
 type ChatBskyConvoDefs_DeletedMessageView struct {
 	LexiconTypeID string                               `json:"$type,omitempty"`
 	Id            string                               `json:"id"`
@@ -80,11 +84,15 @@ type ChatBskyConvoDefs_DeletedMessageView struct {
 	SentAt        string                               `json:"sentAt"`
 }
 
+const ChatBskyConvoDefs_LogAcceptConvo_Description = ""
+
 type ChatBskyConvoDefs_LogAcceptConvo struct {
 	LexiconTypeID string `json:"$type,omitempty"`
 	ConvoId       string `json:"convoId"`
 	Rev           string `json:"rev"`
 }
+
+const ChatBskyConvoDefs_LogAddReaction_Description = ""
 
 type ChatBskyConvoDefs_LogAddReaction struct {
 	LexiconTypeID string                                                     `json:"$type,omitempty"`
@@ -122,11 +130,15 @@ func (m ChatBskyConvoDefsChatBskyConvoDefs_LogAddReaction_Message) MarshalJSON()
 	}
 }
 
+const ChatBskyConvoDefs_LogBeginConvo_Description = ""
+
 type ChatBskyConvoDefs_LogBeginConvo struct {
 	LexiconTypeID string `json:"$type,omitempty"`
 	ConvoId       string `json:"convoId"`
 	Rev           string `json:"rev"`
 }
+
+const ChatBskyConvoDefs_LogCreateMessage_Description = ""
 
 type ChatBskyConvoDefs_LogCreateMessage struct {
 	LexiconTypeID string                                                       `json:"$type,omitempty"`
@@ -163,6 +175,8 @@ func (m ChatBskyConvoDefsChatBskyConvoDefs_LogCreateMessage_Message) MarshalJSON
 	}
 }
 
+const ChatBskyConvoDefs_LogDeleteMessage_Description = ""
+
 type ChatBskyConvoDefs_LogDeleteMessage struct {
 	LexiconTypeID string                                                       `json:"$type,omitempty"`
 	ConvoId       string                                                       `json:"convoId"`
@@ -198,17 +212,23 @@ func (m ChatBskyConvoDefsChatBskyConvoDefs_LogDeleteMessage_Message) MarshalJSON
 	}
 }
 
+const ChatBskyConvoDefs_LogLeaveConvo_Description = ""
+
 type ChatBskyConvoDefs_LogLeaveConvo struct {
 	LexiconTypeID string `json:"$type,omitempty"`
 	ConvoId       string `json:"convoId"`
 	Rev           string `json:"rev"`
 }
 
+const ChatBskyConvoDefs_LogMuteConvo_Description = ""
+
 type ChatBskyConvoDefs_LogMuteConvo struct {
 	LexiconTypeID string `json:"$type,omitempty"`
 	ConvoId       string `json:"convoId"`
 	Rev           string `json:"rev"`
 }
+
+const ChatBskyConvoDefs_LogReadMessage_Description = ""
 
 type ChatBskyConvoDefs_LogReadMessage struct {
 	LexiconTypeID string                                                     `json:"$type,omitempty"`
@@ -244,6 +264,8 @@ func (m ChatBskyConvoDefsChatBskyConvoDefs_LogReadMessage_Message) MarshalJSON()
 		return []byte("{}"), nil
 	}
 }
+
+const ChatBskyConvoDefs_LogRemoveReaction_Description = ""
 
 type ChatBskyConvoDefs_LogRemoveReaction struct {
 	LexiconTypeID string                                                        `json:"$type,omitempty"`
@@ -281,17 +303,23 @@ func (m ChatBskyConvoDefsChatBskyConvoDefs_LogRemoveReaction_Message) MarshalJSO
 	}
 }
 
+const ChatBskyConvoDefs_LogUnmuteConvo_Description = ""
+
 type ChatBskyConvoDefs_LogUnmuteConvo struct {
 	LexiconTypeID string `json:"$type,omitempty"`
 	ConvoId       string `json:"convoId"`
 	Rev           string `json:"rev"`
 }
 
+const ChatBskyConvoDefs_MessageAndReactionView_Description = ""
+
 type ChatBskyConvoDefs_MessageAndReactionView struct {
 	LexiconTypeID string                          `json:"$type,omitempty"`
 	Message       *ChatBskyConvoDefs_MessageView  `json:"message,omitempty"`
 	Reaction      *ChatBskyConvoDefs_ReactionView `json:"reaction,omitempty"`
 }
+
+const ChatBskyConvoDefs_MessageInput_Description = ""
 
 type ChatBskyConvoDefs_MessageInput struct {
 	LexiconTypeID string                                                 `json:"$type,omitempty"`
@@ -322,12 +350,16 @@ func (m ChatBskyConvoDefsChatBskyConvoDefs_MessageInput_Embed) MarshalJSON() ([]
 	}
 }
 
+const ChatBskyConvoDefs_MessageRef_Description = ""
+
 type ChatBskyConvoDefs_MessageRef struct {
 	LexiconTypeID string `json:"$type,omitempty"`
 	ConvoId       string `json:"convoId"`
 	Did           string `json:"did"`
 	MessageId     string `json:"messageId"`
 }
+
+const ChatBskyConvoDefs_MessageView_Description = ""
 
 type ChatBskyConvoDefs_MessageView struct {
 	LexiconTypeID string                                                `json:"$type,omitempty"`
@@ -363,10 +395,14 @@ func (m ChatBskyConvoDefsChatBskyConvoDefs_MessageView_Embed) MarshalJSON() ([]b
 	}
 }
 
+const ChatBskyConvoDefs_MessageViewSender_Description = ""
+
 type ChatBskyConvoDefs_MessageViewSender struct {
 	LexiconTypeID string `json:"$type,omitempty"`
 	Did           string `json:"did"`
 }
+
+const ChatBskyConvoDefs_ReactionView_Description = ""
 
 type ChatBskyConvoDefs_ReactionView struct {
 	LexiconTypeID string                                `json:"$type,omitempty"`
@@ -374,6 +410,8 @@ type ChatBskyConvoDefs_ReactionView struct {
 	Sender        *ChatBskyConvoDefs_ReactionViewSender `json:"sender,omitempty"`
 	Value         string                                `json:"value"`
 }
+
+const ChatBskyConvoDefs_ReactionViewSender_Description = ""
 
 type ChatBskyConvoDefs_ReactionViewSender struct {
 	LexiconTypeID string `json:"$type,omitempty"`

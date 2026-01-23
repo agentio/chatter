@@ -10,6 +10,8 @@ import (
 	"github.com/agentio/slink/pkg/slink"
 )
 
+const AppBskyEmbedRecordWithMedia_Description = ""
+
 type AppBskyEmbedRecordWithMedia struct {
 	LexiconTypeID string                                                        `json:"$type,omitempty"`
 	Media         *AppBskyEmbedRecordWithMediaAppBskyEmbedRecordWithMedia_Media `json:"media,omitempty"`
@@ -49,6 +51,8 @@ func (m AppBskyEmbedRecordWithMediaAppBskyEmbedRecordWithMedia_Media) MarshalJSO
 		return []byte("{}"), nil
 	}
 }
+
+const AppBskyEmbedRecordWithMedia_View_Description = ""
 
 type AppBskyEmbedRecordWithMedia_View struct {
 	LexiconTypeID string                                                             `json:"$type,omitempty"`

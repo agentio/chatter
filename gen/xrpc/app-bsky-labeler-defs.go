@@ -4,11 +4,15 @@
 // Get slink at https://github.com/agentio/slink.
 package xrpc // app.bsky.labeler.defs
 
+const AppBskyLabelerDefs_LabelerPolicies_Description = ""
+
 type AppBskyLabelerDefs_LabelerPolicies struct {
 	LexiconTypeID         string                            `json:"$type,omitempty"`
 	LabelValueDefinitions []*LabelDefs_LabelValueDefinition `json:"labelValueDefinitions,omitempty"`
 	LabelValues           []*LabelDefs_LabelValue           `json:"labelValues,omitempty"`
 }
+
+const AppBskyLabelerDefs_LabelerView_Description = ""
 
 type AppBskyLabelerDefs_LabelerView struct {
 	LexiconTypeID string                                 `json:"$type,omitempty"`
@@ -20,6 +24,8 @@ type AppBskyLabelerDefs_LabelerView struct {
 	Uri           string                                 `json:"uri"`
 	Viewer        *AppBskyLabelerDefs_LabelerViewerState `json:"viewer,omitempty"`
 }
+
+const AppBskyLabelerDefs_LabelerViewDetailed_Description = ""
 
 type AppBskyLabelerDefs_LabelerViewDetailed struct {
 	LexiconTypeID      string                                 `json:"$type,omitempty"`
@@ -35,6 +41,8 @@ type AppBskyLabelerDefs_LabelerViewDetailed struct {
 	Uri                string                                 `json:"uri"`
 	Viewer             *AppBskyLabelerDefs_LabelerViewerState `json:"viewer,omitempty"`
 }
+
+const AppBskyLabelerDefs_LabelerViewerState_Description = ""
 
 type AppBskyLabelerDefs_LabelerViewerState struct {
 	LexiconTypeID string  `json:"$type,omitempty"`

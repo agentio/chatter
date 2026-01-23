@@ -12,12 +12,16 @@ import (
 
 const ServerCreateSession_Description = "Create an authentication session."
 
+const ServerCreateSession_Input_Description = "Input for ServerCreateSession"
+
 type ServerCreateSession_Input struct {
 	AllowTakendown  *bool   `json:"allowTakendown,omitempty"`
 	AuthFactorToken *string `json:"authFactorToken,omitempty"`
 	Identifier      string  `json:"identifier"`
 	Password        string  `json:"password"`
 }
+
+const ServerCreateSession_Output_Description = "Output for ServerCreateSession"
 
 type ServerCreateSession_Output struct {
 	AccessJwt       string  `json:"accessJwt"`

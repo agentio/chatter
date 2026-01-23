@@ -6,6 +6,8 @@ package xrpc // app.bsky.embed.images
 
 import "github.com/agentio/slink/pkg/slink"
 
+const AppBskyEmbedImages_Image_Description = ""
+
 type AppBskyEmbedImages_Image struct {
 	LexiconTypeID string                        `json:"$type,omitempty"`
 	Alt           string                        `json:"alt"`
@@ -13,15 +15,21 @@ type AppBskyEmbedImages_Image struct {
 	Image         *slink.Blob                   `json:"image"`
 }
 
+const AppBskyEmbedImages_Description = ""
+
 type AppBskyEmbedImages struct {
 	LexiconTypeID string                      `json:"$type,omitempty"`
 	Images        []*AppBskyEmbedImages_Image `json:"images,omitempty"`
 }
 
+const AppBskyEmbedImages_View_Description = ""
+
 type AppBskyEmbedImages_View struct {
 	LexiconTypeID string                          `json:"$type,omitempty"`
 	Images        []*AppBskyEmbedImages_ViewImage `json:"images,omitempty"`
 }
+
+const AppBskyEmbedImages_ViewImage_Description = ""
 
 type AppBskyEmbedImages_ViewImage struct {
 	LexiconTypeID string                        `json:"$type,omitempty"`
