@@ -4,9 +4,9 @@
 // Get slink at https://github.com/agentio/slink.
 package xrpc // com.atproto.repo.strongRef
 
-const RepoStrongRef_Description = ""
+const ComATProtoRepoStrongRef_Description = ""
 
-type RepoStrongRef struct {
+type ComATProtoRepoStrongRef struct {
 	LexiconTypeID string `json:"$type,omitempty"`
 	Cid           string `json:"cid"`
 	Uri           string `json:"uri"`

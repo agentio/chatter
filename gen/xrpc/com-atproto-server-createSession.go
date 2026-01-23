@@ -10,20 +10,20 @@ import (
 	"github.com/agentio/slink/pkg/slink"
 )
 
-const ServerCreateSession_Description = "Create an authentication session."
+const ComATProtoServerCreateSession_Description = "Create an authentication session."
 
-const ServerCreateSession_Input_Description = "Input for ServerCreateSession"
+const ComATProtoServerCreateSession_Input_Description = "Input for ComATProtoServerCreateSession"
 
-type ServerCreateSession_Input struct {
+type ComATProtoServerCreateSession_Input struct {
 	AllowTakendown  *bool   `json:"allowTakendown,omitempty"`
 	AuthFactorToken *string `json:"authFactorToken,omitempty"`
 	Identifier      string  `json:"identifier"`
 	Password        string  `json:"password"`
 }
 
-const ServerCreateSession_Output_Description = "Output for ServerCreateSession"
+const ComATProtoServerCreateSession_Output_Description = "Output for ComATProtoServerCreateSession"
 
-type ServerCreateSession_Output struct {
+type ComATProtoServerCreateSession_Output struct {
 	AccessJwt       string  `json:"accessJwt"`
 	Active          *bool   `json:"active,omitempty"`
 	Did             string  `json:"did"`
@@ -37,8 +37,8 @@ type ServerCreateSession_Output struct {
 }
 
 // Create an authentication session.
-func ServerCreateSession(ctx context.Context, c slink.Client, input *ServerCreateSession_Input) (*ServerCreateSession_Output, error) {
-	var output ServerCreateSession_Output
+func ComATProtoServerCreateSession(ctx context.Context, c slink.Client, input *ComATProtoServerCreateSession_Input) (*ComATProtoServerCreateSession_Output, error) {
+	var output ComATProtoServerCreateSession_Output
 	if err := c.Do(ctx, slink.Procedure, "application/json", "com.atproto.server.createSession", nil, input, &output); err != nil {
 		return nil, err
 	}

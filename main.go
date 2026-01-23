@@ -48,7 +48,7 @@ func cmd() *cobra.Command {
 			c := client.NewClientWithOptions(client.ClientOptions{
 				Host: fromDidDocument.Service[0].ServiceEndpoint,
 			})
-			result, err := xrpc.ServerCreateSession(cmd.Context(), c, &xrpc.ServerCreateSession_Input{
+			result, err := xrpc.ComATProtoServerCreateSession(cmd.Context(), c, &xrpc.ComATProtoServerCreateSession_Input{
 				Identifier: fromDid,
 				Password:   password,
 			})

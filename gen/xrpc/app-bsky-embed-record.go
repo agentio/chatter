@@ -13,18 +13,18 @@ import (
 const AppBskyEmbedRecord_Description = ""
 
 type AppBskyEmbedRecord struct {
-	LexiconTypeID string         `json:"$type,omitempty"`
-	Record        *RepoStrongRef `json:"record,omitempty"`
+	LexiconTypeID string                   `json:"$type,omitempty"`
+	Record        *ComATProtoRepoStrongRef `json:"record,omitempty"`
 }
 
 const AppBskyEmbedRecord_View_Description = ""
 
 type AppBskyEmbedRecord_View struct {
-	LexiconTypeID string                                            `json:"$type,omitempty"`
-	Record        *AppBskyEmbedRecordAppBskyEmbedRecord_View_Record `json:"record,omitempty"`
+	LexiconTypeID string                          `json:"$type,omitempty"`
+	Record        *AppBskyEmbedRecord_View_Record `json:"record,omitempty"`
 }
 
-type AppBskyEmbedRecordAppBskyEmbedRecord_View_Record struct {
+type AppBskyEmbedRecord_View_Record struct {
 	EmbedRecord_ViewRecord         *AppBskyEmbedRecord_ViewRecord
 	EmbedRecord_ViewNotFound       *AppBskyEmbedRecord_ViewNotFound
 	EmbedRecord_ViewBlocked        *AppBskyEmbedRecord_ViewBlocked
@@ -35,7 +35,7 @@ type AppBskyEmbedRecordAppBskyEmbedRecord_View_Record struct {
 	GraphDefs_StarterPackViewBasic *AppBskyGraphDefs_StarterPackViewBasic
 }
 
-func (m *AppBskyEmbedRecordAppBskyEmbedRecord_View_Record) UnmarshalJSON(data []byte) error {
+func (m *AppBskyEmbedRecord_View_Record) UnmarshalJSON(data []byte) error {
 	recordType := slink.LexiconTypeFromJSONBytes(data)
 	switch recordType {
 	case "#viewRecord":
@@ -66,7 +66,7 @@ func (m *AppBskyEmbedRecordAppBskyEmbedRecord_View_Record) UnmarshalJSON(data []
 	return nil
 }
 
-func (m AppBskyEmbedRecordAppBskyEmbedRecord_View_Record) MarshalJSON() ([]byte, error) {
+func (m AppBskyEmbedRecord_View_Record) MarshalJSON() ([]byte, error) {
 	if m.EmbedRecord_ViewRecord != nil {
 		return json.Marshal(m.EmbedRecord_ViewRecord)
 	} else if m.EmbedRecord_ViewNotFound != nil {
@@ -116,21 +116,21 @@ type AppBskyEmbedRecord_ViewNotFound struct {
 const AppBskyEmbedRecord_ViewRecord_Description = ""
 
 type AppBskyEmbedRecord_ViewRecord struct {
-	LexiconTypeID string                                                         `json:"$type,omitempty"`
-	Author        *AppBskyActorDefs_ProfileViewBasic                             `json:"author,omitempty"`
-	Cid           string                                                         `json:"cid"`
-	Embeds        []*AppBskyEmbedRecordAppBskyEmbedRecord_ViewRecord_Embeds_Elem `json:"embeds,omitempty"`
-	IndexedAt     string                                                         `json:"indexedAt"`
-	Labels        []*LabelDefs_Label                                             `json:"labels,omitempty"`
-	LikeCount     *int64                                                         `json:"likeCount,omitempty"`
-	QuoteCount    *int64                                                         `json:"quoteCount,omitempty"`
-	ReplyCount    *int64                                                         `json:"replyCount,omitempty"`
-	RepostCount   *int64                                                         `json:"repostCount,omitempty"`
-	Uri           string                                                         `json:"uri"`
-	Value         any                                                            `json:"value"`
+	LexiconTypeID string                                       `json:"$type,omitempty"`
+	Author        *AppBskyActorDefs_ProfileViewBasic           `json:"author,omitempty"`
+	Cid           string                                       `json:"cid"`
+	Embeds        []*AppBskyEmbedRecord_ViewRecord_Embeds_Elem `json:"embeds,omitempty"`
+	IndexedAt     string                                       `json:"indexedAt"`
+	Labels        []*ComATProtoLabelDefs_Label                 `json:"labels,omitempty"`
+	LikeCount     *int64                                       `json:"likeCount,omitempty"`
+	QuoteCount    *int64                                       `json:"quoteCount,omitempty"`
+	ReplyCount    *int64                                       `json:"replyCount,omitempty"`
+	RepostCount   *int64                                       `json:"repostCount,omitempty"`
+	Uri           string                                       `json:"uri"`
+	Value         any                                          `json:"value"`
 }
 
-type AppBskyEmbedRecordAppBskyEmbedRecord_ViewRecord_Embeds_Elem struct {
+type AppBskyEmbedRecord_ViewRecord_Embeds_Elem struct {
 	EmbedImages_View          *AppBskyEmbedImages_View
 	EmbedVideo_View           *AppBskyEmbedVideo_View
 	EmbedExternal_View        *AppBskyEmbedExternal_View
@@ -138,7 +138,7 @@ type AppBskyEmbedRecordAppBskyEmbedRecord_ViewRecord_Embeds_Elem struct {
 	EmbedRecordWithMedia_View *AppBskyEmbedRecordWithMedia_View
 }
 
-func (m *AppBskyEmbedRecordAppBskyEmbedRecord_ViewRecord_Embeds_Elem) UnmarshalJSON(data []byte) error {
+func (m *AppBskyEmbedRecord_ViewRecord_Embeds_Elem) UnmarshalJSON(data []byte) error {
 	recordType := slink.LexiconTypeFromJSONBytes(data)
 	switch recordType {
 	case "app.bsky.embed.images#view":
@@ -160,7 +160,7 @@ func (m *AppBskyEmbedRecordAppBskyEmbedRecord_ViewRecord_Embeds_Elem) UnmarshalJ
 	return nil
 }
 
-func (m AppBskyEmbedRecordAppBskyEmbedRecord_ViewRecord_Embeds_Elem) MarshalJSON() ([]byte, error) {
+func (m AppBskyEmbedRecord_ViewRecord_Embeds_Elem) MarshalJSON() ([]byte, error) {
 	if m.EmbedImages_View != nil {
 		return json.Marshal(m.EmbedImages_View)
 	} else if m.EmbedVideo_View != nil {

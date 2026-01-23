@@ -139,16 +139,16 @@ type AppBskyActorDefs_PersonalDetailsPref struct {
 const AppBskyActorDefs_PostInteractionSettingsPref_Description = "Default post interaction settings for the account. These values should be applied as default values when creating new posts. These refs should mirror the threadgate and postgate records exactly."
 
 type AppBskyActorDefs_PostInteractionSettingsPref struct {
-	LexiconTypeID          string                                                                                      `json:"$type,omitempty"`
-	PostgateEmbeddingRules []*AppBskyActorDefsAppBskyActorDefs_PostInteractionSettingsPref_PostgateEmbeddingRules_Elem `json:"postgateEmbeddingRules,omitempty"`
-	ThreadgateAllowRules   []*AppBskyActorDefsAppBskyActorDefs_PostInteractionSettingsPref_ThreadgateAllowRules_Elem   `json:"threadgateAllowRules,omitempty"`
+	LexiconTypeID          string                                                                      `json:"$type,omitempty"`
+	PostgateEmbeddingRules []*AppBskyActorDefs_PostInteractionSettingsPref_PostgateEmbeddingRules_Elem `json:"postgateEmbeddingRules,omitempty"`
+	ThreadgateAllowRules   []*AppBskyActorDefs_PostInteractionSettingsPref_ThreadgateAllowRules_Elem   `json:"threadgateAllowRules,omitempty"`
 }
 
-type AppBskyActorDefsAppBskyActorDefs_PostInteractionSettingsPref_PostgateEmbeddingRules_Elem struct {
+type AppBskyActorDefs_PostInteractionSettingsPref_PostgateEmbeddingRules_Elem struct {
 	FeedPostgate_DisableRule *AppBskyFeedPostgate_DisableRule
 }
 
-func (m *AppBskyActorDefsAppBskyActorDefs_PostInteractionSettingsPref_PostgateEmbeddingRules_Elem) UnmarshalJSON(data []byte) error {
+func (m *AppBskyActorDefs_PostInteractionSettingsPref_PostgateEmbeddingRules_Elem) UnmarshalJSON(data []byte) error {
 	recordType := slink.LexiconTypeFromJSONBytes(data)
 	switch recordType {
 	case "app.bsky.feed.postgate#disableRule":
@@ -158,7 +158,7 @@ func (m *AppBskyActorDefsAppBskyActorDefs_PostInteractionSettingsPref_PostgateEm
 	return nil
 }
 
-func (m AppBskyActorDefsAppBskyActorDefs_PostInteractionSettingsPref_PostgateEmbeddingRules_Elem) MarshalJSON() ([]byte, error) {
+func (m AppBskyActorDefs_PostInteractionSettingsPref_PostgateEmbeddingRules_Elem) MarshalJSON() ([]byte, error) {
 	if m.FeedPostgate_DisableRule != nil {
 		return json.Marshal(m.FeedPostgate_DisableRule)
 	} else {
@@ -166,14 +166,14 @@ func (m AppBskyActorDefsAppBskyActorDefs_PostInteractionSettingsPref_PostgateEmb
 	}
 }
 
-type AppBskyActorDefsAppBskyActorDefs_PostInteractionSettingsPref_ThreadgateAllowRules_Elem struct {
+type AppBskyActorDefs_PostInteractionSettingsPref_ThreadgateAllowRules_Elem struct {
 	FeedThreadgate_MentionRule   *AppBskyFeedThreadgate_MentionRule
 	FeedThreadgate_FollowerRule  *AppBskyFeedThreadgate_FollowerRule
 	FeedThreadgate_FollowingRule *AppBskyFeedThreadgate_FollowingRule
 	FeedThreadgate_ListRule      *AppBskyFeedThreadgate_ListRule
 }
 
-func (m *AppBskyActorDefsAppBskyActorDefs_PostInteractionSettingsPref_ThreadgateAllowRules_Elem) UnmarshalJSON(data []byte) error {
+func (m *AppBskyActorDefs_PostInteractionSettingsPref_ThreadgateAllowRules_Elem) UnmarshalJSON(data []byte) error {
 	recordType := slink.LexiconTypeFromJSONBytes(data)
 	switch recordType {
 	case "app.bsky.feed.threadgate#mentionRule":
@@ -192,7 +192,7 @@ func (m *AppBskyActorDefsAppBskyActorDefs_PostInteractionSettingsPref_Threadgate
 	return nil
 }
 
-func (m AppBskyActorDefsAppBskyActorDefs_PostInteractionSettingsPref_ThreadgateAllowRules_Elem) MarshalJSON() ([]byte, error) {
+func (m AppBskyActorDefs_PostInteractionSettingsPref_ThreadgateAllowRules_Elem) MarshalJSON() ([]byte, error) {
 	if m.FeedThreadgate_MentionRule != nil {
 		return json.Marshal(m.FeedThreadgate_MentionRule)
 	} else if m.FeedThreadgate_FollowerRule != nil {
@@ -351,7 +351,7 @@ type AppBskyActorDefs_ProfileView struct {
 	DisplayName   *string                             `json:"displayName,omitempty"`
 	Handle        string                              `json:"handle"`
 	IndexedAt     *string                             `json:"indexedAt,omitempty"`
-	Labels        []*LabelDefs_Label                  `json:"labels,omitempty"`
+	Labels        []*ComATProtoLabelDefs_Label        `json:"labels,omitempty"`
 	Pronouns      *string                             `json:"pronouns,omitempty"`
 	Status        *AppBskyActorDefs_StatusView        `json:"status,omitempty"`
 	Verification  *AppBskyActorDefs_VerificationState `json:"verification,omitempty"`
@@ -369,7 +369,7 @@ type AppBskyActorDefs_ProfileViewBasic struct {
 	Did           string                              `json:"did"`
 	DisplayName   *string                             `json:"displayName,omitempty"`
 	Handle        string                              `json:"handle"`
-	Labels        []*LabelDefs_Label                  `json:"labels,omitempty"`
+	Labels        []*ComATProtoLabelDefs_Label        `json:"labels,omitempty"`
 	Pronouns      *string                             `json:"pronouns,omitempty"`
 	Status        *AppBskyActorDefs_StatusView        `json:"status,omitempty"`
 	Verification  *AppBskyActorDefs_VerificationState `json:"verification,omitempty"`
@@ -393,8 +393,8 @@ type AppBskyActorDefs_ProfileViewDetailed struct {
 	Handle               string                                 `json:"handle"`
 	IndexedAt            *string                                `json:"indexedAt,omitempty"`
 	JoinedViaStarterPack *AppBskyGraphDefs_StarterPackViewBasic `json:"joinedViaStarterPack,omitempty"`
-	Labels               []*LabelDefs_Label                     `json:"labels,omitempty"`
-	PinnedPost           *RepoStrongRef                         `json:"pinnedPost,omitempty"`
+	Labels               []*ComATProtoLabelDefs_Label           `json:"labels,omitempty"`
+	PinnedPost           *ComATProtoRepoStrongRef               `json:"pinnedPost,omitempty"`
 	PostsCount           *int64                                 `json:"postsCount,omitempty"`
 	Pronouns             *string                                `json:"pronouns,omitempty"`
 	Status               *AppBskyActorDefs_StatusView           `json:"status,omitempty"`
@@ -432,22 +432,22 @@ type AppBskyActorDefs_SavedFeedsPrefV2 struct {
 const AppBskyActorDefs_StatusView_Description = ""
 
 type AppBskyActorDefs_StatusView struct {
-	LexiconTypeID string                                             `json:"$type,omitempty"`
-	Cid           *string                                            `json:"cid,omitempty"`
-	Embed         *AppBskyActorDefsAppBskyActorDefs_StatusView_Embed `json:"embed,omitempty"`
-	ExpiresAt     *string                                            `json:"expiresAt,omitempty"`
-	IsActive      *bool                                              `json:"isActive,omitempty"`
-	IsDisabled    *bool                                              `json:"isDisabled,omitempty"`
-	Record        any                                                `json:"record"`
-	Status        string                                             `json:"status"`
-	Uri           *string                                            `json:"uri,omitempty"`
+	LexiconTypeID string                             `json:"$type,omitempty"`
+	Cid           *string                            `json:"cid,omitempty"`
+	Embed         *AppBskyActorDefs_StatusView_Embed `json:"embed,omitempty"`
+	ExpiresAt     *string                            `json:"expiresAt,omitempty"`
+	IsActive      *bool                              `json:"isActive,omitempty"`
+	IsDisabled    *bool                              `json:"isDisabled,omitempty"`
+	Record        any                                `json:"record"`
+	Status        string                             `json:"status"`
+	Uri           *string                            `json:"uri,omitempty"`
 }
 
-type AppBskyActorDefsAppBskyActorDefs_StatusView_Embed struct {
+type AppBskyActorDefs_StatusView_Embed struct {
 	EmbedExternal_View *AppBskyEmbedExternal_View
 }
 
-func (m *AppBskyActorDefsAppBskyActorDefs_StatusView_Embed) UnmarshalJSON(data []byte) error {
+func (m *AppBskyActorDefs_StatusView_Embed) UnmarshalJSON(data []byte) error {
 	recordType := slink.LexiconTypeFromJSONBytes(data)
 	switch recordType {
 	case "app.bsky.embed.external#view":
@@ -457,7 +457,7 @@ func (m *AppBskyActorDefsAppBskyActorDefs_StatusView_Embed) UnmarshalJSON(data [
 	return nil
 }
 
-func (m AppBskyActorDefsAppBskyActorDefs_StatusView_Embed) MarshalJSON() ([]byte, error) {
+func (m AppBskyActorDefs_StatusView_Embed) MarshalJSON() ([]byte, error) {
 	if m.EmbedExternal_View != nil {
 		return json.Marshal(m.EmbedExternal_View)
 	} else {

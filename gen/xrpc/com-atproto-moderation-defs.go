@@ -5,29 +5,29 @@
 package xrpc // com.atproto.moderation.defs
 
 // Appeal a previously taken moderation action
-const ModerationDefs_ReasonAppeal string = "reasonAppeal"
+const ComATProtoModerationDefs_ReasonAppeal string = "reasonAppeal"
 
 // Misleading identity, affiliation, or content. Prefer new lexicon definition `tools.ozone.report.defs#reasonMisleadingOther`.
-const ModerationDefs_ReasonMisleading string = "reasonMisleading"
+const ComATProtoModerationDefs_ReasonMisleading string = "reasonMisleading"
 
 // Reports not falling under another report category. Prefer new lexicon definition `tools.ozone.report.defs#reasonOther`.
-const ModerationDefs_ReasonOther string = "reasonOther"
+const ComATProtoModerationDefs_ReasonOther string = "reasonOther"
 
 // Rude, harassing, explicit, or otherwise unwelcoming behavior. Prefer new lexicon definition `tools.ozone.report.defs#reasonHarassmentOther`.
-const ModerationDefs_ReasonRude string = "reasonRude"
+const ComATProtoModerationDefs_ReasonRude string = "reasonRude"
 
 // Unwanted or mislabeled sexual content. Prefer new lexicon definition `tools.ozone.report.defs#reasonSexualUnlabeled`.
-const ModerationDefs_ReasonSexual string = "reasonSexual"
+const ComATProtoModerationDefs_ReasonSexual string = "reasonSexual"
 
 // Spam: frequent unwanted promotion, replies, mentions. Prefer new lexicon definition `tools.ozone.report.defs#reasonMisleadingSpam`.
-const ModerationDefs_ReasonSpam string = "reasonSpam"
+const ComATProtoModerationDefs_ReasonSpam string = "reasonSpam"
 
-type ModerationDefs_ReasonType string
+type ComATProtoModerationDefs_ReasonType string
 
 // Direct violation of server rules, laws, terms of service. Prefer new lexicon definition `tools.ozone.report.defs#reasonRuleOther`.
-const ModerationDefs_ReasonViolation string = "reasonViolation"
+const ComATProtoModerationDefs_ReasonViolation string = "reasonViolation"
 
-type ModerationDefs_SubjectType string
+type ComATProtoModerationDefs_SubjectType string
 
 /*
 {

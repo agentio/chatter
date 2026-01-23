@@ -13,18 +13,18 @@ import (
 const AppBskyEmbedRecordWithMedia_Description = ""
 
 type AppBskyEmbedRecordWithMedia struct {
-	LexiconTypeID string                                                        `json:"$type,omitempty"`
-	Media         *AppBskyEmbedRecordWithMediaAppBskyEmbedRecordWithMedia_Media `json:"media,omitempty"`
-	Record        *AppBskyEmbedRecord                                           `json:"record,omitempty"`
+	LexiconTypeID string                             `json:"$type,omitempty"`
+	Media         *AppBskyEmbedRecordWithMedia_Media `json:"media,omitempty"`
+	Record        *AppBskyEmbedRecord                `json:"record,omitempty"`
 }
 
-type AppBskyEmbedRecordWithMediaAppBskyEmbedRecordWithMedia_Media struct {
+type AppBskyEmbedRecordWithMedia_Media struct {
 	EmbedImages   *AppBskyEmbedImages
 	EmbedVideo    *AppBskyEmbedVideo
 	EmbedExternal *AppBskyEmbedExternal
 }
 
-func (m *AppBskyEmbedRecordWithMediaAppBskyEmbedRecordWithMedia_Media) UnmarshalJSON(data []byte) error {
+func (m *AppBskyEmbedRecordWithMedia_Media) UnmarshalJSON(data []byte) error {
 	recordType := slink.LexiconTypeFromJSONBytes(data)
 	switch recordType {
 	case "app.bsky.embed.images":
@@ -40,7 +40,7 @@ func (m *AppBskyEmbedRecordWithMediaAppBskyEmbedRecordWithMedia_Media) Unmarshal
 	return nil
 }
 
-func (m AppBskyEmbedRecordWithMediaAppBskyEmbedRecordWithMedia_Media) MarshalJSON() ([]byte, error) {
+func (m AppBskyEmbedRecordWithMedia_Media) MarshalJSON() ([]byte, error) {
 	if m.EmbedImages != nil {
 		return json.Marshal(m.EmbedImages)
 	} else if m.EmbedVideo != nil {
@@ -55,18 +55,18 @@ func (m AppBskyEmbedRecordWithMediaAppBskyEmbedRecordWithMedia_Media) MarshalJSO
 const AppBskyEmbedRecordWithMedia_View_Description = ""
 
 type AppBskyEmbedRecordWithMedia_View struct {
-	LexiconTypeID string                                                             `json:"$type,omitempty"`
-	Media         *AppBskyEmbedRecordWithMediaAppBskyEmbedRecordWithMedia_View_Media `json:"media,omitempty"`
-	Record        *AppBskyEmbedRecord_View                                           `json:"record,omitempty"`
+	LexiconTypeID string                                  `json:"$type,omitempty"`
+	Media         *AppBskyEmbedRecordWithMedia_View_Media `json:"media,omitempty"`
+	Record        *AppBskyEmbedRecord_View                `json:"record,omitempty"`
 }
 
-type AppBskyEmbedRecordWithMediaAppBskyEmbedRecordWithMedia_View_Media struct {
+type AppBskyEmbedRecordWithMedia_View_Media struct {
 	EmbedImages_View   *AppBskyEmbedImages_View
 	EmbedVideo_View    *AppBskyEmbedVideo_View
 	EmbedExternal_View *AppBskyEmbedExternal_View
 }
 
-func (m *AppBskyEmbedRecordWithMediaAppBskyEmbedRecordWithMedia_View_Media) UnmarshalJSON(data []byte) error {
+func (m *AppBskyEmbedRecordWithMedia_View_Media) UnmarshalJSON(data []byte) error {
 	recordType := slink.LexiconTypeFromJSONBytes(data)
 	switch recordType {
 	case "app.bsky.embed.images#view":
@@ -82,7 +82,7 @@ func (m *AppBskyEmbedRecordWithMediaAppBskyEmbedRecordWithMedia_View_Media) Unma
 	return nil
 }
 
-func (m AppBskyEmbedRecordWithMediaAppBskyEmbedRecordWithMedia_View_Media) MarshalJSON() ([]byte, error) {
+func (m AppBskyEmbedRecordWithMedia_View_Media) MarshalJSON() ([]byte, error) {
 	if m.EmbedImages_View != nil {
 		return json.Marshal(m.EmbedImages_View)
 	} else if m.EmbedVideo_View != nil {

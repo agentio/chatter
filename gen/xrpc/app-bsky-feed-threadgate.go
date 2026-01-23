@@ -32,21 +32,21 @@ type AppBskyFeedThreadgate_ListRule struct {
 const AppBskyFeedThreadgate_Description = "Record defining interaction gating rules for a thread (aka, reply controls). The record key (rkey) of the threadgate record must match the record key of the thread's root post, and that record must be in the same repository."
 
 type AppBskyFeedThreadgate struct {
-	LexiconTypeID string                                                   `json:"$type,omitempty"`
-	Allow         []*AppBskyFeedThreadgateAppBskyFeedThreadgate_Allow_Elem `json:"allow,omitempty"`
-	CreatedAt     string                                                   `json:"createdAt"`
-	HiddenReplies []string                                                 `json:"hiddenReplies,omitempty"`
-	Post          string                                                   `json:"post"`
+	LexiconTypeID string                              `json:"$type,omitempty"`
+	Allow         []*AppBskyFeedThreadgate_Allow_Elem `json:"allow,omitempty"`
+	CreatedAt     string                              `json:"createdAt"`
+	HiddenReplies []string                            `json:"hiddenReplies,omitempty"`
+	Post          string                              `json:"post"`
 }
 
-type AppBskyFeedThreadgateAppBskyFeedThreadgate_Allow_Elem struct {
+type AppBskyFeedThreadgate_Allow_Elem struct {
 	FeedThreadgate_MentionRule   *AppBskyFeedThreadgate_MentionRule
 	FeedThreadgate_FollowerRule  *AppBskyFeedThreadgate_FollowerRule
 	FeedThreadgate_FollowingRule *AppBskyFeedThreadgate_FollowingRule
 	FeedThreadgate_ListRule      *AppBskyFeedThreadgate_ListRule
 }
 
-func (m *AppBskyFeedThreadgateAppBskyFeedThreadgate_Allow_Elem) UnmarshalJSON(data []byte) error {
+func (m *AppBskyFeedThreadgate_Allow_Elem) UnmarshalJSON(data []byte) error {
 	recordType := slink.LexiconTypeFromJSONBytes(data)
 	switch recordType {
 	case "app.bsky.feed.threadgate#mentionRule":
@@ -65,7 +65,7 @@ func (m *AppBskyFeedThreadgateAppBskyFeedThreadgate_Allow_Elem) UnmarshalJSON(da
 	return nil
 }
 
-func (m AppBskyFeedThreadgateAppBskyFeedThreadgate_Allow_Elem) MarshalJSON() ([]byte, error) {
+func (m AppBskyFeedThreadgate_Allow_Elem) MarshalJSON() ([]byte, error) {
 	if m.FeedThreadgate_MentionRule != nil {
 		return json.Marshal(m.FeedThreadgate_MentionRule)
 	} else if m.FeedThreadgate_FollowerRule != nil {

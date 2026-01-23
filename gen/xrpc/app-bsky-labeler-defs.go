@@ -7,9 +7,9 @@ package xrpc // app.bsky.labeler.defs
 const AppBskyLabelerDefs_LabelerPolicies_Description = ""
 
 type AppBskyLabelerDefs_LabelerPolicies struct {
-	LexiconTypeID         string                            `json:"$type,omitempty"`
-	LabelValueDefinitions []*LabelDefs_LabelValueDefinition `json:"labelValueDefinitions,omitempty"`
-	LabelValues           []*LabelDefs_LabelValue           `json:"labelValues,omitempty"`
+	LexiconTypeID         string                                      `json:"$type,omitempty"`
+	LabelValueDefinitions []*ComATProtoLabelDefs_LabelValueDefinition `json:"labelValueDefinitions,omitempty"`
+	LabelValues           []*ComATProtoLabelDefs_LabelValue           `json:"labelValues,omitempty"`
 }
 
 const AppBskyLabelerDefs_LabelerView_Description = ""
@@ -19,7 +19,7 @@ type AppBskyLabelerDefs_LabelerView struct {
 	Cid           string                                 `json:"cid"`
 	Creator       *AppBskyActorDefs_ProfileView          `json:"creator,omitempty"`
 	IndexedAt     string                                 `json:"indexedAt"`
-	Labels        []*LabelDefs_Label                     `json:"labels,omitempty"`
+	Labels        []*ComATProtoLabelDefs_Label           `json:"labels,omitempty"`
 	LikeCount     *int64                                 `json:"likeCount,omitempty"`
 	Uri           string                                 `json:"uri"`
 	Viewer        *AppBskyLabelerDefs_LabelerViewerState `json:"viewer,omitempty"`
@@ -28,18 +28,18 @@ type AppBskyLabelerDefs_LabelerView struct {
 const AppBskyLabelerDefs_LabelerViewDetailed_Description = ""
 
 type AppBskyLabelerDefs_LabelerViewDetailed struct {
-	LexiconTypeID      string                                 `json:"$type,omitempty"`
-	Cid                string                                 `json:"cid"`
-	Creator            *AppBskyActorDefs_ProfileView          `json:"creator,omitempty"`
-	IndexedAt          string                                 `json:"indexedAt"`
-	Labels             []*LabelDefs_Label                     `json:"labels,omitempty"`
-	LikeCount          *int64                                 `json:"likeCount,omitempty"`
-	Policies           *AppBskyLabelerDefs_LabelerPolicies    `json:"policies,omitempty"`
-	ReasonTypes        []*ModerationDefs_ReasonType           `json:"reasonTypes,omitempty"`
-	SubjectCollections []string                               `json:"subjectCollections,omitempty"`
-	SubjectTypes       []*ModerationDefs_SubjectType          `json:"subjectTypes,omitempty"`
-	Uri                string                                 `json:"uri"`
-	Viewer             *AppBskyLabelerDefs_LabelerViewerState `json:"viewer,omitempty"`
+	LexiconTypeID      string                                  `json:"$type,omitempty"`
+	Cid                string                                  `json:"cid"`
+	Creator            *AppBskyActorDefs_ProfileView           `json:"creator,omitempty"`
+	IndexedAt          string                                  `json:"indexedAt"`
+	Labels             []*ComATProtoLabelDefs_Label            `json:"labels,omitempty"`
+	LikeCount          *int64                                  `json:"likeCount,omitempty"`
+	Policies           *AppBskyLabelerDefs_LabelerPolicies     `json:"policies,omitempty"`
+	ReasonTypes        []*ComATProtoModerationDefs_ReasonType  `json:"reasonTypes,omitempty"`
+	SubjectCollections []string                                `json:"subjectCollections,omitempty"`
+	SubjectTypes       []*ComATProtoModerationDefs_SubjectType `json:"subjectTypes,omitempty"`
+	Uri                string                                  `json:"uri"`
+	Viewer             *AppBskyLabelerDefs_LabelerViewerState  `json:"viewer,omitempty"`
 }
 
 const AppBskyLabelerDefs_LabelerViewerState_Description = ""

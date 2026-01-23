@@ -4,9 +4,9 @@
 // Get slink at https://github.com/agentio/slink.
 package xrpc // com.atproto.label.defs
 
-const LabelDefs_Label_Description = "Metadata tag on an atproto resource (eg, repo or record)."
+const ComATProtoLabelDefs_Label_Description = "Metadata tag on an atproto resource (eg, repo or record)."
 
-type LabelDefs_Label struct {
+type ComATProtoLabelDefs_Label struct {
 	LexiconTypeID string  `json:"$type,omitempty"`
 	Cid           *string `json:"cid,omitempty"`
 	Cts           string  `json:"cts"`
@@ -19,41 +19,41 @@ type LabelDefs_Label struct {
 	Ver           *int64  `json:"ver,omitempty"`
 }
 
-type LabelDefs_LabelValue string
+type ComATProtoLabelDefs_LabelValue string
 
-const LabelDefs_LabelValueDefinition_Description = "Declares a label value and its expected interpretations and behaviors."
+const ComATProtoLabelDefs_LabelValueDefinition_Description = "Declares a label value and its expected interpretations and behaviors."
 
-type LabelDefs_LabelValueDefinition struct {
-	LexiconTypeID  string                                   `json:"$type,omitempty"`
-	AdultOnly      *bool                                    `json:"adultOnly,omitempty"`
-	Blurs          string                                   `json:"blurs"`
-	DefaultSetting *string                                  `json:"defaultSetting,omitempty"`
-	Identifier     string                                   `json:"identifier"`
-	Locales        []*LabelDefs_LabelValueDefinitionStrings `json:"locales,omitempty"`
-	Severity       string                                   `json:"severity"`
+type ComATProtoLabelDefs_LabelValueDefinition struct {
+	LexiconTypeID  string                                             `json:"$type,omitempty"`
+	AdultOnly      *bool                                              `json:"adultOnly,omitempty"`
+	Blurs          string                                             `json:"blurs"`
+	DefaultSetting *string                                            `json:"defaultSetting,omitempty"`
+	Identifier     string                                             `json:"identifier"`
+	Locales        []*ComATProtoLabelDefs_LabelValueDefinitionStrings `json:"locales,omitempty"`
+	Severity       string                                             `json:"severity"`
 }
 
-const LabelDefs_LabelValueDefinitionStrings_Description = "Strings which describe the label in the UI, localized into a specific language."
+const ComATProtoLabelDefs_LabelValueDefinitionStrings_Description = "Strings which describe the label in the UI, localized into a specific language."
 
-type LabelDefs_LabelValueDefinitionStrings struct {
+type ComATProtoLabelDefs_LabelValueDefinitionStrings struct {
 	LexiconTypeID string `json:"$type,omitempty"`
 	Description   string `json:"description"`
 	Lang          string `json:"lang"`
 	Name          string `json:"name"`
 }
 
-const LabelDefs_SelfLabel_Description = "Metadata tag on an atproto record, published by the author within the record. Note that schemas should use #selfLabels, not #selfLabel."
+const ComATProtoLabelDefs_SelfLabel_Description = "Metadata tag on an atproto record, published by the author within the record. Note that schemas should use #selfLabels, not #selfLabel."
 
-type LabelDefs_SelfLabel struct {
+type ComATProtoLabelDefs_SelfLabel struct {
 	LexiconTypeID string `json:"$type,omitempty"`
 	Val           string `json:"val"`
 }
 
-const LabelDefs_SelfLabels_Description = "Metadata tags on an atproto record, published by the author within the record."
+const ComATProtoLabelDefs_SelfLabels_Description = "Metadata tags on an atproto record, published by the author within the record."
 
-type LabelDefs_SelfLabels struct {
-	LexiconTypeID string                 `json:"$type,omitempty"`
-	Values        []*LabelDefs_SelfLabel `json:"values,omitempty"`
+type ComATProtoLabelDefs_SelfLabels struct {
+	LexiconTypeID string                           `json:"$type,omitempty"`
+	Values        []*ComATProtoLabelDefs_SelfLabel `json:"values,omitempty"`
 }
 
 /*

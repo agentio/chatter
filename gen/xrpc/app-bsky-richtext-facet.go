@@ -28,18 +28,18 @@ type AppBskyRichtextFacet_Link struct {
 const AppBskyRichtextFacet_Description = "Annotation of a sub-string within rich text."
 
 type AppBskyRichtextFacet struct {
-	LexiconTypeID string                                                    `json:"$type,omitempty"`
-	Features      []*AppBskyRichtextFacetAppBskyRichtextFacet_Features_Elem `json:"features,omitempty"`
-	Index         *AppBskyRichtextFacet_ByteSlice                           `json:"index,omitempty"`
+	LexiconTypeID string                                `json:"$type,omitempty"`
+	Features      []*AppBskyRichtextFacet_Features_Elem `json:"features,omitempty"`
+	Index         *AppBskyRichtextFacet_ByteSlice       `json:"index,omitempty"`
 }
 
-type AppBskyRichtextFacetAppBskyRichtextFacet_Features_Elem struct {
+type AppBskyRichtextFacet_Features_Elem struct {
 	RichtextFacet_Mention *AppBskyRichtextFacet_Mention
 	RichtextFacet_Link    *AppBskyRichtextFacet_Link
 	RichtextFacet_Tag     *AppBskyRichtextFacet_Tag
 }
 
-func (m *AppBskyRichtextFacetAppBskyRichtextFacet_Features_Elem) UnmarshalJSON(data []byte) error {
+func (m *AppBskyRichtextFacet_Features_Elem) UnmarshalJSON(data []byte) error {
 	recordType := slink.LexiconTypeFromJSONBytes(data)
 	switch recordType {
 	case "app.bsky.richtext.facet#mention":
@@ -55,7 +55,7 @@ func (m *AppBskyRichtextFacetAppBskyRichtextFacet_Features_Elem) UnmarshalJSON(d
 	return nil
 }
 
-func (m AppBskyRichtextFacetAppBskyRichtextFacet_Features_Elem) MarshalJSON() ([]byte, error) {
+func (m AppBskyRichtextFacet_Features_Elem) MarshalJSON() ([]byte, error) {
 	if m.RichtextFacet_Mention != nil {
 		return json.Marshal(m.RichtextFacet_Mention)
 	} else if m.RichtextFacet_Link != nil {

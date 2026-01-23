@@ -19,18 +19,18 @@ type AppBskyFeedPostgate_DisableRule struct {
 const AppBskyFeedPostgate_Description = "Record defining interaction rules for a post. The record key (rkey) of the postgate record must match the record key of the post, and that record must be in the same repository."
 
 type AppBskyFeedPostgate struct {
-	LexiconTypeID         string                                                        `json:"$type,omitempty"`
-	CreatedAt             string                                                        `json:"createdAt"`
-	DetachedEmbeddingUris []string                                                      `json:"detachedEmbeddingUris,omitempty"`
-	EmbeddingRules        []*AppBskyFeedPostgateAppBskyFeedPostgate_EmbeddingRules_Elem `json:"embeddingRules,omitempty"`
-	Post                  string                                                        `json:"post"`
+	LexiconTypeID         string                                     `json:"$type,omitempty"`
+	CreatedAt             string                                     `json:"createdAt"`
+	DetachedEmbeddingUris []string                                   `json:"detachedEmbeddingUris,omitempty"`
+	EmbeddingRules        []*AppBskyFeedPostgate_EmbeddingRules_Elem `json:"embeddingRules,omitempty"`
+	Post                  string                                     `json:"post"`
 }
 
-type AppBskyFeedPostgateAppBskyFeedPostgate_EmbeddingRules_Elem struct {
+type AppBskyFeedPostgate_EmbeddingRules_Elem struct {
 	FeedPostgate_DisableRule *AppBskyFeedPostgate_DisableRule
 }
 
-func (m *AppBskyFeedPostgateAppBskyFeedPostgate_EmbeddingRules_Elem) UnmarshalJSON(data []byte) error {
+func (m *AppBskyFeedPostgate_EmbeddingRules_Elem) UnmarshalJSON(data []byte) error {
 	recordType := slink.LexiconTypeFromJSONBytes(data)
 	switch recordType {
 	case "app.bsky.feed.postgate#disableRule":
@@ -40,7 +40,7 @@ func (m *AppBskyFeedPostgateAppBskyFeedPostgate_EmbeddingRules_Elem) UnmarshalJS
 	return nil
 }
 
-func (m AppBskyFeedPostgateAppBskyFeedPostgate_EmbeddingRules_Elem) MarshalJSON() ([]byte, error) {
+func (m AppBskyFeedPostgate_EmbeddingRules_Elem) MarshalJSON() ([]byte, error) {
 	if m.FeedPostgate_DisableRule != nil {
 		return json.Marshal(m.FeedPostgate_DisableRule)
 	} else {

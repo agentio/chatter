@@ -14,7 +14,7 @@ type ChatBskyActorDefs_ProfileViewBasic struct {
 	Did           string                              `json:"did"`
 	DisplayName   *string                             `json:"displayName,omitempty"`
 	Handle        string                              `json:"handle"`
-	Labels        []*LabelDefs_Label                  `json:"labels,omitempty"`
+	Labels        []*ComATProtoLabelDefs_Label        `json:"labels,omitempty"`
 	Verification  *AppBskyActorDefs_VerificationState `json:"verification,omitempty"`
 	Viewer        *AppBskyActorDefs_ViewerState       `json:"viewer,omitempty"`
 }

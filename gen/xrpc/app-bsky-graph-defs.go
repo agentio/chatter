@@ -27,7 +27,7 @@ type AppBskyGraphDefs_ListView struct {
 	Description       *string                           `json:"description,omitempty"`
 	DescriptionFacets []*AppBskyRichtextFacet           `json:"descriptionFacets,omitempty"`
 	IndexedAt         string                            `json:"indexedAt"`
-	Labels            []*LabelDefs_Label                `json:"labels,omitempty"`
+	Labels            []*ComATProtoLabelDefs_Label      `json:"labels,omitempty"`
 	ListItemCount     *int64                            `json:"listItemCount,omitempty"`
 	Name              string                            `json:"name"`
 	Purpose           *AppBskyGraphDefs_ListPurpose     `json:"purpose,omitempty"`
@@ -42,7 +42,7 @@ type AppBskyGraphDefs_ListViewBasic struct {
 	Avatar        *string                           `json:"avatar,omitempty"`
 	Cid           string                            `json:"cid"`
 	IndexedAt     *string                           `json:"indexedAt,omitempty"`
-	Labels        []*LabelDefs_Label                `json:"labels,omitempty"`
+	Labels        []*ComATProtoLabelDefs_Label      `json:"labels,omitempty"`
 	ListItemCount *int64                            `json:"listItemCount,omitempty"`
 	Name          string                            `json:"name"`
 	Purpose       *AppBskyGraphDefs_ListPurpose     `json:"purpose,omitempty"`
@@ -95,7 +95,7 @@ type AppBskyGraphDefs_StarterPackView struct {
 	IndexedAt          string                             `json:"indexedAt"`
 	JoinedAllTimeCount *int64                             `json:"joinedAllTimeCount,omitempty"`
 	JoinedWeekCount    *int64                             `json:"joinedWeekCount,omitempty"`
-	Labels             []*LabelDefs_Label                 `json:"labels,omitempty"`
+	Labels             []*ComATProtoLabelDefs_Label       `json:"labels,omitempty"`
 	List               *AppBskyGraphDefs_ListViewBasic    `json:"list,omitempty"`
 	ListItemsSample    []*AppBskyGraphDefs_ListItemView   `json:"listItemsSample,omitempty"`
 	Record             any                                `json:"record"`
@@ -111,7 +111,7 @@ type AppBskyGraphDefs_StarterPackViewBasic struct {
 	IndexedAt          string                             `json:"indexedAt"`
 	JoinedAllTimeCount *int64                             `json:"joinedAllTimeCount,omitempty"`
 	JoinedWeekCount    *int64                             `json:"joinedWeekCount,omitempty"`
-	Labels             []*LabelDefs_Label                 `json:"labels,omitempty"`
+	Labels             []*ComATProtoLabelDefs_Label       `json:"labels,omitempty"`
 	ListItemCount      *int64                             `json:"listItemCount,omitempty"`
 	Record             any                                `json:"record"`
 	Uri                string                             `json:"uri"`
