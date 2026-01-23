@@ -4,17 +4,6 @@
 // Get slink at https://github.com/agentio/slink.
 package xrpc // app.bsky.labeler.defs
 
-type AppBskyLabelerDefs_LabelerViewerState struct {
-	LexiconTypeID string  `json:"$type,omitempty"`
-	Like          *string `json:"like,omitempty"`
-}
-
-type AppBskyLabelerDefs_LabelerPolicies struct {
-	LexiconTypeID         string                            `json:"$type,omitempty"`
-	LabelValueDefinitions []*LabelDefs_LabelValueDefinition `json:"labelValueDefinitions,omitempty"`
-	LabelValues           []*LabelDefs_LabelValue           `json:"labelValues,omitempty"`
-}
-
 type AppBskyLabelerDefs_LabelerView struct {
 	LexiconTypeID string                                 `json:"$type,omitempty"`
 	Cid           string                                 `json:"cid,omitempty"`
@@ -39,6 +28,17 @@ type AppBskyLabelerDefs_LabelerViewDetailed struct {
 	SubjectTypes       []*ModerationDefs_SubjectType          `json:"subjectTypes,omitempty"`
 	Uri                string                                 `json:"uri,omitempty"`
 	Viewer             *AppBskyLabelerDefs_LabelerViewerState `json:"viewer,omitempty"`
+}
+
+type AppBskyLabelerDefs_LabelerViewerState struct {
+	LexiconTypeID string  `json:"$type,omitempty"`
+	Like          *string `json:"like,omitempty"`
+}
+
+type AppBskyLabelerDefs_LabelerPolicies struct {
+	LexiconTypeID         string                            `json:"$type,omitempty"`
+	LabelValueDefinitions []*LabelDefs_LabelValueDefinition `json:"labelValueDefinitions,omitempty"`
+	LabelValues           []*LabelDefs_LabelValue           `json:"labelValues,omitempty"`
 }
 
 /*

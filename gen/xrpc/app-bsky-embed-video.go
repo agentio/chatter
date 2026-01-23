@@ -4,12 +4,20 @@
 // Get slink at https://github.com/agentio/slink.
 package xrpc // app.bsky.embed.video
 
-import "github.com/agentio/slink/pkg/common"
+import "github.com/agentio/slink/pkg/slink"
+
+type AppBskyEmbedVideo struct {
+	LexiconTypeID string                        `json:"$type,omitempty"`
+	Alt           *string                       `json:"alt,omitempty"`
+	AspectRatio   *AppBskyEmbedDefs_AspectRatio `json:"aspectRatio,omitempty"`
+	Captions      []*AppBskyEmbedVideo_Caption  `json:"captions,omitempty"`
+	Video         *slink.Blob                   `json:"video"`
+}
 
 type AppBskyEmbedVideo_Caption struct {
-	LexiconTypeID string       `json:"$type,omitempty"`
-	File          *common.Blob `json:"file"`
-	Lang          string       `json:"lang,omitempty"`
+	LexiconTypeID string      `json:"$type,omitempty"`
+	File          *slink.Blob `json:"file"`
+	Lang          string      `json:"lang,omitempty"`
 }
 
 type AppBskyEmbedVideo_View struct {
@@ -19,14 +27,6 @@ type AppBskyEmbedVideo_View struct {
 	Cid           string                        `json:"cid,omitempty"`
 	Playlist      string                        `json:"playlist,omitempty"`
 	Thumbnail     *string                       `json:"thumbnail,omitempty"`
-}
-
-type AppBskyEmbedVideo struct {
-	LexiconTypeID string                        `json:"$type,omitempty"`
-	Alt           *string                       `json:"alt,omitempty"`
-	AspectRatio   *AppBskyEmbedDefs_AspectRatio `json:"aspectRatio,omitempty"`
-	Captions      []*AppBskyEmbedVideo_Caption  `json:"captions,omitempty"`
-	Video         *common.Blob                  `json:"video"`
 }
 
 /*

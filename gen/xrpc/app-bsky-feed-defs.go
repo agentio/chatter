@@ -7,149 +7,37 @@ package xrpc // app.bsky.feed.defs
 import (
 	"encoding/json"
 
-	"github.com/agentio/slink/pkg/common"
+	"github.com/agentio/slink/pkg/slink"
 )
 
 // User clicked through to the author of the feed item
 const AppBskyFeedDefs_ClickthroughAuthor string = "clickthroughAuthor"
 
-// User clicked through to the reposter of the feed item
-const AppBskyFeedDefs_ClickthroughReposter string = "clickthroughReposter"
+// User clicked through to the feed item
+const AppBskyFeedDefs_ClickthroughItem string = "clickthroughItem"
 
-// Feed item was seen by user
-const AppBskyFeedDefs_InteractionSeen string = "interactionSeen"
+// Declares the feed generator returns posts containing app.bsky.embed.video embeds.
+const AppBskyFeedDefs_ContentModeVideo string = "contentModeVideo"
 
-type AppBskyFeedDefs_NotFoundPost struct {
-	LexiconTypeID string `json:"$type,omitempty"`
-	NotFound      bool   `json:"notFound"`
-	Uri           string `json:"uri,omitempty"`
+// User reposted the feed item
+const AppBskyFeedDefs_InteractionRepost string = "interactionRepost"
+
+// User replied to the feed item
+const AppBskyFeedDefs_InteractionReply string = "interactionReply"
+
+// Declares the feed generator returns any types of posts.
+const AppBskyFeedDefs_ContentModeUnspecified string = "contentModeUnspecified"
+
+type AppBskyFeedDefs_BlockedPost struct {
+	LexiconTypeID string                         `json:"$type,omitempty"`
+	Author        *AppBskyFeedDefs_BlockedAuthor `json:"author,omitempty"`
+	Blocked       bool                           `json:"blocked"`
+	Uri           string                         `json:"uri,omitempty"`
 }
 
 type AppBskyFeedDefs_SkeletonReasonRepost struct {
 	LexiconTypeID string `json:"$type,omitempty"`
 	Repost        string `json:"repost,omitempty"`
-}
-
-type AppBskyFeedDefs_SkeletonReasonPin struct {
-	LexiconTypeID string `json:"$type,omitempty"`
-}
-
-// User clicked through to the embedded content of the feed item
-const AppBskyFeedDefs_ClickthroughEmbed string = "clickthroughEmbed"
-
-// Declares the feed generator returns any types of posts.
-const AppBskyFeedDefs_ContentModeUnspecified string = "contentModeUnspecified"
-
-type AppBskyFeedDefs_ReplyRef struct {
-	LexiconTypeID     string                                          `json:"$type,omitempty"`
-	GrandparentAuthor *AppBskyActorDefs_ProfileViewBasic              `json:"grandparentAuthor,omitempty"`
-	Parent            *AppBskyFeedDefsAppBskyFeedDefs_ReplyRef_Parent `json:"parent,omitempty"`
-	Root              *AppBskyFeedDefsAppBskyFeedDefs_ReplyRef_Root   `json:"root,omitempty"`
-}
-
-type AppBskyFeedDefsAppBskyFeedDefs_ReplyRef_Parent struct {
-	FeedDefs_PostView     *AppBskyFeedDefs_PostView
-	FeedDefs_NotFoundPost *AppBskyFeedDefs_NotFoundPost
-	FeedDefs_BlockedPost  *AppBskyFeedDefs_BlockedPost
-}
-
-func (m *AppBskyFeedDefsAppBskyFeedDefs_ReplyRef_Parent) UnmarshalJSON(data []byte) error {
-	recordType := common.LexiconTypeFromJSONBytes(data)
-	switch recordType {
-	case "#postView":
-		m.FeedDefs_PostView = &AppBskyFeedDefs_PostView{}
-		json.Unmarshal(data, m.FeedDefs_PostView)
-	case "#notFoundPost":
-		m.FeedDefs_NotFoundPost = &AppBskyFeedDefs_NotFoundPost{}
-		json.Unmarshal(data, m.FeedDefs_NotFoundPost)
-	case "#blockedPost":
-		m.FeedDefs_BlockedPost = &AppBskyFeedDefs_BlockedPost{}
-		json.Unmarshal(data, m.FeedDefs_BlockedPost)
-	}
-	return nil
-}
-
-func (m AppBskyFeedDefsAppBskyFeedDefs_ReplyRef_Parent) MarshalJSON() ([]byte, error) {
-	if m.FeedDefs_PostView != nil {
-		return json.Marshal(m.FeedDefs_PostView)
-	} else if m.FeedDefs_NotFoundPost != nil {
-		return json.Marshal(m.FeedDefs_NotFoundPost)
-	} else if m.FeedDefs_BlockedPost != nil {
-		return json.Marshal(m.FeedDefs_BlockedPost)
-	} else {
-		return []byte("{}"), nil
-	}
-}
-
-type AppBskyFeedDefsAppBskyFeedDefs_ReplyRef_Root struct {
-	FeedDefs_PostView     *AppBskyFeedDefs_PostView
-	FeedDefs_NotFoundPost *AppBskyFeedDefs_NotFoundPost
-	FeedDefs_BlockedPost  *AppBskyFeedDefs_BlockedPost
-}
-
-func (m *AppBskyFeedDefsAppBskyFeedDefs_ReplyRef_Root) UnmarshalJSON(data []byte) error {
-	recordType := common.LexiconTypeFromJSONBytes(data)
-	switch recordType {
-	case "#postView":
-		m.FeedDefs_PostView = &AppBskyFeedDefs_PostView{}
-		json.Unmarshal(data, m.FeedDefs_PostView)
-	case "#notFoundPost":
-		m.FeedDefs_NotFoundPost = &AppBskyFeedDefs_NotFoundPost{}
-		json.Unmarshal(data, m.FeedDefs_NotFoundPost)
-	case "#blockedPost":
-		m.FeedDefs_BlockedPost = &AppBskyFeedDefs_BlockedPost{}
-		json.Unmarshal(data, m.FeedDefs_BlockedPost)
-	}
-	return nil
-}
-
-func (m AppBskyFeedDefsAppBskyFeedDefs_ReplyRef_Root) MarshalJSON() ([]byte, error) {
-	if m.FeedDefs_PostView != nil {
-		return json.Marshal(m.FeedDefs_PostView)
-	} else if m.FeedDefs_NotFoundPost != nil {
-		return json.Marshal(m.FeedDefs_NotFoundPost)
-	} else if m.FeedDefs_BlockedPost != nil {
-		return json.Marshal(m.FeedDefs_BlockedPost)
-	} else {
-		return []byte("{}"), nil
-	}
-}
-
-// User clicked through to the feed item
-const AppBskyFeedDefs_ClickthroughItem string = "clickthroughItem"
-
-// User liked the feed item
-const AppBskyFeedDefs_InteractionLike string = "interactionLike"
-
-// Metadata about this post within the context of the thread it is in.
-type AppBskyFeedDefs_ThreadContext struct {
-	LexiconTypeID  string  `json:"$type,omitempty"`
-	RootAuthorLike *string `json:"rootAuthorLike,omitempty"`
-}
-
-type AppBskyFeedDefs_ThreadgateView struct {
-	LexiconTypeID string                            `json:"$type,omitempty"`
-	Cid           *string                           `json:"cid,omitempty"`
-	Lists         []*AppBskyGraphDefs_ListViewBasic `json:"lists,omitempty"`
-	Record        *any                              `json:"record,omitempty"`
-	Uri           *string                           `json:"uri,omitempty"`
-}
-
-// Request that more content like the given feed item be shown in the feed
-const AppBskyFeedDefs_RequestMore string = "requestMore"
-
-// User reposted the feed item
-const AppBskyFeedDefs_InteractionRepost string = "interactionRepost"
-
-// User shared the feed item
-const AppBskyFeedDefs_InteractionShare string = "interactionShare"
-
-type AppBskyFeedDefs_ReasonRepost struct {
-	LexiconTypeID string                             `json:"$type,omitempty"`
-	By            *AppBskyActorDefs_ProfileViewBasic `json:"by,omitempty"`
-	Cid           *string                            `json:"cid,omitempty"`
-	IndexedAt     string                             `json:"indexedAt,omitempty"`
-	Uri           *string                            `json:"uri,omitempty"`
 }
 
 type AppBskyFeedDefs_Interaction struct {
@@ -160,140 +48,21 @@ type AppBskyFeedDefs_Interaction struct {
 	ReqId         *string `json:"reqId,omitempty"`
 }
 
-// Metadata about the requesting account's relationship with the subject content. Only has meaningful content for authed requests.
-type AppBskyFeedDefs_ViewerState struct {
-	LexiconTypeID     string  `json:"$type,omitempty"`
-	Bookmarked        *bool   `json:"bookmarked,omitempty"`
-	EmbeddingDisabled *bool   `json:"embeddingDisabled,omitempty"`
-	Like              *string `json:"like,omitempty"`
-	Pinned            *bool   `json:"pinned,omitempty"`
-	ReplyDisabled     *bool   `json:"replyDisabled,omitempty"`
-	Repost            *string `json:"repost,omitempty"`
-	ThreadMuted       *bool   `json:"threadMuted,omitempty"`
-}
+// User clicked through to the reposter of the feed item
+const AppBskyFeedDefs_ClickthroughReposter string = "clickthroughReposter"
 
-type AppBskyFeedDefs_ThreadViewPost struct {
-	LexiconTypeID string                                                        `json:"$type,omitempty"`
-	Parent        *AppBskyFeedDefsAppBskyFeedDefs_ThreadViewPost_Parent         `json:"parent,omitempty"`
-	Post          *AppBskyFeedDefs_PostView                                     `json:"post,omitempty"`
-	Replies       []*AppBskyFeedDefsAppBskyFeedDefs_ThreadViewPost_Replies_Elem `json:"replies,omitempty"`
-	ThreadContext *AppBskyFeedDefs_ThreadContext                                `json:"threadContext,omitempty"`
-}
+// Feed item was seen by user
+const AppBskyFeedDefs_InteractionSeen string = "interactionSeen"
 
-type AppBskyFeedDefsAppBskyFeedDefs_ThreadViewPost_Parent struct {
-	FeedDefs_ThreadViewPost *AppBskyFeedDefs_ThreadViewPost
-	FeedDefs_NotFoundPost   *AppBskyFeedDefs_NotFoundPost
-	FeedDefs_BlockedPost    *AppBskyFeedDefs_BlockedPost
-}
-
-func (m *AppBskyFeedDefsAppBskyFeedDefs_ThreadViewPost_Parent) UnmarshalJSON(data []byte) error {
-	recordType := common.LexiconTypeFromJSONBytes(data)
-	switch recordType {
-	case "#threadViewPost":
-		m.FeedDefs_ThreadViewPost = &AppBskyFeedDefs_ThreadViewPost{}
-		json.Unmarshal(data, m.FeedDefs_ThreadViewPost)
-	case "#notFoundPost":
-		m.FeedDefs_NotFoundPost = &AppBskyFeedDefs_NotFoundPost{}
-		json.Unmarshal(data, m.FeedDefs_NotFoundPost)
-	case "#blockedPost":
-		m.FeedDefs_BlockedPost = &AppBskyFeedDefs_BlockedPost{}
-		json.Unmarshal(data, m.FeedDefs_BlockedPost)
-	}
-	return nil
-}
-
-func (m AppBskyFeedDefsAppBskyFeedDefs_ThreadViewPost_Parent) MarshalJSON() ([]byte, error) {
-	if m.FeedDefs_ThreadViewPost != nil {
-		return json.Marshal(m.FeedDefs_ThreadViewPost)
-	} else if m.FeedDefs_NotFoundPost != nil {
-		return json.Marshal(m.FeedDefs_NotFoundPost)
-	} else if m.FeedDefs_BlockedPost != nil {
-		return json.Marshal(m.FeedDefs_BlockedPost)
-	} else {
-		return []byte("{}"), nil
-	}
-}
-
-type AppBskyFeedDefsAppBskyFeedDefs_ThreadViewPost_Replies_Elem struct {
-	FeedDefs_ThreadViewPost *AppBskyFeedDefs_ThreadViewPost
-	FeedDefs_NotFoundPost   *AppBskyFeedDefs_NotFoundPost
-	FeedDefs_BlockedPost    *AppBskyFeedDefs_BlockedPost
-}
-
-func (m *AppBskyFeedDefsAppBskyFeedDefs_ThreadViewPost_Replies_Elem) UnmarshalJSON(data []byte) error {
-	recordType := common.LexiconTypeFromJSONBytes(data)
-	switch recordType {
-	case "app.bsky.feed.defs#threadViewPost":
-		m.FeedDefs_ThreadViewPost = &AppBskyFeedDefs_ThreadViewPost{}
-		json.Unmarshal(data, m.FeedDefs_ThreadViewPost)
-	case "app.bsky.feed.defs#notFoundPost":
-		m.FeedDefs_NotFoundPost = &AppBskyFeedDefs_NotFoundPost{}
-		json.Unmarshal(data, m.FeedDefs_NotFoundPost)
-	case "app.bsky.feed.defs#blockedPost":
-		m.FeedDefs_BlockedPost = &AppBskyFeedDefs_BlockedPost{}
-		json.Unmarshal(data, m.FeedDefs_BlockedPost)
-	}
-	return nil
-}
-
-func (m AppBskyFeedDefsAppBskyFeedDefs_ThreadViewPost_Replies_Elem) MarshalJSON() ([]byte, error) {
-	if m.FeedDefs_ThreadViewPost != nil {
-		return json.Marshal(m.FeedDefs_ThreadViewPost)
-	} else if m.FeedDefs_NotFoundPost != nil {
-		return json.Marshal(m.FeedDefs_NotFoundPost)
-	} else if m.FeedDefs_BlockedPost != nil {
-		return json.Marshal(m.FeedDefs_BlockedPost)
-	} else {
-		return []byte("{}"), nil
-	}
-}
-
-// User quoted the feed item
-const AppBskyFeedDefs_InteractionQuote string = "interactionQuote"
-
-type AppBskyFeedDefs_FeedViewPost struct {
-	LexiconTypeID string                                              `json:"$type,omitempty"`
-	FeedContext   *string                                             `json:"feedContext,omitempty"`
-	Post          *AppBskyFeedDefs_PostView                           `json:"post,omitempty"`
-	Reason        *AppBskyFeedDefsAppBskyFeedDefs_FeedViewPost_Reason `json:"reason,omitempty"`
-	Reply         *AppBskyFeedDefs_ReplyRef                           `json:"reply,omitempty"`
-	ReqId         *string                                             `json:"reqId,omitempty"`
-}
-
-type AppBskyFeedDefsAppBskyFeedDefs_FeedViewPost_Reason struct {
-	FeedDefs_ReasonRepost *AppBskyFeedDefs_ReasonRepost
-	FeedDefs_ReasonPin    *AppBskyFeedDefs_ReasonPin
-}
-
-func (m *AppBskyFeedDefsAppBskyFeedDefs_FeedViewPost_Reason) UnmarshalJSON(data []byte) error {
-	recordType := common.LexiconTypeFromJSONBytes(data)
-	switch recordType {
-	case "#reasonRepost":
-		m.FeedDefs_ReasonRepost = &AppBskyFeedDefs_ReasonRepost{}
-		json.Unmarshal(data, m.FeedDefs_ReasonRepost)
-	case "#reasonPin":
-		m.FeedDefs_ReasonPin = &AppBskyFeedDefs_ReasonPin{}
-		json.Unmarshal(data, m.FeedDefs_ReasonPin)
-	}
-	return nil
-}
-
-func (m AppBskyFeedDefsAppBskyFeedDefs_FeedViewPost_Reason) MarshalJSON() ([]byte, error) {
-	if m.FeedDefs_ReasonRepost != nil {
-		return json.Marshal(m.FeedDefs_ReasonRepost)
-	} else if m.FeedDefs_ReasonPin != nil {
-		return json.Marshal(m.FeedDefs_ReasonPin)
-	} else {
-		return []byte("{}"), nil
-	}
-}
-
-type AppBskyFeedDefs_ReasonPin struct {
+type AppBskyFeedDefs_SkeletonReasonPin struct {
 	LexiconTypeID string `json:"$type,omitempty"`
 }
 
-// User replied to the feed item
-const AppBskyFeedDefs_InteractionReply string = "interactionReply"
+// User clicked through to the embedded content of the feed item
+const AppBskyFeedDefs_ClickthroughEmbed string = "clickthroughEmbed"
+
+// User liked the feed item
+const AppBskyFeedDefs_InteractionLike string = "interactionLike"
 
 type AppBskyFeedDefs_PostView struct {
 	LexiconTypeID string                                         `json:"$type,omitempty"`
@@ -323,7 +92,7 @@ type AppBskyFeedDefsAppBskyFeedDefs_PostView_Embed struct {
 }
 
 func (m *AppBskyFeedDefsAppBskyFeedDefs_PostView_Embed) UnmarshalJSON(data []byte) error {
-	recordType := common.LexiconTypeFromJSONBytes(data)
+	recordType := slink.LexiconTypeFromJSONBytes(data)
 	switch recordType {
 	case "app.bsky.embed.images#view":
 		m.EmbedImages_View = &AppBskyEmbedImages_View{}
@@ -360,11 +129,45 @@ func (m AppBskyFeedDefsAppBskyFeedDefs_PostView_Embed) MarshalJSON() ([]byte, er
 	}
 }
 
-type AppBskyFeedDefs_BlockedPost struct {
-	LexiconTypeID string                         `json:"$type,omitempty"`
-	Author        *AppBskyFeedDefs_BlockedAuthor `json:"author,omitempty"`
-	Blocked       bool                           `json:"blocked"`
-	Uri           string                         `json:"uri,omitempty"`
+type AppBskyFeedDefs_FeedViewPost struct {
+	LexiconTypeID string                                              `json:"$type,omitempty"`
+	FeedContext   *string                                             `json:"feedContext,omitempty"`
+	Post          *AppBskyFeedDefs_PostView                           `json:"post,omitempty"`
+	Reason        *AppBskyFeedDefsAppBskyFeedDefs_FeedViewPost_Reason `json:"reason,omitempty"`
+	Reply         *AppBskyFeedDefs_ReplyRef                           `json:"reply,omitempty"`
+	ReqId         *string                                             `json:"reqId,omitempty"`
+}
+
+type AppBskyFeedDefsAppBskyFeedDefs_FeedViewPost_Reason struct {
+	FeedDefs_ReasonRepost *AppBskyFeedDefs_ReasonRepost
+	FeedDefs_ReasonPin    *AppBskyFeedDefs_ReasonPin
+}
+
+func (m *AppBskyFeedDefsAppBskyFeedDefs_FeedViewPost_Reason) UnmarshalJSON(data []byte) error {
+	recordType := slink.LexiconTypeFromJSONBytes(data)
+	switch recordType {
+	case "#reasonRepost":
+		m.FeedDefs_ReasonRepost = &AppBskyFeedDefs_ReasonRepost{}
+		json.Unmarshal(data, m.FeedDefs_ReasonRepost)
+	case "#reasonPin":
+		m.FeedDefs_ReasonPin = &AppBskyFeedDefs_ReasonPin{}
+		json.Unmarshal(data, m.FeedDefs_ReasonPin)
+	}
+	return nil
+}
+
+func (m AppBskyFeedDefsAppBskyFeedDefs_FeedViewPost_Reason) MarshalJSON() ([]byte, error) {
+	if m.FeedDefs_ReasonRepost != nil {
+		return json.Marshal(m.FeedDefs_ReasonRepost)
+	} else if m.FeedDefs_ReasonPin != nil {
+		return json.Marshal(m.FeedDefs_ReasonPin)
+	} else {
+		return []byte("{}"), nil
+	}
+}
+
+type AppBskyFeedDefs_ReasonPin struct {
+	LexiconTypeID string `json:"$type,omitempty"`
 }
 
 type AppBskyFeedDefs_GeneratorView struct {
@@ -385,6 +188,95 @@ type AppBskyFeedDefs_GeneratorView struct {
 	Viewer              *AppBskyFeedDefs_GeneratorViewerState `json:"viewer,omitempty"`
 }
 
+// Request that less content like the given feed item be shown in the feed
+const AppBskyFeedDefs_RequestLess string = "requestLess"
+
+// Request that more content like the given feed item be shown in the feed
+const AppBskyFeedDefs_RequestMore string = "requestMore"
+
+type AppBskyFeedDefs_ReplyRef struct {
+	LexiconTypeID     string                                          `json:"$type,omitempty"`
+	GrandparentAuthor *AppBskyActorDefs_ProfileViewBasic              `json:"grandparentAuthor,omitempty"`
+	Parent            *AppBskyFeedDefsAppBskyFeedDefs_ReplyRef_Parent `json:"parent,omitempty"`
+	Root              *AppBskyFeedDefsAppBskyFeedDefs_ReplyRef_Root   `json:"root,omitempty"`
+}
+
+type AppBskyFeedDefsAppBskyFeedDefs_ReplyRef_Parent struct {
+	FeedDefs_PostView     *AppBskyFeedDefs_PostView
+	FeedDefs_NotFoundPost *AppBskyFeedDefs_NotFoundPost
+	FeedDefs_BlockedPost  *AppBskyFeedDefs_BlockedPost
+}
+
+func (m *AppBskyFeedDefsAppBskyFeedDefs_ReplyRef_Parent) UnmarshalJSON(data []byte) error {
+	recordType := slink.LexiconTypeFromJSONBytes(data)
+	switch recordType {
+	case "#postView":
+		m.FeedDefs_PostView = &AppBskyFeedDefs_PostView{}
+		json.Unmarshal(data, m.FeedDefs_PostView)
+	case "#notFoundPost":
+		m.FeedDefs_NotFoundPost = &AppBskyFeedDefs_NotFoundPost{}
+		json.Unmarshal(data, m.FeedDefs_NotFoundPost)
+	case "#blockedPost":
+		m.FeedDefs_BlockedPost = &AppBskyFeedDefs_BlockedPost{}
+		json.Unmarshal(data, m.FeedDefs_BlockedPost)
+	}
+	return nil
+}
+
+func (m AppBskyFeedDefsAppBskyFeedDefs_ReplyRef_Parent) MarshalJSON() ([]byte, error) {
+	if m.FeedDefs_PostView != nil {
+		return json.Marshal(m.FeedDefs_PostView)
+	} else if m.FeedDefs_NotFoundPost != nil {
+		return json.Marshal(m.FeedDefs_NotFoundPost)
+	} else if m.FeedDefs_BlockedPost != nil {
+		return json.Marshal(m.FeedDefs_BlockedPost)
+	} else {
+		return []byte("{}"), nil
+	}
+}
+
+type AppBskyFeedDefsAppBskyFeedDefs_ReplyRef_Root struct {
+	FeedDefs_PostView     *AppBskyFeedDefs_PostView
+	FeedDefs_NotFoundPost *AppBskyFeedDefs_NotFoundPost
+	FeedDefs_BlockedPost  *AppBskyFeedDefs_BlockedPost
+}
+
+func (m *AppBskyFeedDefsAppBskyFeedDefs_ReplyRef_Root) UnmarshalJSON(data []byte) error {
+	recordType := slink.LexiconTypeFromJSONBytes(data)
+	switch recordType {
+	case "#postView":
+		m.FeedDefs_PostView = &AppBskyFeedDefs_PostView{}
+		json.Unmarshal(data, m.FeedDefs_PostView)
+	case "#notFoundPost":
+		m.FeedDefs_NotFoundPost = &AppBskyFeedDefs_NotFoundPost{}
+		json.Unmarshal(data, m.FeedDefs_NotFoundPost)
+	case "#blockedPost":
+		m.FeedDefs_BlockedPost = &AppBskyFeedDefs_BlockedPost{}
+		json.Unmarshal(data, m.FeedDefs_BlockedPost)
+	}
+	return nil
+}
+
+func (m AppBskyFeedDefsAppBskyFeedDefs_ReplyRef_Root) MarshalJSON() ([]byte, error) {
+	if m.FeedDefs_PostView != nil {
+		return json.Marshal(m.FeedDefs_PostView)
+	} else if m.FeedDefs_NotFoundPost != nil {
+		return json.Marshal(m.FeedDefs_NotFoundPost)
+	} else if m.FeedDefs_BlockedPost != nil {
+		return json.Marshal(m.FeedDefs_BlockedPost)
+	} else {
+		return []byte("{}"), nil
+	}
+}
+
+type AppBskyFeedDefs_ReasonRepost struct {
+	LexiconTypeID string                             `json:"$type,omitempty"`
+	By            *AppBskyActorDefs_ProfileViewBasic `json:"by,omitempty"`
+	Cid           *string                            `json:"cid,omitempty"`
+	IndexedAt     string                             `json:"indexedAt,omitempty"`
+	Uri           *string                            `json:"uri,omitempty"`
+}
+
 type AppBskyFeedDefs_SkeletonFeedPost struct {
 	LexiconTypeID string                                                  `json:"$type,omitempty"`
 	FeedContext   *string                                                 `json:"feedContext,omitempty"`
@@ -398,7 +290,7 @@ type AppBskyFeedDefsAppBskyFeedDefs_SkeletonFeedPost_Reason struct {
 }
 
 func (m *AppBskyFeedDefsAppBskyFeedDefs_SkeletonFeedPost_Reason) UnmarshalJSON(data []byte) error {
-	recordType := common.LexiconTypeFromJSONBytes(data)
+	recordType := slink.LexiconTypeFromJSONBytes(data)
 	switch recordType {
 	case "#skeletonReasonRepost":
 		m.FeedDefs_SkeletonReasonRepost = &AppBskyFeedDefs_SkeletonReasonRepost{}
@@ -420,11 +312,32 @@ func (m AppBskyFeedDefsAppBskyFeedDefs_SkeletonFeedPost_Reason) MarshalJSON() ([
 	}
 }
 
-// Request that less content like the given feed item be shown in the feed
-const AppBskyFeedDefs_RequestLess string = "requestLess"
+// User shared the feed item
+const AppBskyFeedDefs_InteractionShare string = "interactionShare"
 
-// Declares the feed generator returns posts containing app.bsky.embed.video embeds.
-const AppBskyFeedDefs_ContentModeVideo string = "contentModeVideo"
+// Metadata about the requesting account's relationship with the subject content. Only has meaningful content for authed requests.
+type AppBskyFeedDefs_ViewerState struct {
+	LexiconTypeID     string  `json:"$type,omitempty"`
+	Bookmarked        *bool   `json:"bookmarked,omitempty"`
+	EmbeddingDisabled *bool   `json:"embeddingDisabled,omitempty"`
+	Like              *string `json:"like,omitempty"`
+	Pinned            *bool   `json:"pinned,omitempty"`
+	ReplyDisabled     *bool   `json:"replyDisabled,omitempty"`
+	Repost            *string `json:"repost,omitempty"`
+	ThreadMuted       *bool   `json:"threadMuted,omitempty"`
+}
+
+// Metadata about this post within the context of the thread it is in.
+type AppBskyFeedDefs_ThreadContext struct {
+	LexiconTypeID  string  `json:"$type,omitempty"`
+	RootAuthorLike *string `json:"rootAuthorLike,omitempty"`
+}
+
+type AppBskyFeedDefs_NotFoundPost struct {
+	LexiconTypeID string `json:"$type,omitempty"`
+	NotFound      bool   `json:"notFound"`
+	Uri           string `json:"uri,omitempty"`
+}
 
 type AppBskyFeedDefs_BlockedAuthor struct {
 	LexiconTypeID string                        `json:"$type,omitempty"`
@@ -435,6 +348,93 @@ type AppBskyFeedDefs_BlockedAuthor struct {
 type AppBskyFeedDefs_GeneratorViewerState struct {
 	LexiconTypeID string  `json:"$type,omitempty"`
 	Like          *string `json:"like,omitempty"`
+}
+
+// User quoted the feed item
+const AppBskyFeedDefs_InteractionQuote string = "interactionQuote"
+
+type AppBskyFeedDefs_ThreadViewPost struct {
+	LexiconTypeID string                                                        `json:"$type,omitempty"`
+	Parent        *AppBskyFeedDefsAppBskyFeedDefs_ThreadViewPost_Parent         `json:"parent,omitempty"`
+	Post          *AppBskyFeedDefs_PostView                                     `json:"post,omitempty"`
+	Replies       []*AppBskyFeedDefsAppBskyFeedDefs_ThreadViewPost_Replies_Elem `json:"replies,omitempty"`
+	ThreadContext *AppBskyFeedDefs_ThreadContext                                `json:"threadContext,omitempty"`
+}
+
+type AppBskyFeedDefsAppBskyFeedDefs_ThreadViewPost_Parent struct {
+	FeedDefs_ThreadViewPost *AppBskyFeedDefs_ThreadViewPost
+	FeedDefs_NotFoundPost   *AppBskyFeedDefs_NotFoundPost
+	FeedDefs_BlockedPost    *AppBskyFeedDefs_BlockedPost
+}
+
+func (m *AppBskyFeedDefsAppBskyFeedDefs_ThreadViewPost_Parent) UnmarshalJSON(data []byte) error {
+	recordType := slink.LexiconTypeFromJSONBytes(data)
+	switch recordType {
+	case "#threadViewPost":
+		m.FeedDefs_ThreadViewPost = &AppBskyFeedDefs_ThreadViewPost{}
+		json.Unmarshal(data, m.FeedDefs_ThreadViewPost)
+	case "#notFoundPost":
+		m.FeedDefs_NotFoundPost = &AppBskyFeedDefs_NotFoundPost{}
+		json.Unmarshal(data, m.FeedDefs_NotFoundPost)
+	case "#blockedPost":
+		m.FeedDefs_BlockedPost = &AppBskyFeedDefs_BlockedPost{}
+		json.Unmarshal(data, m.FeedDefs_BlockedPost)
+	}
+	return nil
+}
+
+func (m AppBskyFeedDefsAppBskyFeedDefs_ThreadViewPost_Parent) MarshalJSON() ([]byte, error) {
+	if m.FeedDefs_ThreadViewPost != nil {
+		return json.Marshal(m.FeedDefs_ThreadViewPost)
+	} else if m.FeedDefs_NotFoundPost != nil {
+		return json.Marshal(m.FeedDefs_NotFoundPost)
+	} else if m.FeedDefs_BlockedPost != nil {
+		return json.Marshal(m.FeedDefs_BlockedPost)
+	} else {
+		return []byte("{}"), nil
+	}
+}
+
+type AppBskyFeedDefsAppBskyFeedDefs_ThreadViewPost_Replies_Elem struct {
+	FeedDefs_ThreadViewPost *AppBskyFeedDefs_ThreadViewPost
+	FeedDefs_NotFoundPost   *AppBskyFeedDefs_NotFoundPost
+	FeedDefs_BlockedPost    *AppBskyFeedDefs_BlockedPost
+}
+
+func (m *AppBskyFeedDefsAppBskyFeedDefs_ThreadViewPost_Replies_Elem) UnmarshalJSON(data []byte) error {
+	recordType := slink.LexiconTypeFromJSONBytes(data)
+	switch recordType {
+	case "app.bsky.feed.defs#threadViewPost":
+		m.FeedDefs_ThreadViewPost = &AppBskyFeedDefs_ThreadViewPost{}
+		json.Unmarshal(data, m.FeedDefs_ThreadViewPost)
+	case "app.bsky.feed.defs#notFoundPost":
+		m.FeedDefs_NotFoundPost = &AppBskyFeedDefs_NotFoundPost{}
+		json.Unmarshal(data, m.FeedDefs_NotFoundPost)
+	case "app.bsky.feed.defs#blockedPost":
+		m.FeedDefs_BlockedPost = &AppBskyFeedDefs_BlockedPost{}
+		json.Unmarshal(data, m.FeedDefs_BlockedPost)
+	}
+	return nil
+}
+
+func (m AppBskyFeedDefsAppBskyFeedDefs_ThreadViewPost_Replies_Elem) MarshalJSON() ([]byte, error) {
+	if m.FeedDefs_ThreadViewPost != nil {
+		return json.Marshal(m.FeedDefs_ThreadViewPost)
+	} else if m.FeedDefs_NotFoundPost != nil {
+		return json.Marshal(m.FeedDefs_NotFoundPost)
+	} else if m.FeedDefs_BlockedPost != nil {
+		return json.Marshal(m.FeedDefs_BlockedPost)
+	} else {
+		return []byte("{}"), nil
+	}
+}
+
+type AppBskyFeedDefs_ThreadgateView struct {
+	LexiconTypeID string                            `json:"$type,omitempty"`
+	Cid           *string                           `json:"cid,omitempty"`
+	Lists         []*AppBskyGraphDefs_ListViewBasic `json:"lists,omitempty"`
+	Record        *any                              `json:"record,omitempty"`
+	Uri           *string                           `json:"uri,omitempty"`
 }
 
 /*

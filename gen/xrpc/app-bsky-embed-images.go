@@ -4,18 +4,13 @@
 // Get slink at https://github.com/agentio/slink.
 package xrpc // app.bsky.embed.images
 
-import "github.com/agentio/slink/pkg/common"
-
-type AppBskyEmbedImages struct {
-	LexiconTypeID string                      `json:"$type,omitempty"`
-	Images        []*AppBskyEmbedImages_Image `json:"images,omitempty"`
-}
+import "github.com/agentio/slink/pkg/slink"
 
 type AppBskyEmbedImages_Image struct {
 	LexiconTypeID string                        `json:"$type,omitempty"`
 	Alt           string                        `json:"alt,omitempty"`
 	AspectRatio   *AppBskyEmbedDefs_AspectRatio `json:"aspectRatio,omitempty"`
-	Image         *common.Blob                  `json:"image"`
+	Image         *slink.Blob                   `json:"image"`
 }
 
 type AppBskyEmbedImages_View struct {
@@ -29,6 +24,11 @@ type AppBskyEmbedImages_ViewImage struct {
 	AspectRatio   *AppBskyEmbedDefs_AspectRatio `json:"aspectRatio,omitempty"`
 	Fullsize      string                        `json:"fullsize,omitempty"`
 	Thumb         string                        `json:"thumb,omitempty"`
+}
+
+type AppBskyEmbedImages struct {
+	LexiconTypeID string                      `json:"$type,omitempty"`
+	Images        []*AppBskyEmbedImages_Image `json:"images,omitempty"`
 }
 
 /*

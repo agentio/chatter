@@ -4,7 +4,7 @@
 // Get slink at https://github.com/agentio/slink.
 package xrpc // app.bsky.embed.external
 
-import "github.com/agentio/slink/pkg/common"
+import "github.com/agentio/slink/pkg/slink"
 
 // A representation of some externally linked content (eg, a URL and 'card'), embedded in a Bluesky record (eg, a post).
 type AppBskyEmbedExternal struct {
@@ -13,11 +13,11 @@ type AppBskyEmbedExternal struct {
 }
 
 type AppBskyEmbedExternal_External struct {
-	LexiconTypeID string       `json:"$type,omitempty"`
-	Description   string       `json:"description,omitempty"`
-	Thumb         *common.Blob `json:"thumb,omitempty"`
-	Title         string       `json:"title,omitempty"`
-	Uri           string       `json:"uri,omitempty"`
+	LexiconTypeID string      `json:"$type,omitempty"`
+	Description   string      `json:"description,omitempty"`
+	Thumb         *slink.Blob `json:"thumb,omitempty"`
+	Title         string      `json:"title,omitempty"`
+	Uri           string      `json:"uri,omitempty"`
 }
 
 type AppBskyEmbedExternal_View struct {

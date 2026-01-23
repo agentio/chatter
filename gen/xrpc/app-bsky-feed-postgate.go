@@ -7,7 +7,7 @@ package xrpc // app.bsky.feed.postgate
 import (
 	"encoding/json"
 
-	"github.com/agentio/slink/pkg/common"
+	"github.com/agentio/slink/pkg/slink"
 )
 
 const AppBskyFeedPostgate_Description = "Record defining interaction rules for a post. The record key (rkey) of the postgate record must match the record key of the post, and that record must be in the same repository."
@@ -26,7 +26,7 @@ type AppBskyFeedPostgateAppBskyFeedPostgate_EmbeddingRules_Elem struct {
 }
 
 func (m *AppBskyFeedPostgateAppBskyFeedPostgate_EmbeddingRules_Elem) UnmarshalJSON(data []byte) error {
-	recordType := common.LexiconTypeFromJSONBytes(data)
+	recordType := slink.LexiconTypeFromJSONBytes(data)
 	switch recordType {
 	case "app.bsky.feed.postgate#disableRule":
 		m.FeedPostgate_DisableRule = &AppBskyFeedPostgate_DisableRule{}

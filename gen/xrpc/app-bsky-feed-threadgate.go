@@ -7,7 +7,7 @@ package xrpc // app.bsky.feed.threadgate
 import (
 	"encoding/json"
 
-	"github.com/agentio/slink/pkg/common"
+	"github.com/agentio/slink/pkg/slink"
 )
 
 const AppBskyFeedThreadgate_Description = "Record defining interaction gating rules for a thread (aka, reply controls). The record key (rkey) of the threadgate record must match the record key of the thread's root post, and that record must be in the same repository."
@@ -29,7 +29,7 @@ type AppBskyFeedThreadgateAppBskyFeedThreadgate_Allow_Elem struct {
 }
 
 func (m *AppBskyFeedThreadgateAppBskyFeedThreadgate_Allow_Elem) UnmarshalJSON(data []byte) error {
-	recordType := common.LexiconTypeFromJSONBytes(data)
+	recordType := slink.LexiconTypeFromJSONBytes(data)
 	switch recordType {
 	case "app.bsky.feed.threadgate#mentionRule":
 		m.FeedThreadgate_MentionRule = &AppBskyFeedThreadgate_MentionRule{}

@@ -7,8 +7,8 @@ import (
 	"github.com/agentio/chatter/gen/xrpc"
 	client "github.com/agentio/slink/pkg/client"
 
-	"github.com/agentio/slink/pkg/common"
 	"github.com/agentio/slink/pkg/resolve"
+	"github.com/agentio/slink/pkg/slink"
 
 	"github.com/charmbracelet/log"
 	"github.com/spf13/cobra"
@@ -31,7 +31,7 @@ func cmd() *cobra.Command {
 		Use:   "chatter",
 		Short: "Sends messages over Bluesky chat",
 		RunE: func(cmd *cobra.Command, args []string) error {
-			if err := common.SetLogLevel(loglevel); err != nil {
+			if err := slink.SetLogLevel(loglevel); err != nil {
 				return err
 			}
 			if text == "" || from == "" || to == "" || password == "" {

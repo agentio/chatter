@@ -7,48 +7,8 @@ package xrpc // app.bsky.embed.recordWithMedia
 import (
 	"encoding/json"
 
-	"github.com/agentio/slink/pkg/common"
+	"github.com/agentio/slink/pkg/slink"
 )
-
-type AppBskyEmbedRecordWithMedia_View struct {
-	LexiconTypeID string                                                             `json:"$type,omitempty"`
-	Media         *AppBskyEmbedRecordWithMediaAppBskyEmbedRecordWithMedia_View_Media `json:"media,omitempty"`
-	Record        *AppBskyEmbedRecord_View                                           `json:"record,omitempty"`
-}
-
-type AppBskyEmbedRecordWithMediaAppBskyEmbedRecordWithMedia_View_Media struct {
-	EmbedImages_View   *AppBskyEmbedImages_View
-	EmbedVideo_View    *AppBskyEmbedVideo_View
-	EmbedExternal_View *AppBskyEmbedExternal_View
-}
-
-func (m *AppBskyEmbedRecordWithMediaAppBskyEmbedRecordWithMedia_View_Media) UnmarshalJSON(data []byte) error {
-	recordType := common.LexiconTypeFromJSONBytes(data)
-	switch recordType {
-	case "app.bsky.embed.images#view":
-		m.EmbedImages_View = &AppBskyEmbedImages_View{}
-		json.Unmarshal(data, m.EmbedImages_View)
-	case "app.bsky.embed.video#view":
-		m.EmbedVideo_View = &AppBskyEmbedVideo_View{}
-		json.Unmarshal(data, m.EmbedVideo_View)
-	case "app.bsky.embed.external#view":
-		m.EmbedExternal_View = &AppBskyEmbedExternal_View{}
-		json.Unmarshal(data, m.EmbedExternal_View)
-	}
-	return nil
-}
-
-func (m AppBskyEmbedRecordWithMediaAppBskyEmbedRecordWithMedia_View_Media) MarshalJSON() ([]byte, error) {
-	if m.EmbedImages_View != nil {
-		return json.Marshal(m.EmbedImages_View)
-	} else if m.EmbedVideo_View != nil {
-		return json.Marshal(m.EmbedVideo_View)
-	} else if m.EmbedExternal_View != nil {
-		return json.Marshal(m.EmbedExternal_View)
-	} else {
-		return []byte("{}"), nil
-	}
-}
 
 type AppBskyEmbedRecordWithMedia struct {
 	LexiconTypeID string                                                        `json:"$type,omitempty"`
@@ -63,7 +23,7 @@ type AppBskyEmbedRecordWithMediaAppBskyEmbedRecordWithMedia_Media struct {
 }
 
 func (m *AppBskyEmbedRecordWithMediaAppBskyEmbedRecordWithMedia_Media) UnmarshalJSON(data []byte) error {
-	recordType := common.LexiconTypeFromJSONBytes(data)
+	recordType := slink.LexiconTypeFromJSONBytes(data)
 	switch recordType {
 	case "app.bsky.embed.images":
 		m.EmbedImages = &AppBskyEmbedImages{}
@@ -85,6 +45,46 @@ func (m AppBskyEmbedRecordWithMediaAppBskyEmbedRecordWithMedia_Media) MarshalJSO
 		return json.Marshal(m.EmbedVideo)
 	} else if m.EmbedExternal != nil {
 		return json.Marshal(m.EmbedExternal)
+	} else {
+		return []byte("{}"), nil
+	}
+}
+
+type AppBskyEmbedRecordWithMedia_View struct {
+	LexiconTypeID string                                                             `json:"$type,omitempty"`
+	Media         *AppBskyEmbedRecordWithMediaAppBskyEmbedRecordWithMedia_View_Media `json:"media,omitempty"`
+	Record        *AppBskyEmbedRecord_View                                           `json:"record,omitempty"`
+}
+
+type AppBskyEmbedRecordWithMediaAppBskyEmbedRecordWithMedia_View_Media struct {
+	EmbedImages_View   *AppBskyEmbedImages_View
+	EmbedVideo_View    *AppBskyEmbedVideo_View
+	EmbedExternal_View *AppBskyEmbedExternal_View
+}
+
+func (m *AppBskyEmbedRecordWithMediaAppBskyEmbedRecordWithMedia_View_Media) UnmarshalJSON(data []byte) error {
+	recordType := slink.LexiconTypeFromJSONBytes(data)
+	switch recordType {
+	case "app.bsky.embed.images#view":
+		m.EmbedImages_View = &AppBskyEmbedImages_View{}
+		json.Unmarshal(data, m.EmbedImages_View)
+	case "app.bsky.embed.video#view":
+		m.EmbedVideo_View = &AppBskyEmbedVideo_View{}
+		json.Unmarshal(data, m.EmbedVideo_View)
+	case "app.bsky.embed.external#view":
+		m.EmbedExternal_View = &AppBskyEmbedExternal_View{}
+		json.Unmarshal(data, m.EmbedExternal_View)
+	}
+	return nil
+}
+
+func (m AppBskyEmbedRecordWithMediaAppBskyEmbedRecordWithMedia_View_Media) MarshalJSON() ([]byte, error) {
+	if m.EmbedImages_View != nil {
+		return json.Marshal(m.EmbedImages_View)
+	} else if m.EmbedVideo_View != nil {
+		return json.Marshal(m.EmbedVideo_View)
+	} else if m.EmbedExternal_View != nil {
+		return json.Marshal(m.EmbedExternal_View)
 	} else {
 		return []byte("{}"), nil
 	}

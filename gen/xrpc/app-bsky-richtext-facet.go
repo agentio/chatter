@@ -7,7 +7,7 @@ package xrpc // app.bsky.richtext.facet
 import (
 	"encoding/json"
 
-	"github.com/agentio/slink/pkg/common"
+	"github.com/agentio/slink/pkg/slink"
 )
 
 // Annotation of a sub-string within rich text.
@@ -24,7 +24,7 @@ type AppBskyRichtextFacetAppBskyRichtextFacet_Features_Elem struct {
 }
 
 func (m *AppBskyRichtextFacetAppBskyRichtextFacet_Features_Elem) UnmarshalJSON(data []byte) error {
-	recordType := common.LexiconTypeFromJSONBytes(data)
+	recordType := slink.LexiconTypeFromJSONBytes(data)
 	switch recordType {
 	case "app.bsky.richtext.facet#mention":
 		m.RichtextFacet_Mention = &AppBskyRichtextFacet_Mention{}

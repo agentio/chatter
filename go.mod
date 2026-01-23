@@ -15,7 +15,7 @@ require (
 )
 
 require (
-	github.com/agentio/slink v0.0.0-20260123002110-de324d215415
+	github.com/agentio/slink v0.0.0-20260123032229-9a997d6c6588
 	github.com/aymanbagabas/go-osc52/v2 v2.0.1 // indirect
 	github.com/charmbracelet/colorprofile v0.4.1 // indirect
 	github.com/charmbracelet/lipgloss v1.1.0 // indirect

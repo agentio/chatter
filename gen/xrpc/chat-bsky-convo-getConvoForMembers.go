@@ -7,7 +7,7 @@ package xrpc // chat.bsky.convo.getConvoForMembers
 import (
 	"context"
 
-	"github.com/agentio/slink/pkg/common"
+	"github.com/agentio/slink/pkg/slink"
 )
 
 const ChatBskyConvoGetConvoForMembers_Description = ""
@@ -16,12 +16,12 @@ type ChatBskyConvoGetConvoForMembers_Output struct {
 	Convo *ChatBskyConvoDefs_ConvoView `json:"convo,omitempty"`
 }
 
-func ChatBskyConvoGetConvoForMembers(ctx context.Context, c common.Client, members []string) (*ChatBskyConvoGetConvoForMembers_Output, error) {
+func ChatBskyConvoGetConvoForMembers(ctx context.Context, c slink.Client, members []string) (*ChatBskyConvoGetConvoForMembers_Output, error) {
 	var output ChatBskyConvoGetConvoForMembers_Output
 	params := map[string]any{
 		"members": members,
 	}
-	if err := c.Do(ctx, common.Query, "", "chat.bsky.convo.getConvoForMembers", params, nil, &output); err != nil {
+	if err := c.Do(ctx, slink.Query, "", "chat.bsky.convo.getConvoForMembers", params, nil, &output); err != nil {
 		return nil, err
 	}
 	return &output, nil

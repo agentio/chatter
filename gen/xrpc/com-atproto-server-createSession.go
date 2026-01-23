@@ -7,7 +7,7 @@ package xrpc // com.atproto.server.createSession
 import (
 	"context"
 
-	"github.com/agentio/slink/pkg/common"
+	"github.com/agentio/slink/pkg/slink"
 )
 
 const ServerCreateSession_Description = "Create an authentication session."
@@ -33,9 +33,9 @@ type ServerCreateSession_Output struct {
 }
 
 // Create an authentication session.
-func ServerCreateSession(ctx context.Context, c common.Client, input *ServerCreateSession_Input) (*ServerCreateSession_Output, error) {
+func ServerCreateSession(ctx context.Context, c slink.Client, input *ServerCreateSession_Input) (*ServerCreateSession_Output, error) {
 	var output ServerCreateSession_Output
-	if err := c.Do(ctx, common.Procedure, "application/json", "com.atproto.server.createSession", nil, input, &output); err != nil {
+	if err := c.Do(ctx, slink.Procedure, "application/json", "com.atproto.server.createSession", nil, input, &output); err != nil {
 		return nil, err
 	}
 	return &output, nil

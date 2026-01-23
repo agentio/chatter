@@ -7,7 +7,7 @@ package xrpc // chat.bsky.convo.sendMessage
 import (
 	"context"
 
-	"github.com/agentio/slink/pkg/common"
+	"github.com/agentio/slink/pkg/slink"
 )
 
 const ChatBskyConvoSendMessage_Description = ""
@@ -19,9 +19,9 @@ type ChatBskyConvoSendMessage_Input struct {
 
 type ChatBskyConvoSendMessage_Output = ChatBskyConvoDefs_MessageView
 
-func ChatBskyConvoSendMessage(ctx context.Context, c common.Client, input *ChatBskyConvoSendMessage_Input) (*ChatBskyConvoSendMessage_Output, error) {
+func ChatBskyConvoSendMessage(ctx context.Context, c slink.Client, input *ChatBskyConvoSendMessage_Input) (*ChatBskyConvoSendMessage_Output, error) {
 	var output ChatBskyConvoSendMessage_Output
-	if err := c.Do(ctx, common.Procedure, "application/json", "chat.bsky.convo.sendMessage", nil, input, &output); err != nil {
+	if err := c.Do(ctx, slink.Procedure, "application/json", "chat.bsky.convo.sendMessage", nil, input, &output); err != nil {
 		return nil, err
 	}
 	return &output, nil

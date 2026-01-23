@@ -7,7 +7,7 @@ package xrpc // app.bsky.embed.record
 import (
 	"encoding/json"
 
-	"github.com/agentio/slink/pkg/common"
+	"github.com/agentio/slink/pkg/slink"
 )
 
 type AppBskyEmbedRecord struct {
@@ -32,7 +32,7 @@ type AppBskyEmbedRecordAppBskyEmbedRecord_View_Record struct {
 }
 
 func (m *AppBskyEmbedRecordAppBskyEmbedRecord_View_Record) UnmarshalJSON(data []byte) error {
-	recordType := common.LexiconTypeFromJSONBytes(data)
+	recordType := slink.LexiconTypeFromJSONBytes(data)
 	switch recordType {
 	case "#viewRecord":
 		m.EmbedRecord_ViewRecord = &AppBskyEmbedRecord_ViewRecord{}
@@ -108,7 +108,7 @@ type AppBskyEmbedRecordAppBskyEmbedRecord_ViewRecord_Embeds_Elem struct {
 }
 
 func (m *AppBskyEmbedRecordAppBskyEmbedRecord_ViewRecord_Embeds_Elem) UnmarshalJSON(data []byte) error {
-	recordType := common.LexiconTypeFromJSONBytes(data)
+	recordType := slink.LexiconTypeFromJSONBytes(data)
 	switch recordType {
 	case "app.bsky.embed.images#view":
 		m.EmbedImages_View = &AppBskyEmbedImages_View{}

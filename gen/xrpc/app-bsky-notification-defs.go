@@ -4,6 +4,30 @@
 // Get slink at https://github.com/agentio/slink.
 package xrpc // app.bsky.notification.defs
 
+// Object used to store activity subscription data in stash.
+type AppBskyNotificationDefs_SubjectActivitySubscription struct {
+	LexiconTypeID        string                                        `json:"$type,omitempty"`
+	ActivitySubscription *AppBskyNotificationDefs_ActivitySubscription `json:"activitySubscription,omitempty"`
+	Subject              string                                        `json:"subject,omitempty"`
+}
+
+type AppBskyNotificationDefs_RecordDeleted struct {
+	LexiconTypeID string `json:"$type,omitempty"`
+}
+
+type AppBskyNotificationDefs_ChatPreference struct {
+	LexiconTypeID string `json:"$type,omitempty"`
+	Include       string `json:"include,omitempty"`
+	Push          bool   `json:"push"`
+}
+
+type AppBskyNotificationDefs_FilterablePreference struct {
+	LexiconTypeID string `json:"$type,omitempty"`
+	Include       string `json:"include,omitempty"`
+	List          bool   `json:"list"`
+	Push          bool   `json:"push"`
+}
+
 type AppBskyNotificationDefs_Preference struct {
 	LexiconTypeID string `json:"$type,omitempty"`
 	List          bool   `json:"list"`
@@ -31,30 +55,6 @@ type AppBskyNotificationDefs_ActivitySubscription struct {
 	LexiconTypeID string `json:"$type,omitempty"`
 	Post          bool   `json:"post"`
 	Reply         bool   `json:"reply"`
-}
-
-// Object used to store activity subscription data in stash.
-type AppBskyNotificationDefs_SubjectActivitySubscription struct {
-	LexiconTypeID        string                                        `json:"$type,omitempty"`
-	ActivitySubscription *AppBskyNotificationDefs_ActivitySubscription `json:"activitySubscription,omitempty"`
-	Subject              string                                        `json:"subject,omitempty"`
-}
-
-type AppBskyNotificationDefs_RecordDeleted struct {
-	LexiconTypeID string `json:"$type,omitempty"`
-}
-
-type AppBskyNotificationDefs_ChatPreference struct {
-	LexiconTypeID string `json:"$type,omitempty"`
-	Include       string `json:"include,omitempty"`
-	Push          bool   `json:"push"`
-}
-
-type AppBskyNotificationDefs_FilterablePreference struct {
-	LexiconTypeID string `json:"$type,omitempty"`
-	Include       string `json:"include,omitempty"`
-	List          bool   `json:"list"`
-	Push          bool   `json:"push"`
 }
 
 /*

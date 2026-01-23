@@ -4,6 +4,16 @@
 // Get slink at https://github.com/agentio/slink.
 package xrpc // com.atproto.label.defs
 
+// Strings which describe the label in the UI, localized into a specific language.
+type LabelDefs_LabelValueDefinitionStrings struct {
+	LexiconTypeID string `json:"$type,omitempty"`
+	Description   string `json:"description,omitempty"`
+	Lang          string `json:"lang,omitempty"`
+	Name          string `json:"name,omitempty"`
+}
+
+type LabelDefs_LabelValue string
+
 // Metadata tag on an atproto resource (eg, repo or record).
 type LabelDefs_Label struct {
 	LexiconTypeID string  `json:"$type,omitempty"`
@@ -40,16 +50,6 @@ type LabelDefs_LabelValueDefinition struct {
 	Locales        []*LabelDefs_LabelValueDefinitionStrings `json:"locales,omitempty"`
 	Severity       string                                   `json:"severity,omitempty"`
 }
-
-// Strings which describe the label in the UI, localized into a specific language.
-type LabelDefs_LabelValueDefinitionStrings struct {
-	LexiconTypeID string `json:"$type,omitempty"`
-	Description   string `json:"description,omitempty"`
-	Lang          string `json:"lang,omitempty"`
-	Name          string `json:"name,omitempty"`
-}
-
-type LabelDefs_LabelValue string
 
 /*
 {

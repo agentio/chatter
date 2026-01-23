@@ -4,14 +4,6 @@
 // Get slink at https://github.com/agentio/slink.
 package xrpc // com.atproto.moderation.defs
 
-type ModerationDefs_ReasonType string
-
-// Misleading identity, affiliation, or content. Prefer new lexicon definition `tools.ozone.report.defs#reasonMisleadingOther`.
-const ModerationDefs_ReasonMisleading string = "reasonMisleading"
-
-// Reports not falling under another report category. Prefer new lexicon definition `tools.ozone.report.defs#reasonOther`.
-const ModerationDefs_ReasonOther string = "reasonOther"
-
 // Spam: frequent unwanted promotion, replies, mentions. Prefer new lexicon definition `tools.ozone.report.defs#reasonMisleadingSpam`.
 const ModerationDefs_ReasonSpam string = "reasonSpam"
 
@@ -26,6 +18,14 @@ const ModerationDefs_ReasonRude string = "reasonRude"
 
 // Appeal a previously taken moderation action
 const ModerationDefs_ReasonAppeal string = "reasonAppeal"
+
+type ModerationDefs_ReasonType string
+
+// Misleading identity, affiliation, or content. Prefer new lexicon definition `tools.ozone.report.defs#reasonMisleadingOther`.
+const ModerationDefs_ReasonMisleading string = "reasonMisleading"
+
+// Reports not falling under another report category. Prefer new lexicon definition `tools.ozone.report.defs#reasonOther`.
+const ModerationDefs_ReasonOther string = "reasonOther"
 
 type ModerationDefs_SubjectType string
 
