@@ -78,6 +78,9 @@ func cmd() *cobra.Command {
 					Text: text,
 				},
 			})
+			if err != nil {
+				return err
+			}
 			log.Infof("%+v", result3)
 			return nil
 		},
