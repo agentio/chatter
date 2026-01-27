@@ -5,7 +5,7 @@ import (
 	"os"
 
 	"github.com/agentio/chatter/gen/xrpc"
-	client "github.com/agentio/slink/pkg/client"
+	"github.com/agentio/slink/pkg/frodo"
 
 	"github.com/agentio/slink/pkg/resolve"
 	"github.com/agentio/slink/pkg/slink"
@@ -45,7 +45,7 @@ func cmd() *cobra.Command {
 			if err != nil {
 				return err
 			}
-			c := client.NewClientWithOptions(client.ClientOptions{
+			c := frodo.NewClientWithOptions(frodo.ClientOptions{
 				Host: fromDidDocument.Service[0].ServiceEndpoint,
 			})
 			result, err := xrpc.ComATProtoServerCreateSession(cmd.Context(), c, &xrpc.ComATProtoServerCreateSession_Input{
@@ -61,7 +61,7 @@ func cmd() *cobra.Command {
 				return err
 			}
 			log.Infof("%s %s %s", fromDid, toDid, fromDidDocument.Service[0].ServiceEndpoint)
-			c = client.NewClientWithOptions(client.ClientOptions{
+			c = frodo.NewClientWithOptions(frodo.ClientOptions{
 				Host:          fromDidDocument.Service[0].ServiceEndpoint,
 				Authorization: "Bearer " + result.AccessJwt,
 				ATProtoProxy:  "did:web:api.bsky.chat#bsky_chat",

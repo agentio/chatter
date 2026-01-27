@@ -3,7 +3,7 @@ module github.com/agentio/chatter
 go 1.25.1
 
 require (
-	github.com/agentio/slink v0.0.0-20260127043419-0b5a60a24b86
+	github.com/agentio/slink v0.0.0-20260127190208-988a6fe7262b
 	github.com/charmbracelet/log v0.4.2
 	github.com/spf13/cobra v1.10.2
 )
