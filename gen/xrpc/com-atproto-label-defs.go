@@ -6,6 +6,7 @@ package xrpc // com.atproto.label.defs
 
 const ComATProtoLabelDefs_Label_Description = "Metadata tag on an atproto resource (eg, repo or record)."
 
+// ComATProtoLabelDefs_Label is a record with Lexicon type com.atproto.label.defs#label
 type ComATProtoLabelDefs_Label struct {
 	LexiconTypeID string  `json:"$type,omitempty"`
 	Cid           *string `json:"cid,omitempty"`

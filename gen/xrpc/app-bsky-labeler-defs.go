@@ -6,6 +6,7 @@ package xrpc // app.bsky.labeler.defs
 
 const AppBskyLabelerDefs_LabelerView_Description = ""
 
+// AppBskyLabelerDefs_LabelerView is a record with Lexicon type app.bsky.labeler.defs#labelerView
 type AppBskyLabelerDefs_LabelerView struct {
 	LexiconTypeID string                                 `json:"$type,omitempty"`
 	Cid           string                                 `json:"cid"`
@@ -19,6 +20,7 @@ type AppBskyLabelerDefs_LabelerView struct {
 
 const AppBskyLabelerDefs_LabelerViewerState_Description = ""
 
+// AppBskyLabelerDefs_LabelerViewerState is a record with Lexicon type app.bsky.labeler.defs#labelerViewerState
 type AppBskyLabelerDefs_LabelerViewerState struct {
 	LexiconTypeID string  `json:"$type,omitempty"`
 	Like          *string `json:"like,omitempty"`

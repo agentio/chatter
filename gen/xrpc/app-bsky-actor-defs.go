@@ -6,12 +6,14 @@ package xrpc // app.bsky.actor.defs
 
 import (
 	"encoding/json"
+	"fmt"
 
 	"github.com/agentio/slink/pkg/slink"
 )
 
 const AppBskyActorDefs_KnownFollowers_Description = "The subject's followers whom you also follow"
 
+// AppBskyActorDefs_KnownFollowers is a record with Lexicon type app.bsky.actor.defs#knownFollowers
 type AppBskyActorDefs_KnownFollowers struct {
 	LexiconTypeID string                               `json:"$type,omitempty"`
 	Count         int64                                `json:"count"`
@@ -20,6 +22,7 @@ type AppBskyActorDefs_KnownFollowers struct {
 
 const AppBskyActorDefs_ProfileAssociated_Description = ""
 
+// AppBskyActorDefs_ProfileAssociated is a record with Lexicon type app.bsky.actor.defs#profileAssociated
 type AppBskyActorDefs_ProfileAssociated struct {
 	LexiconTypeID        string                                                  `json:"$type,omitempty"`
 	ActivitySubscription *AppBskyActorDefs_ProfileAssociatedActivitySubscription `json:"activitySubscription,omitempty"`
@@ -33,6 +36,7 @@ type AppBskyActorDefs_ProfileAssociated struct {
 
 const AppBskyActorDefs_ProfileAssociatedActivitySubscription_Description = ""
 
+// AppBskyActorDefs_ProfileAssociatedActivitySubscription is a record with Lexicon type app.bsky.actor.defs#profileAssociatedActivitySubscription
 type AppBskyActorDefs_ProfileAssociatedActivitySubscription struct {
 	LexiconTypeID      string `json:"$type,omitempty"`
 	AllowSubscriptions string `json:"allowSubscriptions"`
@@ -40,6 +44,7 @@ type AppBskyActorDefs_ProfileAssociatedActivitySubscription struct {
 
 const AppBskyActorDefs_ProfileAssociatedChat_Description = ""
 
+// AppBskyActorDefs_ProfileAssociatedChat is a record with Lexicon type app.bsky.actor.defs#profileAssociatedChat
 type AppBskyActorDefs_ProfileAssociatedChat struct {
 	LexiconTypeID string `json:"$type,omitempty"`
 	AllowIncoming string `json:"allowIncoming"`
@@ -47,6 +52,7 @@ type AppBskyActorDefs_ProfileAssociatedChat struct {
 
 const AppBskyActorDefs_ProfileAssociatedGerm_Description = ""
 
+// AppBskyActorDefs_ProfileAssociatedGerm is a record with Lexicon type app.bsky.actor.defs#profileAssociatedGerm
 type AppBskyActorDefs_ProfileAssociatedGerm struct {
 	LexiconTypeID string `json:"$type,omitempty"`
 	MessageMeUrl  string `json:"messageMeUrl"`
@@ -55,6 +61,7 @@ type AppBskyActorDefs_ProfileAssociatedGerm struct {
 
 const AppBskyActorDefs_ProfileView_Description = ""
 
+// AppBskyActorDefs_ProfileView is a record with Lexicon type app.bsky.actor.defs#profileView
 type AppBskyActorDefs_ProfileView struct {
 	LexiconTypeID string                              `json:"$type,omitempty"`
 	Associated    *AppBskyActorDefs_ProfileAssociated `json:"associated,omitempty"`
@@ -75,6 +82,7 @@ type AppBskyActorDefs_ProfileView struct {
 
 const AppBskyActorDefs_ProfileViewBasic_Description = ""
 
+// AppBskyActorDefs_ProfileViewBasic is a record with Lexicon type app.bsky.actor.defs#profileViewBasic
 type AppBskyActorDefs_ProfileViewBasic struct {
 	LexiconTypeID string                              `json:"$type,omitempty"`
 	Associated    *AppBskyActorDefs_ProfileAssociated `json:"associated,omitempty"`
@@ -93,6 +101,7 @@ type AppBskyActorDefs_ProfileViewBasic struct {
 
 const AppBskyActorDefs_StatusView_Description = ""
 
+// AppBskyActorDefs_StatusView is a record with Lexicon type app.bsky.actor.defs#statusView
 type AppBskyActorDefs_StatusView struct {
 	LexiconTypeID string                             `json:"$type,omitempty"`
 	Cid           *string                            `json:"cid,omitempty"`
@@ -105,30 +114,50 @@ type AppBskyActorDefs_StatusView struct {
 	Uri           *string                            `json:"uri,omitempty"`
 }
 
+// AppBskyActorDefs_StatusView_Embed is a union with these possible values:
+// - AppBskyEmbedExternal_View (app.bsky.embed.external#view)
 type AppBskyActorDefs_StatusView_Embed struct {
-	EmbedExternal_View *AppBskyEmbedExternal_View
+	Wrapper AppBskyActorDefs_StatusView_Embed_Wrapper
 }
 
-func (m *AppBskyActorDefs_StatusView_Embed) UnmarshalJSON(data []byte) error {
-	recordType := slink.LexiconTypeFromJSONBytes(data)
-	switch recordType {
-	case "app.bsky.embed.external#view":
-		m.EmbedExternal_View = &AppBskyEmbedExternal_View{}
-		json.Unmarshal(data, m.EmbedExternal_View)
+// Value wrappers must conform to AppBskyActorDefs_StatusView_Embed_Wrapper
+type AppBskyActorDefs_StatusView_Embed_Wrapper interface {
+	isAppBskyActorDefs_StatusView_Embed()
+}
+
+// AppBskyActorDefs_StatusView_Embed__AppBskyEmbedExternal_View wraps values of type *AppBskyEmbedExternal_View
+type AppBskyActorDefs_StatusView_Embed__AppBskyEmbedExternal_View struct {
+	Value *AppBskyEmbedExternal_View
+}
+
+func (t AppBskyActorDefs_StatusView_Embed__AppBskyEmbedExternal_View) isAppBskyActorDefs_StatusView_Embed() {
+}
+
+func (u AppBskyActorDefs_StatusView_Embed) MarshalJSON() ([]byte, error) {
+	switch v := u.Wrapper.(type) {
+	case AppBskyActorDefs_StatusView_Embed__AppBskyEmbedExternal_View:
+		return slink.MarshalWithLexiconType("app.bsky.embed.external#view", v.Value)
+	default:
+		return nil, fmt.Errorf("unsupported type %T", v)
 	}
-	return nil
 }
-
-func (m AppBskyActorDefs_StatusView_Embed) MarshalJSON() ([]byte, error) {
-	if m.EmbedExternal_View != nil {
-		return json.Marshal(m.EmbedExternal_View)
-	} else {
-		return []byte("{}"), nil
+func (u *AppBskyActorDefs_StatusView_Embed) UnmarshalJSON(data []byte) error {
+	switch slink.LexiconTypeFromJSONBytes(data) {
+	case "app.bsky.embed.external#view":
+		var v AppBskyEmbedExternal_View
+		if err := json.Unmarshal(data, &v); err != nil {
+			return err
+		}
+		u.Wrapper = AppBskyActorDefs_StatusView_Embed__AppBskyEmbedExternal_View{Value: &v}
+		return nil
+	default:
+		return nil
 	}
 }
 
 const AppBskyActorDefs_VerificationState_Description = "Represents the verification information about the user this object is attached to."
 
+// AppBskyActorDefs_VerificationState is a record with Lexicon type app.bsky.actor.defs#verificationState
 type AppBskyActorDefs_VerificationState struct {
 	LexiconTypeID         string                               `json:"$type,omitempty"`
 	TrustedVerifierStatus string                               `json:"trustedVerifierStatus"`
@@ -138,6 +167,7 @@ type AppBskyActorDefs_VerificationState struct {
 
 const AppBskyActorDefs_VerificationView_Description = "An individual verification for an associated subject."
 
+// AppBskyActorDefs_VerificationView is a record with Lexicon type app.bsky.actor.defs#verificationView
 type AppBskyActorDefs_VerificationView struct {
 	LexiconTypeID string `json:"$type,omitempty"`
 	CreatedAt     string `json:"createdAt"`
@@ -148,6 +178,7 @@ type AppBskyActorDefs_VerificationView struct {
 
 const AppBskyActorDefs_ViewerState_Description = "Metadata about the requesting account's relationship with the subject account. Only has meaningful content for authed requests."
 
+// AppBskyActorDefs_ViewerState is a record with Lexicon type app.bsky.actor.defs#viewerState
 type AppBskyActorDefs_ViewerState struct {
 	LexiconTypeID        string                                        `json:"$type,omitempty"`
 	ActivitySubscription *AppBskyNotificationDefs_ActivitySubscription `json:"activitySubscription,omitempty"`

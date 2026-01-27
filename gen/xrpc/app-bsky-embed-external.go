@@ -6,6 +6,7 @@ package xrpc // app.bsky.embed.external
 
 const AppBskyEmbedExternal_View_Description = ""
 
+// AppBskyEmbedExternal_View is a record with Lexicon type app.bsky.embed.external#view
 type AppBskyEmbedExternal_View struct {
 	LexiconTypeID string                             `json:"$type,omitempty"`
 	External      *AppBskyEmbedExternal_ViewExternal `json:"external,omitempty"`
@@ -13,6 +14,7 @@ type AppBskyEmbedExternal_View struct {
 
 const AppBskyEmbedExternal_ViewExternal_Description = ""
 
+// AppBskyEmbedExternal_ViewExternal is a record with Lexicon type app.bsky.embed.external#viewExternal
 type AppBskyEmbedExternal_ViewExternal struct {
 	LexiconTypeID string  `json:"$type,omitempty"`
 	Description   string  `json:"description"`

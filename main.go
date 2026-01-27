@@ -89,6 +89,6 @@ func cmd() *cobra.Command {
 	cmd.Flags().StringVar(&from, "from", "", "message sender (required)")
 	cmd.Flags().StringVar(&to, "to", "", "messsage recipient (required)")
 	cmd.Flags().StringVar(&password, "password", "", "the sender's password (required)")
-	cmd.Flags().StringVarP(&loglevel, "log-level", "l", "warn", "log level (debug, info, warn, error, fatal)")
+	cmd.Flags().StringVarP(&loglevel, "log", "l", "warn", "log level (debug, info, warn, error, fatal)")
 	return cmd
 }

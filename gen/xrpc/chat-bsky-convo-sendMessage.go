@@ -12,8 +12,6 @@ import (
 
 const ChatBskyConvoSendMessage_Description = ""
 
-const ChatBskyConvoSendMessage_Input_Description = "Input for ChatBskyConvoSendMessage"
-
 type ChatBskyConvoSendMessage_Input struct {
 	ConvoId string                          `json:"convoId"`
 	Message *ChatBskyConvoDefs_MessageInput `json:"message,omitempty"`

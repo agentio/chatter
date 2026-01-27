@@ -12,16 +12,12 @@ import (
 
 const ComATProtoServerCreateSession_Description = "Create an authentication session."
 
-const ComATProtoServerCreateSession_Input_Description = "Input for ComATProtoServerCreateSession"
-
 type ComATProtoServerCreateSession_Input struct {
 	AllowTakendown  *bool   `json:"allowTakendown,omitempty"`
 	AuthFactorToken *string `json:"authFactorToken,omitempty"`
 	Identifier      string  `json:"identifier"`
 	Password        string  `json:"password"`
 }
-
-const ComATProtoServerCreateSession_Output_Description = "Output for ComATProtoServerCreateSession"
 
 type ComATProtoServerCreateSession_Output struct {
 	AccessJwt       string  `json:"accessJwt"`

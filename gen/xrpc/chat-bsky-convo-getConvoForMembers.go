@@ -12,8 +12,6 @@ import (
 
 const ChatBskyConvoGetConvoForMembers_Description = ""
 
-const ChatBskyConvoGetConvoForMembers_Output_Description = "Output for ChatBskyConvoGetConvoForMembers"
-
 type ChatBskyConvoGetConvoForMembers_Output struct {
 	Convo *ChatBskyConvoDefs_ConvoView `json:"convo,omitempty"`
 }

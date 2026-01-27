@@ -6,6 +6,7 @@ package xrpc // app.bsky.embed.video
 
 const AppBskyEmbedVideo_View_Description = ""
 
+// AppBskyEmbedVideo_View is a record with Lexicon type app.bsky.embed.video#view
 type AppBskyEmbedVideo_View struct {
 	LexiconTypeID string                        `json:"$type,omitempty"`
 	Alt           *string                       `json:"alt,omitempty"`

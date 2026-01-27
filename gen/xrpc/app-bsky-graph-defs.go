@@ -8,6 +8,7 @@ type AppBskyGraphDefs_ListPurpose string
 
 const AppBskyGraphDefs_ListView_Description = ""
 
+// AppBskyGraphDefs_ListView is a record with Lexicon type app.bsky.graph.defs#listView
 type AppBskyGraphDefs_ListView struct {
 	LexiconTypeID     string                            `json:"$type,omitempty"`
 	Avatar            *string                           `json:"avatar,omitempty"`
@@ -26,6 +27,7 @@ type AppBskyGraphDefs_ListView struct {
 
 const AppBskyGraphDefs_ListViewBasic_Description = ""
 
+// AppBskyGraphDefs_ListViewBasic is a record with Lexicon type app.bsky.graph.defs#listViewBasic
 type AppBskyGraphDefs_ListViewBasic struct {
 	LexiconTypeID string                            `json:"$type,omitempty"`
 	Avatar        *string                           `json:"avatar,omitempty"`
@@ -41,6 +43,7 @@ type AppBskyGraphDefs_ListViewBasic struct {
 
 const AppBskyGraphDefs_ListViewerState_Description = ""
 
+// AppBskyGraphDefs_ListViewerState is a record with Lexicon type app.bsky.graph.defs#listViewerState
 type AppBskyGraphDefs_ListViewerState struct {
 	LexiconTypeID string  `json:"$type,omitempty"`
 	Blocked       *string `json:"blocked,omitempty"`
@@ -49,6 +52,7 @@ type AppBskyGraphDefs_ListViewerState struct {
 
 const AppBskyGraphDefs_StarterPackViewBasic_Description = ""
 
+// AppBskyGraphDefs_StarterPackViewBasic is a record with Lexicon type app.bsky.graph.defs#starterPackViewBasic
 type AppBskyGraphDefs_StarterPackViewBasic struct {
 	LexiconTypeID      string                             `json:"$type,omitempty"`
 	Cid                string                             `json:"cid"`

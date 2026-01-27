@@ -6,6 +6,7 @@ package xrpc // chat.bsky.actor.defs
 
 const ChatBskyActorDefs_ProfileViewBasic_Description = ""
 
+// ChatBskyActorDefs_ProfileViewBasic is a record with Lexicon type chat.bsky.actor.defs#profileViewBasic
 type ChatBskyActorDefs_ProfileViewBasic struct {
 	LexiconTypeID string                              `json:"$type,omitempty"`
 	Associated    *AppBskyActorDefs_ProfileAssociated `json:"associated,omitempty"`

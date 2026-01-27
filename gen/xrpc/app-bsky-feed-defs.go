@@ -6,6 +6,7 @@ package xrpc // app.bsky.feed.defs
 
 const AppBskyFeedDefs_BlockedAuthor_Description = ""
 
+// AppBskyFeedDefs_BlockedAuthor is a record with Lexicon type app.bsky.feed.defs#blockedAuthor
 type AppBskyFeedDefs_BlockedAuthor struct {
 	LexiconTypeID string                        `json:"$type,omitempty"`
 	Did           string                        `json:"did"`
@@ -14,6 +15,7 @@ type AppBskyFeedDefs_BlockedAuthor struct {
 
 const AppBskyFeedDefs_GeneratorView_Description = ""
 
+// AppBskyFeedDefs_GeneratorView is a record with Lexicon type app.bsky.feed.defs#generatorView
 type AppBskyFeedDefs_GeneratorView struct {
 	LexiconTypeID       string                                `json:"$type,omitempty"`
 	AcceptsInteractions *bool                                 `json:"acceptsInteractions,omitempty"`
@@ -34,6 +36,7 @@ type AppBskyFeedDefs_GeneratorView struct {
 
 const AppBskyFeedDefs_GeneratorViewerState_Description = ""
 
+// AppBskyFeedDefs_GeneratorViewerState is a record with Lexicon type app.bsky.feed.defs#generatorViewerState
 type AppBskyFeedDefs_GeneratorViewerState struct {
 	LexiconTypeID string  `json:"$type,omitempty"`
 	Like          *string `json:"like,omitempty"`
