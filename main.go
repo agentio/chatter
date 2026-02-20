@@ -6,10 +6,8 @@ import (
 
 	"github.com/agentio/chatter/gen/xrpc"
 	"github.com/agentio/slink/pkg/froda"
-
 	"github.com/agentio/slink/pkg/resolve"
 	"github.com/agentio/slink/pkg/slink"
-
 	"github.com/charmbracelet/log"
 	"github.com/spf13/cobra"
 )
