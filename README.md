@@ -27,11 +27,9 @@ $ chatter --from timburks.me --to agent.io --password $CHATPW --text "Hey! How a
 2026/01/22 16:29:45 INFO &{LexiconTypeID: Embed:<nil> Facets:[] Id:3md2h2l7tit2p Reactions:[] Rev:22222247kqldr Sender:0xc00050a0c0 SentAt:2026-01-23T00:29:45.751Z Text:Hey! How are you?}
 ```
 
-Generated support code is checked into the [gen/xrpc](gen/xrpc) directory. Ordinarily I wouldn't recommend this, but that makes it possible to try these handlers without installing `slink`. Also, the generated code has been pruned to only the lexicons needed to make the calls made by the application. That was done by providing a `--manifest` argument to `slink` that specifies a file listing the xrpc methods that our application calls.
+Generated support code is produced by the `make xrpc` target in the Makefile. This code is generated with `slink` and uses the `lexicons` directory, which is included as a submodule. 
 
-The `lexicons` directory is not included and should be copied from [github.com/bluesky-social/atproto](https://github.com/bluesky-social/atproto). It is only needed to regenerate the xrpc support code.
-
-Everything here (including generated code) is released under the [AGPL](LICENSE). Yes, I am open to discussion about that.
+Everything here is released under the [AGPL](LICENSE).
 
 If you try this, let me know, but please don't depend on it yet! `slink` is prerelease and I'm thinking about making a few more changes to the generated code.
 
