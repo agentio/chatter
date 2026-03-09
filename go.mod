@@ -1,9 +1,9 @@
 module github.com/agentio/chatter
 
-go 1.25.1
+go 1.25.6
 
 require (
-	github.com/agentio/slink v0.1.0
+	github.com/agentio/slink v0.1.6
 	github.com/charmbracelet/log v0.4.2
 	github.com/spf13/cobra v1.10.2
 )

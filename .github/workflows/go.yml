@@ -21,7 +21,7 @@ jobs:
         go-version: '1.25.6'
 
     - name: Install slink
-      run: go install github.com/agentio/slink/cmd/slink-generate@v0.1.0
+      run: go install github.com/agentio/slink/cmd/slink-generate@v0.1.6
 
     - name: Run slink-generate
       run: slink-generate xrpc -m xrpc.json
