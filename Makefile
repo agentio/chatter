@@ -1,4 +1,4 @@
-all:	xrpc chatter
+all:	submodules xrpc chatter
 
 chatter:
 	go install ./...
